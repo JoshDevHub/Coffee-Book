@@ -1,0 +1,16 @@
+---
+require:
+- rubocop-rspec
+- rubocop-rails
+AllCops:
+  TargetRubyVersion: 3.0.3
+  NewCops: enable
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+  - spec/**/*
