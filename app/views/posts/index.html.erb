@@ -6,8 +6,5 @@
   <% @posts.each do |post| %>
     <%= post.body %>
     <%= link_to "View Post", post_path(post) %>
-    <%= link_to "Delete Post", post_path(post) %>
-      post_path(post),
-      data: { turbo_method: :delete } %>
   <% end %>
 </div>
