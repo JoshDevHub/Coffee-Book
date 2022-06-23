@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Creating a post", type: :system do
-  let(:user) { User.create(email: "test@example.com", password: "password123") }
+  let(:user) { create(:user) }
 
   before do
     login_as(user)

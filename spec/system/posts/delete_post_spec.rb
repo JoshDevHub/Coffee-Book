@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Deleting a post", type: :system do
-  let(:user) { User.create(email: "test@example.com", password: "password123") }
+  let(:user) { create(:user) }
   let(:post) { Post.create(body: "Test post", user: user) }
 
   before do
