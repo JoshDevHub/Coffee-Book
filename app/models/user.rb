@@ -19,4 +19,9 @@ class User < ApplicationRecord
 
     FriendRequest.create(sender: self, receiver: receiver)
   end
+
+  def friends
+    sent_friend_requests.where(accepted: true).map(&:receiver) +
+      received_friend_requests.where(accepted: true).map(&:sender)
+  end
 end
