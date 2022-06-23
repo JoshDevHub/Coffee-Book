@@ -21,7 +21,7 @@ class User < ApplicationRecord
   end
 
   def friends
-    sent_friend_requests.where(accepted: true).map(&:receiver) +
-      received_friend_requests.where(accepted: true).map(&:sender)
+    sent_friend_requests.confirmed.map(&:receiver) +
+      received_friend_requests.confirmed.map(&:sender)
   end
 end
