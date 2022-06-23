@@ -13,4 +13,10 @@ class User < ApplicationRecord
                                       foreign_key: :receiver_id,
                                       inverse_of: :receiver,
                                       dependent: :destroy
+
+  def send_friend_request(receiver)
+    return if FriendRequest.exists?(sender: [self, receiver], receiver: [self, receiver])
+
+    FriendRequest.create(sender: self, receiver: receiver)
+  end
 end
