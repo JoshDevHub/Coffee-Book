@@ -1,9 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-
   has_many :posts, dependent: :destroy
   has_many :sent_friend_requests, class_name: "FriendRequest",
                                   foreign_key: :sender_id,
@@ -13,6 +8,13 @@ class User < ApplicationRecord
                                       foreign_key: :receiver_id,
                                       inverse_of: :receiver,
                                       dependent: :destroy
+
+  validates :email, presence: true, uniqueness: true
+
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 
   def send_friend_request(receiver)
     return if FriendRequest.exists?(sender: [self, receiver], receiver: [self, receiver])
