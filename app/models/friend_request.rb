@@ -4,4 +4,8 @@ class FriendRequest < ApplicationRecord
 
   scope :pending, -> { where(accepted: false) }
   scope :confirmed, -> { where(accepted: true) }
+
+  def confirm
+    self.accepted = true
+  end
 end
