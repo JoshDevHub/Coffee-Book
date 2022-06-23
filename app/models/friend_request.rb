@@ -6,6 +6,6 @@ class FriendRequest < ApplicationRecord
   scope :confirmed, -> { where(accepted: true) }
 
   def confirm
-    self.accepted = true
+    update(accepted: true)
   end
 end
