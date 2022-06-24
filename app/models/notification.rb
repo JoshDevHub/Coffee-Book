@@ -4,4 +4,8 @@ class Notification < ApplicationRecord
 
   scope :unread, -> { where(read: false) }
   scope :read, -> { where(read: true) }
+
+  def mark_as_read
+    update(read_status: true)
+  end
 end
