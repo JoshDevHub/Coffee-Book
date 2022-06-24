@@ -8,6 +8,7 @@ class User < ApplicationRecord
                                       foreign_key: :receiver_id,
                                       inverse_of: :receiver,
                                       dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -23,11 +24,18 @@ class User < ApplicationRecord
     return if sent_friend_requests.exists?(receiver: receiver) ||
               received_friend_requests.exists?(sender: receiver)
 
-    sent_friend_requests.create(receiver: receiver)
+    request = sent_friend_requests.create(receiver: receiver)
+    send_notification(receiver, request)
   end
 
   def friends
     sent_friend_requests.confirmed.map(&:receiver) +
       received_friend_requests.confirmed.map(&:sender)
+  end
+
+  private
+
+  def send_notification(recipient, request)
+    recipient.notifications.create(friend_request: request)
   end
 end
