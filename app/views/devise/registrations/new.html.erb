@@ -5,8 +5,18 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, autofocus: true, class: "border border-black" %>
+    </div>
+
+    <div>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: "border border-black" %>
+    </div>
+
+    <div>
       <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border border-black" %>
+      <%= f.email_field :email, autocomplete: "email", class: "border border-black" %>
     </div>
 
     <div>

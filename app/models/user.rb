@@ -9,6 +9,8 @@ class User < ApplicationRecord
                                       inverse_of: :receiver,
                                       dependent: :destroy
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
 
   # Include default devise modules. Others available are:
