@@ -14,3 +14,5 @@ Style/FrozenStringLiteralComment:
 Metrics/BlockLength:
   Exclude:
   - spec/**/*
+RSpec/ImplicitExpect:
+  EnforcedStyle: should

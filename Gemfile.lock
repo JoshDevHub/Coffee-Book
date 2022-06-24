@@ -235,6 +235,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    shoulda-matchers (5.1.0)
+      activesupport (>= 5.2.0)
     sprockets (4.0.3)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -293,6 +295,7 @@ DEPENDENCIES
   rubocop
   rubocop-rails
   rubocop-rspec
+  shoulda-matchers
   sprockets-rails
   stimulus-rails
   turbo-rails
