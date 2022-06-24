@@ -20,9 +20,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def send_friend_request(receiver)
-    return if FriendRequest.exists?(sender: [self, receiver], receiver: [self, receiver])
+    return if sent_friend_requests.exists?(receiver: receiver) ||
+              received_friend_requests.exists?(sender: receiver)
 
-    FriendRequest.create(sender: self, receiver: receiver)
+    sent_friend_requests.create(receiver: receiver)
   end
 
   def friends

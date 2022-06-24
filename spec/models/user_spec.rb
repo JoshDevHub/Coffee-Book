@@ -21,7 +21,9 @@ RSpec.describe User, type: :model do
 
     context "when no request exists between the two users" do
       it "creates a new FriendRequest record" do
-        expect { request_sender.send_friend_request(receiver) }.to change(FriendRequest, :count).by(1)
+        expect { request_sender.send_friend_request(receiver) }.to(
+          change { request_sender.sent_friend_requests.count }.by(1)
+        )
       end
     end
 
