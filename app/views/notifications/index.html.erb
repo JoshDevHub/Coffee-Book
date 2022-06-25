@@ -1,0 +1,9 @@
+<h1>Your Notifications</h1>
+
+<ul>
+  <% @notifications.each do |notification| %>
+    <li>
+      You have a notification from: <%= notification.friend_request.sender.first_name %>
+    </li>
+  <% end %>
+</ul>
