@@ -1,0 +1,7 @@
+<div>
+  <p>You have a friend request from <%= @friend_request.sender.first_name %></p>
+  <div>
+    <%= button_to "Confirm Request", confirm_request_path(@friend_request), method: :patch %>
+    <%= button_to "Reject Request", friend_request_path(@friend_request), method: :delete %>
+  </div>
+</div>

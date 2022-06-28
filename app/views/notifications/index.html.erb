@@ -3,7 +3,7 @@
 <ul>
   <% @notifications.each do |notification| %>
     <li>
-      You have a notification from: <%= notification.friend_request.sender.first_name %>
+      <%= link_to "Friend Request", friend_request_path(notification.friend_request) %>
     </li>
   <% end %>
 </ul>
