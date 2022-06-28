@@ -9,6 +9,7 @@ class User < ApplicationRecord
                                       inverse_of: :receiver,
                                       dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
