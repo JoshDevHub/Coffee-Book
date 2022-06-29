@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = current_user.posts
+    @posts = Post.timeline_for(current_user)
   end
 
   def show
