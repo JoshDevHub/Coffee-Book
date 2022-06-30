@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # Root
+  root "posts#index"
+
   # Users
   devise_for :users
   resources :users, only: [:index] do
@@ -6,11 +9,12 @@ Rails.application.routes.draw do
   end
 
   # Posts
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
   post "posts/:id/like_post",
        to: "posts#like_post",
        as: "like_post"
-  root "posts#index"
 
   # Friend Requests
   resources :friend_requests, only: %i[show destroy]
