@@ -22,7 +22,11 @@
         %>
       <% end %>
     </header>
-    <%= flash[:notice] %>
+    <% flash.each do |_type, message| %>
+      <div>
+        <%= message %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
