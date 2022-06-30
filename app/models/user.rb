@@ -30,12 +30,15 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 
   def send_friend_request(receiver)
     return if sent_friend_requests.exists?(receiver: receiver) ||
