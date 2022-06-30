@@ -9,24 +9,7 @@
 %>
 
 <h2>Comments:</h2>
-<% @post.comments.each do |comment| %>
-  <div>
-    <p class="font-bold">
-      <%= comment.user.name %>
-    </p>
-    <p>
-      <%= comment.body %>
-    </p>
-  </div>
-<% end %>
+<%= render @post.comments %>
 
 <h2>Add Comment:</h2>
-<%= form_with model: [@post, @post.comments.build] do |form| %>
-  <div>
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+<%= render "comments/form", post: @post %>
