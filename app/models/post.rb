@@ -19,4 +19,8 @@ class Post < ApplicationRecord
   def self.timeline_for(user)
     where(user: user).or(where(user: user.friends))
   end
+
+  def total_likes
+    likes.count
+  end
 end
