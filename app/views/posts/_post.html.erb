@@ -1,0 +1,8 @@
+<div class="flex flex-col">
+  <p class="font-bold">
+    <%= post.user.name %>
+  </p>
+  <%= post.body %>
+  <%= render "post_likes", post: post %>
+  <%= link_to "View Post", post_path(post) %>
+</div>
