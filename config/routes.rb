@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   # Posts
   resources :posts
+  post "posts/:id/like_post",
+       to: "posts#like_post",
+       as: "like_post"
   root "posts#index"
 
   # Friend Requests

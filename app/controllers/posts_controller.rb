@@ -42,6 +42,12 @@ class PostsController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
+  def like_post
+    @post = Post.find(params[:id])
+    @post.likes.create(user: current_user)
+    render :index
+  end
+
   private
 
   def post_params
