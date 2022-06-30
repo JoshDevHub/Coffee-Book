@@ -1,9 +1,32 @@
 <h1>Your post</h1>
 
 <%= @post.body %>
-<%= @post.user.email %>
+<%= @post.user.name %>
 <%= link_to "Edit Post", edit_post_path(@post) %>
 <%= link_to "Delete Post",
   post_path(@post),
   data: { turbo_method: :delete }
 %>
+
+<h2>Comments:</h2>
+<% @post.comments.each do |comment| %>
+  <div>
+    <p class="font-bold">
+      <%= comment.user.name %>
+    </p>
+    <p>
+      <%= comment.body %>
+    </p>
+  </div>
+<% end %>
+
+<h2>Add Comment:</h2>
+<%= form_with model: [@post, @post.comments.build] do |form| %>
+  <div>
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
