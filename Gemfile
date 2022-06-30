@@ -69,6 +69,10 @@ group :development do
   # gem "spring"
 end
 
+group :development do
+  gem "annotate"
+end
+
 group :development, :test do
   gem "capybara"
   gem "factory_bot_rails"
