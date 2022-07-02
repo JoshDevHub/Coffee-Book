@@ -1,12 +1,6 @@
 <h1>Your post</h1>
 
-<%= @post.body %>
-<%= @post.user.name %>
-<%= link_to "Edit Post", edit_post_path(@post) %>
-<%= link_to "Delete Post",
-  post_path(@post),
-  data: { turbo_method: :delete }
-%>
+<%= render @post, post: @post %>
 
 <h2>Comments:</h2>
 <%= render @post.comments %>

@@ -4,6 +4,7 @@
 
 <div>
   <% @posts.each do |post| %>
-    <%= render "post", post: post %>
+    <%= render post %>
+    <%= link_to "View Post", post_path(post) %>
   <% end %>
 </div>
