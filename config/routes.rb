@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   # Posts
   resources :posts do
-    resources :comments
+    resources :comments, shallow: true
   end
   post "posts/:id/like_post",
        to: "posts#like_post",
