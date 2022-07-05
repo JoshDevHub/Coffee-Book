@@ -5,4 +5,5 @@
   <p>
     <%= comment.body %>
   </p>
+  <%= button_to "Delete Comment", comment_path(comment), method: :delete %>
 </div>

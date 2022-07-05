@@ -12,7 +12,7 @@
 #
 FactoryBot.define do
   factory :comment do
-    body { "MyText" }
+    body { Faker::Lorem.paragraph(sentence_count: 2) }
     commentable { nil }
   end
 end
