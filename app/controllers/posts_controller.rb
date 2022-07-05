@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   def like_post
     @post = Post.find(params[:id])
     @post.likes.create(user: current_user)
-    render :index
+    redirect_to root_path
   end
 
   private
