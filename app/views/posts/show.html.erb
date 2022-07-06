@@ -6,4 +6,4 @@
 <%= render @post.comments %>
 
 <h2>Add Comment:</h2>
-<%= render "comments/form", post: @post %>
+<%= render "comments/form", comment: [@post, @post.comments.build] %>
