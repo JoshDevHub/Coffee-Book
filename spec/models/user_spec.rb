@@ -89,4 +89,30 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "#pending_friends" do
+    subject(:user) { create(:user) }
+
+    let(:other_user) { create(:user) }
+
+    context "when the users share an accepted request" do
+      before do
+        create(:friend_request, sender: user, receiver: other_user, accepted: true)
+      end
+
+      it "returns a relation object not including the user's friend" do
+        expect(user.pending_friends).not_to include(other_user)
+      end
+    end
+
+    context "when the users share an unaccepted request" do
+      before do
+        create(:friend_request, sender: user, receiver: other_user)
+      end
+
+      it "returns a relation object including the other user" do
+        expect(user.pending_friends).to include(other_user)
+      end
+    end
+  end
 end

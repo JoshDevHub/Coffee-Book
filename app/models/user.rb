@@ -53,6 +53,11 @@ class User < ApplicationRecord
       received_friend_requests.confirmed.map(&:sender)
   end
 
+  def pending_friends
+    sent_friend_requests.pending.map(&:receiver) +
+      received_friend_requests.pending.map(&:sender)
+  end
+
   private
 
   def send_notification(recipient, request)
