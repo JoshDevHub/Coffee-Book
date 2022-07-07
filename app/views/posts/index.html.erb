@@ -4,7 +4,7 @@
 
 <div>
   <% @posts.each do |post| %>
-    <%= render post %>
+    <%= render post, user_like: post.find_like_from(current_user) %>
     <%= link_to "View Post", post_path(post) %>
   <% end %>
 </div>

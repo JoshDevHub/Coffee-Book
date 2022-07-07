@@ -1,6 +1,6 @@
 <h1>Your post</h1>
 
-<%= render @post, post: @post %>
+<%= render @post, post: @post, user_like: @post.find_like_from(current_user) %>
 
 <h2>Comments:</h2>
 <%= render @post.comments %>
