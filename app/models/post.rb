@@ -23,4 +23,8 @@ class Post < ApplicationRecord
   def total_likes
     likes.count
   end
+
+  def find_like_from(user)
+    likes.find_by(user: user)
+  end
 end

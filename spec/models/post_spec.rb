@@ -36,4 +36,25 @@ RSpec.describe Post, type: :model do
       end
     end
   end
+
+  describe "#find_like_from" do
+    let(:current_user) { create(:user) }
+
+    context "when a post is liked by the user" do
+      subject(:liked_post) { create(:post, user: current_user) }
+
+      it "returns the like" do
+        post_like = create(:like, user: current_user, likeable: liked_post)
+        expect(liked_post.find_like_from(current_user)).to eq post_like
+      end
+    end
+
+    context "when a post is not liked by the user" do
+      subject(:unliked_post) { create(:post, user: current_user) }
+
+      it "returns nil" do
+        expect(unliked_post.find_like_from(current_user)).to be_nil
+      end
+    end
+  end
 end
