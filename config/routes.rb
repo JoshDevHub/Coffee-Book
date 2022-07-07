@@ -8,13 +8,16 @@ Rails.application.routes.draw do
     resources :notifications, only: [:index]
   end
 
+  # Likes
+  concern :likeable do
+    resources :likes, shallow: true
+  end
+
   # Posts
   resources :posts do
     resources :comments, shallow: true
+    concerns :likeable
   end
-  post "posts/:id/like_post",
-       to: "posts#like_post",
-       as: "like_post"
 
   # Friend Requests
   resources :friend_requests, only: %i[show destroy]

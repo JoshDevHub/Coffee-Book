@@ -3,7 +3,9 @@
     <%= post.user.name %>
   </p>
   <%= post.body %>
-  <%= render "post_likes", post: post %>
+  <p>Likes: <%= post.likes.size %></p>
+  <%= button_to "Like Post", post_likes_path(post) %>
+  <%= render "likes/likes", likes: post.likes %>
   <%= link_to "Edit Post", edit_post_path(post) %>
   <%= link_to "Delete Post",
     post_path(post),
