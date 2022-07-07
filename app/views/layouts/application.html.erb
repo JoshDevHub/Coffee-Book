@@ -18,7 +18,9 @@
           data: { turbo_method: :delete } %>
         <%= link_to "Notifications",
           user_notifications_path(current_user)
-
+        %>
+        <%= link_to "Friends",
+          user_friend_requests_path(current_user)
         %>
       <% end %>
     </header>

@@ -1,4 +1,8 @@
 class FriendRequestsController < ApplicationController
+  def index
+    @friends = current_user.friends
+  end
+
   def show
     @friend_request = FriendRequest.find(params[:id])
   end
