@@ -23,6 +23,9 @@
           user_friend_requests_path(current_user)
         %>
       <% end %>
+      <%= link_to "Find Friends",
+        users_path
+      %>
     </header>
     <% flash.each do |_type, message| %>
       <div>

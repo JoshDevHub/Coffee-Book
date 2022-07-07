@@ -1,5 +1,17 @@
-<h1>List of all Users</h1>
+<h1>Find New Friends</h1>
 
 <% @users.each do |user| %>
-  <p>This is a user: <%= user.email %></p>
+  <p>This is a user: <%= user.name %></p>
+  <% if current_user.friends.include?(user) %>
+    <%= button_to "You're friends with this user.", {}, disabled: true %>
+  <% elsif current_user.pending_friends.include?(user) %>
+    <%= button_to "Pending request ...", {}, disabled: true %>
+  <% else %>
+    <%= button_to "Friend this User",
+      user_friend_requests_path(
+        user_id: current_user,
+        friend_request: { receiver_id: user }
+      )
+    %>
+  <% end %>
 <% end %>
