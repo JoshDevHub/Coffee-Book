@@ -11,6 +11,39 @@
 require "rails_helper"
 
 RSpec.describe Post, type: :model do
+  describe "::timeline_for" do
+    let(:main_user) { create(:user) }
+    let(:friend) { create(:user) }
+    let(:not_friend) { create(:user) }
+
+    before do
+      create(:friend_request, sender: main_user, receiver: friend, accepted: true)
+    end
+
+    it "returns posts from the main user and their friend" do
+      first_post = create(:post, user: main_user)
+      second_post = create(:post, user: friend)
+
+      record_object = described_class.timeline_for(main_user)
+      expect(record_object).to include(first_post, second_post)
+    end
+
+    it "orders the timeline posts in descending order" do
+      create(:post, user: main_user)
+      second_post = create(:post, user: friend)
+
+      record_object = described_class.timeline_for(main_user)
+      expect(record_object.first).to eq second_post
+    end
+
+    it "does not return a post from the user who isn't a friend" do
+      second_post = create(:post, user: not_friend)
+
+      record_object = described_class.timeline_for(main_user)
+      expect(record_object).not_to include(second_post)
+    end
+  end
+
   describe "#total_likes" do
     let(:current_user) { create(:user) }
 
