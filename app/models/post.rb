@@ -17,7 +17,7 @@ class Post < ApplicationRecord
   validates :body, presence: true
 
   def self.timeline_for(user)
-    where(user: user).or(where(user: user.friends))
+    where(user: user).or(where(user: user.friends)).order(created_at: :desc)
   end
 
   def total_likes
