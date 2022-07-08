@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :enforce_user_ownership, only: %i[edit update destroy]
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
