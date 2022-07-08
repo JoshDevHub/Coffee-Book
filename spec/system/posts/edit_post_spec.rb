@@ -28,4 +28,15 @@ RSpec.describe "Editing a post", type: :system do
       expect(page).to have_content(error_message)
     end
   end
+
+  context "when the user doesn't own the post" do
+    let(:others_post) { create(:post, user: create(:user)) }
+
+    it "renders an error message" do
+      error_message = "You do not own this Post"
+      visit edit_post_path(others_post)
+
+      expect(page).to have_content("You do not own this Post")
+    end
+  end
 end

@@ -32,4 +32,15 @@ RSpec.describe "Editing a comment", type: :system do
       expect(page).to have_content(error_message)
     end
   end
+
+  context "when the user doesn't own the comment" do
+    let(:others_comment) { create(:comment, user: create(:user), commentable: post) }
+
+    it "renders an error message" do
+      error_message = "You do not own this Comment"
+      visit edit_comment_path(others_comment)
+
+      expect(page).to have_content(error_message)
+    end
+  end
 end
