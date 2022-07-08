@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Creating a post", type: :system do
+RSpec.describe "Editing a post", type: :system do
   let(:user) { create(:user) }
   let(:post) { Post.create(body: "Test Post", user: user) }
 
@@ -9,7 +9,7 @@ RSpec.describe "Creating a post", type: :system do
   end
 
   context "when inputs are valid" do
-    it "creates a new post" do
+    it "updates the post" do
       visit edit_post_path(post)
       fill_in "Body", with: "Updated Post"
       click_on "Create Post"
