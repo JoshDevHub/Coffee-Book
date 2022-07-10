@@ -3,19 +3,11 @@
     <%= post.user.name %>
   </p>
   <%= post.body %>
-  <p>Likes: <%= post.likes.size %></p>
-  <% if user_like %>
-    <%= button_to "Unlike Post", like_path(user_like), method: :delete %>
-  <% else %>
-    <%= button_to "Like Post", post_likes_path(post) %>
-  <% end %>
-  <% if post.user == current_user %>
-    <%= link_to "Edit Post", edit_post_path(post) %>
-    <%= link_to "Delete Post",
-      post_path(post),
-      data: { turbo_method: :delete }
-    %>
-  <% else %>
-    <%= "" %>
+  <%= render "post_likes",
+    post: post,
+    user_like: post.find_like_from(current_user)
+  %>
+  <% if current_user == post.user %>
+    <%= render "post_actions", post: post %>
   <% end %>
 </div>
