@@ -11,27 +11,8 @@
   </head>
 
   <body>
-    <header>
-      <% if current_user %>
-        <%= link_to "Logout",
-          destroy_user_session_path,
-          data: { turbo_method: :delete } %>
-        <%= link_to "Notifications",
-          user_notifications_path(current_user)
-        %>
-        <%= link_to "Friends",
-          user_friend_requests_path(current_user)
-        %>
-      <% end %>
-      <%= link_to "Find Friends",
-        users_path
-      %>
-    </header>
-    <% flash.each do |_type, message| %>
-      <div>
-        <%= message %>
-      </div>
-    <% end %>
+    <%= render "layouts/header" %>
+    <%= render "layouts/flash" %>
     <%= yield %>
   </body>
 </html>
