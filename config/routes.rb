@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'profiles/show'
   # Root
   root "posts#index"
 
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index] do
     resources :notifications, only: [:index]
     resources :friend_requests, shallow: true
+    resource :profile
   end
 
   # Likes
