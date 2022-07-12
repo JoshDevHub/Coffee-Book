@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
 
     context "when a request already exists between the two users" do
       before do
-        Friendship.create(sender: request_sender, receiver: receiver)
+        create(:friendship, sender: request_sender, receiver: receiver)
       end
 
       it "does not create a new Friendship record" do
@@ -71,7 +71,7 @@ RSpec.describe User, type: :model do
       let(:users_friend) { create(:user) }
 
       before do
-        Friendship.create(sender: user, receiver: users_friend, accepted: true)
+        create(:friendship, sender: user, receiver: users_friend, accepted: true)
       end
 
       it "returns a relation object including the user's friend" do
@@ -89,7 +89,7 @@ RSpec.describe User, type: :model do
     context "when the users share an unaccepted request" do
       it "does not include the other user if the request isn't accepted" do
         requested_user = create(:user)
-        Friendship.create(sender: user, receiver: requested_user, accepted: false)
+        create(:friendship, sender: user, receiver: requested_user, accepted: false)
         expect(user.friends).not_to include(requested_user)
       end
     end
