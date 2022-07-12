@@ -2,7 +2,7 @@ class NotificationsController < ApplicationController
   before_action :user_param
 
   def index
-    @notifications = @user.notifications
+    @notifications = @user.notifications.includes(:friendship)
   end
 
   private
