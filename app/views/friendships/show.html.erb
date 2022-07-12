@@ -1,0 +1,11 @@
+<div>
+  <p>You have a friend request from <%= @friendship.sender.first_name %></p>
+  <div>
+    <% if @friendship.accepted? %>
+      <p>You are already friends</p>
+    <% else %>
+      <%= button_to "Confirm Request", confirm_request_path(@friendship), method: :patch %>
+    <% end %>
+    <%= button_to "Reject Request", friendship_path(@friendship), method: :delete %>
+  </div>
+</div>

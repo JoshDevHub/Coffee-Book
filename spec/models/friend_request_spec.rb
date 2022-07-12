@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: friend_requests
+# Table name: friendships
 #
 #  id          :bigint           not null, primary key
 #  accepted    :boolean          default(FALSE)
@@ -11,8 +11,8 @@
 #
 # Indexes
 #
-#  index_friend_requests_on_receiver_id  (receiver_id)
-#  index_friend_requests_on_sender_id    (sender_id)
+#  index_friendships_on_receiver_id  (receiver_id)
+#  index_friendships_on_sender_id    (sender_id)
 #
 # Foreign Keys
 #
@@ -21,7 +21,7 @@
 #
 require "rails_helper"
 
-RSpec.describe FriendRequest, type: :model do
+RSpec.describe Friendship, type: :model do
   describe "#confirm" do
     let(:sender) { create(:user) }
     let(:receiver) { create(:user) }

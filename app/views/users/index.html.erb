@@ -8,9 +8,9 @@
     <%= button_to "Pending request ...", {}, disabled: true %>
   <% else %>
     <%= button_to "Friend this User",
-      user_friend_requests_path(
+      user_friendships_path(
         user_id: current_user,
-        friend_request: { receiver_id: user }
+        friendship: { receiver_id: user }
       )
     %>
   <% end %>

@@ -20,11 +20,11 @@
 #
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
-  has_many :sent_friend_requests, class_name: "FriendRequest",
+  has_many :sent_friend_requests, class_name: "Friendship",
                                   foreign_key: :sender_id,
                                   inverse_of: :sender,
                                   dependent: :destroy
-  has_many :received_friend_requests, class_name: "FriendRequest",
+  has_many :received_friend_requests, class_name: "Friendship",
                                       foreign_key: :receiver_id,
                                       inverse_of: :receiver,
                                       dependent: :destroy
@@ -70,6 +70,6 @@ class User < ApplicationRecord
   private
 
   def send_notification(recipient, request)
-    recipient.notifications.create(friend_request: request)
+    recipient.notifications.create(friendship: request)
   end
 end

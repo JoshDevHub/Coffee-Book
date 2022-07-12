@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'profiles/show'
+  get "profiles/show"
   # Root
   root "posts#index"
 
@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:index] do
     resources :notifications, only: [:index]
-    resources :friend_requests, shallow: true
+    resources :friendships, shallow: true
     resource :profile
   end
 
@@ -23,8 +23,7 @@ Rails.application.routes.draw do
   end
 
   # Friend Requests
-  # resources :friend_requests, only: %i[show destroy]
-  patch "friend_requests/:id/confirm_request",
-        to: "friend_requests#confirm_request",
+  patch "friendships/:id/confirm_request",
+        to: "friendships#confirm_request",
         as: "confirm_request"
 end

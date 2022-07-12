@@ -25,7 +25,7 @@ RSpec.describe Post, type: :model do
     let(:not_friend) { create(:user) }
 
     before do
-      create(:friend_request, sender: main_user, receiver: friend, accepted: true)
+      create(:friendship, sender: main_user, receiver: friend, accepted: true)
     end
 
     it "returns posts from the main user and their friend" do

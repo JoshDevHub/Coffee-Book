@@ -20,7 +20,7 @@ RSpec.describe "Sending a friend request", type: :system do
   context "when two users are friends" do
     before do
       create(
-        :friend_request,
+        :friendship,
         sender: current_user,
         receiver: other_user,
         accepted: true

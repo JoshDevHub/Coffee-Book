@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: friend_requests
+# Table name: friendships
 #
 #  id          :bigint           not null, primary key
 #  accepted    :boolean          default(FALSE)
@@ -11,8 +11,8 @@
 #
 # Indexes
 #
-#  index_friend_requests_on_receiver_id  (receiver_id)
-#  index_friend_requests_on_sender_id    (sender_id)
+#  index_friendships_on_receiver_id  (receiver_id)
+#  index_friendships_on_sender_id    (sender_id)
 #
 # Foreign Keys
 #
@@ -20,7 +20,7 @@
 #  fk_rails_...  (sender_id => users.id)
 #
 FactoryBot.define do
-  factory :friend_request do
+  factory :friendship do
     sender { create(:user) }
     receiver { create(:receiver) }
     accepted { false }

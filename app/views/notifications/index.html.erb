@@ -3,7 +3,7 @@
 <ul>
   <% @notifications.each do |notification| %>
     <li>
-      <%= link_to "Friend Request", friend_request_path(notification.friend_request) %>
+      <%= link_to "Friend Request", friendship_path(notification.friendship) %>
     </li>
   <% end %>
 </ul>

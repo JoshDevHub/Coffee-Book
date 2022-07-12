@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_11_185140) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_12_170007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,14 +25,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_11_185140) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "friend_requests", force: :cascade do |t|
+  create_table "friendships", force: :cascade do |t|
     t.bigint "sender_id", null: false
     t.bigint "receiver_id", null: false
     t.boolean "accepted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["receiver_id"], name: "index_friend_requests_on_receiver_id"
-    t.index ["sender_id"], name: "index_friend_requests_on_sender_id"
+    t.index ["receiver_id"], name: "index_friendships_on_receiver_id"
+    t.index ["sender_id"], name: "index_friendships_on_sender_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -47,11 +47,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_11_185140) do
 
   create_table "notifications", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "friend_request_id", null: false
+    t.bigint "friendship_id", null: false
     t.boolean "read_status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["friend_request_id"], name: "index_notifications_on_friend_request_id"
+    t.index ["friendship_id"], name: "index_notifications_on_friendship_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -88,10 +88,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_11_185140) do
   end
 
   add_foreign_key "comments", "users"
-  add_foreign_key "friend_requests", "users", column: "receiver_id"
-  add_foreign_key "friend_requests", "users", column: "sender_id"
+  add_foreign_key "friendships", "users", column: "receiver_id"
+  add_foreign_key "friendships", "users", column: "sender_id"
   add_foreign_key "likes", "users"
-  add_foreign_key "notifications", "friend_requests"
+  add_foreign_key "notifications", "friendships"
   add_foreign_key "notifications", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "profiles", "users"
