@@ -1,2 +1,7 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<h1><%= @profile.user.name %>'s Profile</h1>
+<% if @profile.complete? %>
+  <%= link_to "Edit Profile", edit_user_profile_path(current_user) %>
+<% else %>
+  <p>You haven't finished your profile.</p>
+  <%= link_to "Finish Profile", edit_user_profile_path(current_user) %>
+<% end %>

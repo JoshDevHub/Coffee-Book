@@ -13,7 +13,9 @@
   <%= link_to "Find Friends",
     users_path
   %>
-  <%= link_to "User Profile",
-    user_profile_url(current_user)
-  %>
+  <% if user_signed_in? %>
+    <%= link_to "User Profile",
+      user_profile_url(current_user)
+    %>
+  <% end %>
 </header>
