@@ -26,4 +26,8 @@ class Profile < ApplicationRecord
   }
 
   belongs_to :user
+
+  def complete?
+    attributes.values.all?
+  end
 end

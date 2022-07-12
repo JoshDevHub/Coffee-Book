@@ -18,8 +18,24 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Profile, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "#complete?" do
+    context "when the profile is complete" do
+      subject(:complete_profile) { create(:profile, user: create(:user)) }
+
+      it "returns true" do
+        expect(complete_profile).to be_complete
+      end
+    end
+
+    context "when the profile is not complete" do
+      subject(:incomplete_profile) { create(:profile, :incomplete) }
+
+      it "returns false" do
+        expect(incomplete_profile).not_to be_complete
+      end
+    end
+  end
 end

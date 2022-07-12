@@ -24,5 +24,12 @@ FactoryBot.define do
     gender { 1 }
     country { "MyString" }
     user { nil }
+
+    trait :incomplete do
+      birthday { nil }
+      gender { nil }
+      country { nil }
+      user { create(:user) }
+    end
   end
 end
