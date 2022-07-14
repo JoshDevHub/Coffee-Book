@@ -29,7 +29,7 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find(params[:id])
     @friendship.confirm
     flash[:notice] = "Friend Added"
-    redirect_to root_path, status: :see_other
+    redirect_back fallback_location: root_path
   end
 
   private
