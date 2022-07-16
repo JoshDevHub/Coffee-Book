@@ -5,7 +5,7 @@ RSpec.describe "Deleting a like", type: :system do
 
   before do
     login_as(user)
-    post = create(:post, user: user)
+    post = create(:post, author: user)
     create(:like, user: user, likeable: post)
   end
 

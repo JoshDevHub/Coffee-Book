@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Editing a post", type: :system do
   let(:user) { create(:user) }
-  let(:post) { Post.create(body: "Test Post", user: user) }
+  let(:post) { Post.create(body: "Test Post", author: user) }
 
   before do
     login_as(user)
@@ -30,13 +30,13 @@ RSpec.describe "Editing a post", type: :system do
   end
 
   context "when the user doesn't own the post" do
-    let(:others_post) { create(:post, user: create(:user)) }
+    let(:others_post) { create(:post, author: create(:user)) }
 
     it "renders an error message" do
       error_message = "You do not own this Post"
       visit edit_post_path(others_post)
 
-      expect(page).to have_content("You do not own this Post")
+      expect(page).to have_content(error_message)
     end
   end
 end

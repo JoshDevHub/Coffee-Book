@@ -7,15 +7,15 @@
 #  likes_count :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  user_id     :bigint           not null
+#  author_id   :bigint           not null
 #
 # Indexes
 #
-#  index_posts_on_user_id  (user_id)
+#  index_posts_on_author_id  (author_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (user_id => users.id)
+#  fk_rails_...  (author_id => users.id)
 #
 require "rails_helper"
 
@@ -30,23 +30,23 @@ RSpec.describe Post, type: :model do
     end
 
     it "returns posts from the main user and their friend" do
-      first_post = create(:post, user: main_user)
-      second_post = create(:post, user: friend)
+      first_post = create(:post, author: main_user)
+      second_post = create(:post, author: friend)
 
       record_object = described_class.timeline_for(main_user)
       expect(record_object).to include(first_post, second_post)
     end
 
     it "orders the timeline posts in descending order" do
-      create(:post, user: main_user)
-      second_post = create(:post, user: friend)
+      create(:post, author: main_user)
+      second_post = create(:post, author: friend)
 
       record_object = described_class.timeline_for(main_user)
       expect(record_object.first).to eq second_post
     end
 
     it "does not return a post from the user who isn't a friend" do
-      second_post = create(:post, user: not_friend)
+      second_post = create(:post, author: not_friend)
 
       record_object = described_class.timeline_for(main_user)
       expect(record_object).not_to include(second_post)
@@ -57,7 +57,7 @@ RSpec.describe Post, type: :model do
     let(:current_user) { create(:user) }
 
     context "when a post has no likes" do
-      subject(:unliked_post) { create(:post, user: current_user) }
+      subject(:unliked_post) { create(:post, author: current_user) }
 
       it "returns 0" do
         expect(unliked_post.total_likes).to eq 0
@@ -65,7 +65,7 @@ RSpec.describe Post, type: :model do
     end
 
     context "when the post has 3 likes" do
-      subject(:popular_post) { create(:post, user: current_user) }
+      subject(:popular_post) { create(:post, author: current_user) }
 
       before do
         create(:like, likeable: popular_post)
@@ -83,7 +83,7 @@ RSpec.describe Post, type: :model do
     let(:current_user) { create(:user) }
 
     context "when a post is liked by the user" do
-      subject(:liked_post) { create(:post, user: current_user) }
+      subject(:liked_post) { create(:post, author: current_user) }
 
       it "returns the like" do
         post_like = create(:like, user: current_user, likeable: liked_post)
@@ -92,7 +92,7 @@ RSpec.describe Post, type: :model do
     end
 
     context "when a post is not liked by the user" do
-      subject(:unliked_post) { create(:post, user: current_user) }
+      subject(:unliked_post) { create(:post, author: current_user) }
 
       it "returns nil" do
         expect(unliked_post.find_like_from(current_user)).to be_nil

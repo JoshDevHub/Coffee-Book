@@ -5,7 +5,7 @@ RSpec.describe "Creating a comment", type: :system do
 
   before do
     login_as(user)
-    create(:post, user: user)
+    create(:post, author: user)
   end
 
   context "when the inputs are valid" do

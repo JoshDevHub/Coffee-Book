@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
-  before_action :enforce_user_ownership, only: %i[edit update destroy]
+  before_action :enforce_author_ownership, only: %i[edit update destroy]
 
   def index
-    @posts = Post.timeline_for(current_user).includes(:user)
+    @posts = Post.timeline_for(current_user).includes(:author)
   end
 
   def show
@@ -48,6 +48,14 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body, :user_id)
+    params.require(:post).permit(:body, :author_id)
+  end
+
+  def enforce_author_ownership
+    resource = controller_name.classify.constantize
+    return if resource.find(params[:id]).author == current_user
+
+    flash[:error] = "You do not own this #{resource}"
+    redirect_to root_path
   end
 end

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Editing a comment", type: :system do
   let(:user) { create(:user) }
-  let(:post) { create(:post, user: user) }
+  let(:post) { create(:post, author: user) }
 
   before do
     login_as(user)

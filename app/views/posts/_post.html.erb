@@ -1,13 +1,13 @@
 <div class="flex flex-col">
   <p class="font-bold">
-    <%= post.user.name %>
+    <%= post.author.name %>
   </p>
   <%= post.body %>
   <%= render "post_likes",
     post: post,
     user_like: post.find_like_from(current_user)
   %>
-  <% if current_user == post.user %>
+  <% if current_user == post.author %>
     <%= render "post_actions", post: post %>
   <% end %>
 </div>

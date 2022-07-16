@@ -5,7 +5,7 @@ RSpec.describe "Creating a like", type: :system do
 
   before do
     login_as(user)
-    create(:post, user: user)
+    create(:post, author: user)
   end
 
   it "creates a Like" do

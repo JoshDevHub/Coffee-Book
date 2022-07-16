@@ -5,7 +5,7 @@ RSpec.describe "Destroying a comment", type: :system do
 
   before do
     login_as(user)
-    post = create(:post, user: user)
+    post = create(:post, author: user)
     create(:comment, commentable: post, user: user)
   end
 

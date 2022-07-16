@@ -19,7 +19,10 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  has_many :posts, dependent: :destroy
+  has_many :posts,
+           dependent: :destroy,
+           foreign_key: "author_id",
+           inverse_of: "author"
   has_many :sent_friend_requests, class_name: "Friendship",
                                   foreign_key: :sender_id,
                                   inverse_of: :sender,
