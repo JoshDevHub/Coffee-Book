@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index] do
     resources :notifications, only: [:index]
     resources :friendships, shallow: true
-    resource :profile
+    resource :profile, only: %i[show edit update]
   end
 
   # Likes

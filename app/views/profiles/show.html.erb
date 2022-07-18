@@ -1,8 +1,9 @@
-<h1><%= @profile.user.name %>'s Profile</h1>
+<h1><%= @profile.user.first_name %>'s Profile</h1>
 <%= gravatar_for(@profile.user) %>
 <% if @profile.complete? %>
-  <%= link_to "Edit Profile", edit_user_profile_path(current_user) %>
+  <%= render @profile %>
+  <%= link_to "Edit Profile", edit_user_profile_path %>
 <% else %>
   <p>You haven't finished your profile.</p>
-  <%= link_to "Finish Profile", edit_user_profile_path(current_user) %>
+  <%= link_to "Finish Profile", edit_user_profile_path %>
 <% end %>
