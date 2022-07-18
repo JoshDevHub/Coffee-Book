@@ -86,7 +86,7 @@ RSpec.describe Post, type: :model do
       subject(:liked_post) { create(:post, author: current_user) }
 
       it "returns the like" do
-        post_like = create(:like, user: current_user, likeable: liked_post)
+        post_like = create(:like, liker: current_user, likeable: liked_post)
         expect(liked_post.find_like_from(current_user)).to eq post_like
       end
     end

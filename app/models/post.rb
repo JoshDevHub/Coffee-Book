@@ -34,6 +34,6 @@ class Post < ApplicationRecord
   end
 
   def find_like_from(user)
-    likes.find_by(user: user)
+    likes.find_by(liker: user)
   end
 end
