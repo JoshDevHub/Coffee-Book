@@ -36,7 +36,10 @@ class User < ApplicationRecord
            dependent: :destroy,
            foreign_key: "commenter_id",
            inverse_of: "commenter"
-  has_many :likes, dependent: :destroy
+  has_many :likes,
+           dependent: :destroy,
+           foreign_key: "liker_id",
+           inverse_of: "liker"
 
   has_one :profile, dependent: :destroy
 
