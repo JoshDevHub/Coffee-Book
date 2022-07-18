@@ -15,7 +15,7 @@
   %>
   <% if user_signed_in? %>
     <%= link_to "User Profile",
-      user_profile_url(current_user)
+      user_profile_path(current_user)
     %>
   <% end %>
 </header>
