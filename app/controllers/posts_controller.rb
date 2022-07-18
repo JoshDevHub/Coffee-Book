@@ -6,8 +6,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    @comments = @post.comments.includes(:user)
+    @post = Post.includes(comments: :commenter).find(params[:id])
   end
 
   def new
@@ -52,10 +51,9 @@ class PostsController < ApplicationController
   end
 
   def enforce_author_ownership
-    resource = controller_name.classify.constantize
-    return if resource.find(params[:id]).author == current_user
+    return if Post.find(params[:id]).author == current_user
 
-    flash[:error] = "You do not own this #{resource}"
+    flash[:error] = "You do not own this post"
     redirect_to root_path
   end
 end
