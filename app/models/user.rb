@@ -32,7 +32,10 @@ class User < ApplicationRecord
                                       inverse_of: :receiver,
                                       dependent: :destroy
   has_many :notifications, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :comments,
+           dependent: :destroy,
+           foreign_key: "commenter_id",
+           inverse_of: "commenter"
   has_many :likes, dependent: :destroy
 
   has_one :profile, dependent: :destroy

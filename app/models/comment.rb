@@ -8,20 +8,20 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  commentable_id   :bigint           not null
-#  user_id          :bigint           not null
+#  commenter_id     :bigint           not null
 #
 # Indexes
 #
-#  index_comments_on_commentable  (commentable_type,commentable_id)
-#  index_comments_on_user_id      (user_id)
+#  index_comments_on_commentable   (commentable_type,commentable_id)
+#  index_comments_on_commenter_id  (commenter_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (user_id => users.id)
+#  fk_rails_...  (commenter_id => users.id)
 #
 class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
-  belongs_to :user
+  belongs_to :commenter, class_name: "User"
 
   has_many :likes, as: :likeable, dependent: :destroy
 

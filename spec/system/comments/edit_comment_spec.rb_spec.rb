@@ -6,7 +6,7 @@ RSpec.describe "Editing a comment", type: :system do
 
   before do
     login_as(user)
-    create(:comment, user: user, commentable: post)
+    create(:comment, commenter: user, commentable: post)
   end
 
   context "when the inputs are valid" do
@@ -34,10 +34,10 @@ RSpec.describe "Editing a comment", type: :system do
   end
 
   context "when the user doesn't own the comment" do
-    let(:others_comment) { create(:comment, user: create(:user), commentable: post) }
+    let(:others_comment) { create(:comment, commenter: create(:user), commentable: post) }
 
     it "renders an error message" do
-      error_message = "You do not own this Comment"
+      error_message = "You do not own this comment"
       visit edit_comment_path(others_comment)
 
       expect(page).to have_content(error_message)

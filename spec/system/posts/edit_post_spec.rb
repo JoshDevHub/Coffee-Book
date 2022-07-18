@@ -33,7 +33,7 @@ RSpec.describe "Editing a post", type: :system do
     let(:others_post) { create(:post, author: create(:user)) }
 
     it "renders an error message" do
-      error_message = "You do not own this Post"
+      error_message = "You do not own this post"
       visit edit_post_path(others_post)
 
       expect(page).to have_content(error_message)

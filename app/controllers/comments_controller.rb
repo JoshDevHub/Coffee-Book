@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
-  before_action :enforce_user_ownership, only: %i[edit update destroy]
+  before_action :enforce_commenter_ownership, only: %i[edit update destroy]
 
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
-    @comment.user = current_user
+    @comment.commenter = current_user
     if @comment.save
       flash[:success] = "Your comment has been added"
     else
@@ -39,6 +39,13 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:user, :commentable, :body)
+    params.require(:comment).permit(:commenter, :commentable, :body)
+  end
+
+  def enforce_commenter_ownership
+    return if Comment.find(params[:id]).commenter == current_user
+
+    flash[:error] = "You do not own this comment"
+    redirect_to root_path
   end
 end
