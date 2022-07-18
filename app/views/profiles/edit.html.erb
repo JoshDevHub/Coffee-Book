@@ -1,0 +1,14 @@
+<h1>Profile</h1>
+
+<%= form_for [:user, @profile] do |form| %>
+  <%= form.label :gender %>
+  <%= form.select :gender, Profile.genders.keys.map { |w| [w.humanize, w] } %>
+
+  <%= form.label :country %>
+  <%= form.text_field :country %>
+
+  <%= form.label :birthday %>
+  <%= form.date_field :birthday %>
+
+  <%= form.submit %>
+<% end %>
