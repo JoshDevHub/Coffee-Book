@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  before_action :enforce_profile_ownership, only: %i[edit update]
+
   def show
     @profile = Profile.find_by(user_id: params[:user_id])
   end
@@ -21,5 +23,12 @@ class ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:gender, :birthday, :country)
+  end
+
+  def enforce_profile_ownership
+    return if params[:user_id] != current_user.id
+
+    flash[:error] = "Access denied"
+    redirect_to root_path
   end
 end
