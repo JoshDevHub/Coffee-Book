@@ -19,11 +19,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Profile < ApplicationRecord
-  enum gender: {
-    male: 0,
-    female: 1,
-    nonbinary: 2
-  }
+  GENDERS = { male: 0, female: 1, nonbinary: 3 }.freeze
+
+  enum gender: GENDERS
 
   belongs_to :user
 
