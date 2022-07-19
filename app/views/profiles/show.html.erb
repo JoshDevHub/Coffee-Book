@@ -2,8 +2,12 @@
 <%= gravatar_for(@profile.user) %>
 <% if @profile.complete? %>
   <%= render @profile %>
-  <%= link_to "Edit Profile", edit_user_profile_path %>
-<% else %>
-  <p>You haven't finished your profile.</p>
-  <%= link_to "Finish Profile", edit_user_profile_path %>
+<% end %>
+<% if current_user == @profile.user %>
+  <% if @profile.complete? %>
+    <%= link_to "Edit Profile", edit_user_profile_path %>
+  <% else %>
+    <p>You haven't finished your profile.</p>
+    <%= link_to "Finish Profile", edit_user_profile_path %>
+  <% end %>
 <% end %>
