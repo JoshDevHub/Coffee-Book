@@ -34,6 +34,22 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "::index_for" do
+    let(:current_user) { create(:user) }
+
+    before do
+      create_list :user, 3
+    end
+
+    it "returns an ActiveRelation object with 3 users" do
+      expect(described_class.index_for(current_user).size).to eq 3
+    end
+
+    it "does not return an ActiveRelation object including the given user" do
+      expect(described_class.index_for(current_user)).not_to include current_user
+    end
+  end
+
   describe "#send_friend_request" do
     subject(:request_sender) { create(:user) }
 

@@ -54,6 +54,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def self.index_for(current_user)
+    User.where.not(id: current_user.id)
+  end
+
   def name
     "#{first_name} #{last_name}"
   end

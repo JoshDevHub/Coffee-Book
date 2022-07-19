@@ -2,6 +2,7 @@
 
 <% @users.each do |user| %>
   <p>This is a user: <%= user.name %></p>
+  <%= link_to "View profile", user_profile_path(user) %>
   <% if current_user.friends.include?(user) %>
     <%= button_to "You're friends with this user.", {}, disabled: true %>
   <% elsif current_user.pending_friends.include?(user) %>
