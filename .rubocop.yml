@@ -16,5 +16,7 @@ Metrics/BlockLength:
   - spec/**/*
 RSpec/ImplicitExpect:
   EnforcedStyle: should
+RSpec/ExampleLength:
+  Enabled: false
 Rails/I18nLocaleTexts:
   Enabled: false
