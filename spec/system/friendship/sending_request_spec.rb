@@ -6,6 +6,7 @@ RSpec.describe "Sending a friend request", type: :system do
 
   before do
     login_as(current_user)
+    create(:user)
   end
 
   context "when the two users are not friends" do
