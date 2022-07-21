@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resource :profile, only: %i[show edit update]
   end
 
+  # Friendships
+  get "users/:id/friends/", to: "friendships#index", as: :friend_list
+
   # Likes
   concern :likeable do
     resources :likes, shallow: true
