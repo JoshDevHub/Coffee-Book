@@ -20,8 +20,9 @@
 #
 class Profile < ApplicationRecord
   enum gender: {
-    male: 0,
-    female: 1,
+    unspecified: 0,
+    male: 1,
+    female: 2,
     nonbinary: 3
   }
 
