@@ -31,4 +31,8 @@ class Profile < ApplicationRecord
   def complete?
     attributes.values.all?
   end
+
+  def age_at(date)
+    ((date.to_time - birthday.to_time) / 1.year.seconds).floor
+  end
 end

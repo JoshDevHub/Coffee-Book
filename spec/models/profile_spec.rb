@@ -38,4 +38,36 @@ RSpec.describe Profile, type: :model do
       end
     end
   end
+
+  describe "#age" do
+    context "when the birthday has not occured for the given year" do
+      subject(:profile) { create(:profile, birthday: "05/10/1990") }
+
+      it "returns the expected age" do
+        test_date = "21/07/2022"
+        expected_age = 31
+        expect(profile.age_at(test_date)).to eq expected_age
+      end
+    end
+
+    context "when the birthday has happened for the given year" do
+      subject(:profile) { create(:profile, birthday: "01/01/2002") }
+
+      it "returns the expected age" do
+        test_date = "01/01/2022"
+        expected_age = 20
+        expect(profile.age_at(test_date)).to eq expected_age
+      end
+    end
+
+    context "when the birthday is a leap year" do
+      subject(:profile) { create(:profile, birthday: "29/02/2004") }
+
+      it "returns the expected age" do
+        test_date = "01/03/2022"
+        expected_age = 18
+        expect(profile.age_at(test_date)).to eq expected_age
+      end
+    end
+  end
 end
