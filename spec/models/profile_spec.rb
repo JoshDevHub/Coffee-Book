@@ -23,7 +23,7 @@ require "rails_helper"
 RSpec.describe Profile, type: :model do
   describe "#complete?" do
     context "when the profile is complete" do
-      subject(:complete_profile) { create(:profile, user: create(:user)) }
+      subject(:complete_profile) { create(:profile) }
 
       it "returns true" do
         expect(complete_profile).to be_complete
