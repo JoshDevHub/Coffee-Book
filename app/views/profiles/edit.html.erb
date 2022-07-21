@@ -4,8 +4,8 @@
   <%= form.label :gender %>
   <%= form.select :gender, Profile.genders.keys.map { |w| [w.humanize, w] } %>
 
-  <%= form.label :country %>
-  <%= form.text_field :country %>
+  <%= form.label :location %>
+  <%= form.text_field :location %>
 
   <%= form.label :birthday %>
   <%= form.date_field :birthday %>

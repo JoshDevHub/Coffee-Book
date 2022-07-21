@@ -4,8 +4,8 @@
 #
 #  id         :bigint           not null, primary key
 #  birthday   :date
-#  country    :string
 #  gender     :integer
+#  location   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint           not null
@@ -22,13 +22,13 @@ FactoryBot.define do
   factory :profile do
     birthday { "2022-07-11" }
     gender { 1 }
-    country { "MyString" }
+    location { "MyString" }
     user { nil }
 
     trait :incomplete do
       birthday { nil }
       gender { nil }
-      country { nil }
+      location { nil }
       user { create(:user) }
     end
   end
