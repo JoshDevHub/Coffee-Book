@@ -9,6 +9,9 @@
     Birthday: <%= profile.birthday %>
   </li>
   <li>
+    Age: <%= profile.age_at(Time.now.utc.to_date) %>
+  </li>
+  <li>
     Location: <%= profile.location %>
   </li>
 </ul>
