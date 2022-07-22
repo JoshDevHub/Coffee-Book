@@ -17,8 +17,9 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
+    flash[:notice] = "Request denied"
 
-    redirect_to root_path, status: :see_other
+    redirect_to user_notifications_path(current_user), status: :see_other
   end
 
   def confirm_request
