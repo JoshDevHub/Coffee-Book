@@ -28,7 +28,13 @@ class Friendship < ApplicationRecord
   scope :pending, -> { where(accepted: false) }
   scope :confirmed, -> { where(accepted: true) }
 
+  after_create :send_notification
+
   def confirm
     update(accepted: true)
+  end
+
+  def send_notification
+    create_notification!(user: receiver)
   end
 end

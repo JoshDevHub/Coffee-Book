@@ -66,8 +66,7 @@ class User < ApplicationRecord
     return if sent_friend_requests.exists?(receiver: receiver) ||
               received_friend_requests.exists?(sender: receiver)
 
-    request = sent_friend_requests.create(receiver: receiver)
-    send_notification(receiver, request)
+    sent_friend_requests.create(receiver: receiver)
   end
 
   def friends
@@ -78,11 +77,5 @@ class User < ApplicationRecord
   def pending_friends
     sent_friend_requests.pending.includes(:receiver).map(&:receiver) +
       received_friend_requests.pending.map(&:sender)
-  end
-
-  private
-
-  def send_notification(recipient, request)
-    recipient.notifications.create(friendship: request)
   end
 end
