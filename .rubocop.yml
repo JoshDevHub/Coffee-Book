@@ -11,12 +11,7 @@ Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false
-Metrics/BlockLength:
-  Exclude:
-  - spec/**/*
 RSpec/ImplicitExpect:
   EnforcedStyle: should
-RSpec/ExampleLength:
-  Enabled: false
 Rails/I18nLocaleTexts:
   Enabled: false
