@@ -11,7 +11,11 @@
   </head>
 
   <body>
-    <%= render "shared/header" %>
+    <% if user_signed_in? %>
+      <%= render "shared/header" %>
+    <% else %>
+      <%= render "devise/shared/header" %>
+    <% end %>
     <%= render "shared/flashes" %>
     <%= yield %>
   </body>
