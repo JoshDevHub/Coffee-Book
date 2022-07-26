@@ -1,10 +1,36 @@
-<header>
-  <%= link_to "Logout",
-    destroy_user_session_path,
-    data: { turbo_method: :delete }
+<header class="flex text-lg justify-between border-b-2 border-b-slate-900
+               mb-4 px-4 bg-slate-800 text-white">
+  <div class="flex items-center">
+    <%= svg "coffee" %>
+    <p>Search Placeholder</p>
+  </div>
+  <nav class="flex items-center gap-4">
+    <%= link_to "Home",
+      root_path,
+      class: "hover:bg-slate-700 py-2 px-2 rounded-md"
+    %>
+    <%= link_to "Notifications",
+      user_notifications_path(current_user),
+      class: "hover:bg-slate-700 py-2 px-2 rounded-md"
+    %>
+    <%= link_to "Friends",
+      friend_list_path(current_user),
+      class: "hover:bg-slate-700 py-2 px-2 rounded-md"
+    %>
+  <%= link_to "Find Friends",
+    users_path,
+    class: "hover:bg-slate-700 py-2 px-2 rounded-md"
   %>
-  <%= link_to "Notifications", user_notifications_path(current_user) %>
-  <%= link_to "Friends", friend_list_path(current_user) %>
-  <%= link_to "Find Friends", users_path %>
-  <%= link_to "User Profile", user_profile_path(current_user) %>
+  </nav>
+  <div class="flex items-center gap-4">
+    <%= link_to "User Profile",
+      user_profile_path(current_user),
+      class: "hover:bg-slate-700 py-2 px-2 rounded-md"
+    %>
+    <%= link_to "Logout",
+      destroy_user_session_path,
+      class: "hover:bg-slate-700 py-2 px-2 rounded-md",
+      data: { turbo_method: :delete }
+    %>
+  </div>
 </header>
