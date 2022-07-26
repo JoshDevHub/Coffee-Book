@@ -1,4 +1,16 @@
-<header>
-  <%= link_to "Login", new_user_session_path %>
-  <%= link_to "Sign-Up", new_user_registration_path %>
+<header class="flex text-lg bg-slate-800 mb-4 px-4 py-1 text-white
+               border-b-slate-900 justify-between">
+  <div class="flex items-center">
+    <%= svg "coffee" %>
+  </div>
+  <div class="flex gap-4 items-center">
+    <%= link_to "Login",
+      new_user_session_path,
+      class: "hover:bg-slate-700 py-2 px-2 rounded-md"
+    %>
+    <%= link_to "Sign-Up",
+      new_user_registration_path,
+      class: "hover:bg-slate-700 py-2 px-2 rounded-md"
+    %>
+  </div>
 </header>
