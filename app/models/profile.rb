@@ -26,6 +26,10 @@ class Profile < ApplicationRecord
     nonbinary: 3
   }
 
+  has_one_attached :avatar do |attachable|
+    attachable.variant :thumb, resize_to_fill: [80, 80]
+  end
+
   belongs_to :user
 
   def complete?
