@@ -2,16 +2,36 @@
 require:
 - rubocop-rspec
 - rubocop-rails
+
 AllCops:
   TargetRubyVersion: 3.0.3
   NewCops: enable
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-Style/Documentation:
-  Enabled: false
-Style/FrozenStringLiteralComment:
-  Enabled: false
-RSpec/ImplicitExpect:
-  EnforcedStyle: should
+
+Layout/LineLength:
+  Exclude:
+    - "config/initializers/devise.rb"
+
+Metrics/BlockLength:
+  Exclude:
+    - "config/**/*"
+    - "lib/tasks/*"
+
 Rails/I18nLocaleTexts:
   Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/GlobalStdStream:
+  Exclude:
+    - "config/environments/production.rb"
+
+Style/RedundantFetchBlock:
+  Exclude:
+    - "config/puma.rb"
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
