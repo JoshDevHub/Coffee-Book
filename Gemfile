@@ -82,7 +82,6 @@ group :development, :test do
   gem "rubocop"
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
-  gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "webdrivers"
 end
