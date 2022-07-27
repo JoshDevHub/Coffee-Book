@@ -1,5 +1,5 @@
 <h1><%= @profile.user.first_name %>'s Profile</h1>
-<%= gravatar_for(@profile.user) %>
+<%= image_tag avatar_url_for(@profile), class: "rounded-full" %>
 <% if @profile.complete? %>
   <%= render @profile %>
 <% end %>
