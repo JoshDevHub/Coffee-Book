@@ -12,10 +12,8 @@ RSpec.describe UsersHelper do
       # MD5 hash of the user's email
       email_hash = "93942e96f5acd83e2e047ad8fe03114d"
 
-      gravatar_url = "http://secure.gravatar.com/avatar/#{email_hash}"
-      expected_img_tag = "<img alt=\"#{first} #{last}\" src=\"#{gravatar_url}\" />"
-
-      expect(helper.gravatar_for(user)).to eq expected_img_tag
+      expected_gravatar_url = "http://secure.gravatar.com/avatar/#{email_hash}"
+      expect(helper.gravatar_url_for(user)).to eq expected_gravatar_url
     end
   end
 end
