@@ -28,6 +28,7 @@ class Profile < ApplicationRecord
 
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_fill: [80, 80]
+    attachable.variant :icon, resize_to_fill: [48, 48]
   end
 
   belongs_to :user
