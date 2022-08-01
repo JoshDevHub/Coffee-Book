@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :enforce_author_ownership, only: %i[edit update destroy]
 
   def index
-    @posts = Post.timeline_for(current_user).includes(:author)
+    @posts = Post.timeline_for(current_user).includes(:author, :photo_attachment)
   end
 
   def show
@@ -47,7 +47,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body, :author_id)
+    params.require(:post).permit(:body, :photo, :author_id)
   end
 
   def enforce_author_ownership
