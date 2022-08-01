@@ -1,4 +1,5 @@
-<h1>Profile</h1>
+<h1>Edit Profile</h1>
+<%= image_tag avatar_url_for(@profile), class: "rounded-full" %>
 
 <%= form_for [:user, @profile] do |form| %>
   <%= form.label :gender %>
