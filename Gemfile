@@ -86,3 +86,5 @@ group :development, :test do
   gem "simplecov", require: false
   gem "webdrivers"
 end
+
+gem "inline_svg"
