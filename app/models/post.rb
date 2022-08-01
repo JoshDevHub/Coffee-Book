@@ -23,6 +23,11 @@ class Post < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
 
+  has_one_attached :photo do |attachable|
+    attachable.variant :thumb, resize_to_fill: [80, 80]
+    attachable.variant :timeline, resize_to_fill: [240, 240]
+  end
+
   validates :body, presence: true
 
   def self.timeline_for(user)
