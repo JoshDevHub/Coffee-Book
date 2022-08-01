@@ -2,6 +2,9 @@
   <p class="font-bold">
     <%= post.author.name %>
   </p>
+  <% if post.photo.attached? %>
+    <%= image_tag post.photo.variant(:timeline), class: "w-60" %>
+  <% end %>
   <%= post.body %>
   <%= render "post_likes",
     post: post,
