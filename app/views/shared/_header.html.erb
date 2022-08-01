@@ -23,10 +23,11 @@
   %>
   </nav>
   <div class="flex items-center gap-4">
-    <%= link_to "User Profile",
-      user_profile_path(current_user),
-      class: "hover:bg-slate-700 py-2 px-2 rounded-md"
-    %>
+    <%= link_to user_profile_path(current_user) do %>
+      <%= image_tag avatar_url_for(current_user.profile, variant: :icon),
+        class: "rounded-full"
+      %>
+    <% end %>
     <%= link_to "Logout",
       destroy_user_session_path,
       class: "hover:bg-slate-700 py-2 px-2 rounded-md",
