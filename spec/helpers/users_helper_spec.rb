@@ -11,8 +11,10 @@ RSpec.describe UsersHelper do
     it "returns an image tag with a gravatar URL for the given user" do
       # MD5 hash of the user's email
       email_hash = "93942e96f5acd83e2e047ad8fe03114d"
+      default_size = "80"
+      base_url = "http://secure.gravatar.com/avatar/"
 
-      expected_gravatar_url = "http://secure.gravatar.com/avatar/#{email_hash}"
+      expected_gravatar_url = "#{base_url}#{email_hash}?s=#{default_size}"
       expect(helper.gravatar_url_for(user)).to eq expected_gravatar_url
     end
   end
