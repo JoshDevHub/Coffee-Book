@@ -37,6 +37,44 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "::search_by_name" do
+    context "when given a single name" do
+      before do
+        create(:user, first_name: "Jimmy", last_name: "Carter")
+        create(:user, first_name: "Carter", last_name: "Hadley")
+      end
+
+      let(:query) { "Carter" }
+
+      it "matches against users' first and last names" do
+        expect(described_class.search_by_name(query).size).to eq 2
+      end
+
+      it "does not return an unmatched user" do
+        unmatched = create(:user, first_name: "Chris", last_name: "Ham")
+        expect(described_class.search_by_name(query)).not_to include unmatched
+      end
+    end
+
+    context "when given two names" do
+      before do
+        create(:user, first_name: "Josh", last_name: "Smith")
+        create(:user, first_name: "Corey", last_name: "Hart")
+      end
+
+      let(:query) { "Corey Smith" }
+
+      it "matches against the users' first and last names" do
+        expect(described_class.search_by_name(query).size).to eq 2
+      end
+
+      it "does not return an unmatched user" do
+        unmatched = create(:user, first_name: "Smith", last_name: "Corey")
+        expect(described_class.search_by_name(query)).not_to include unmatched
+      end
+    end
+  end
+
   describe "#send_friend_request" do
     subject(:request_sender) { create(:user) }
 

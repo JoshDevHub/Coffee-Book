@@ -58,6 +58,13 @@ class User < ApplicationRecord
     User.where.not(id: current_user.id)
   end
 
+  def self.search_by_name(name)
+    first, last, = name.split
+    first_search = first
+    last_search = last || first_search
+    User.where(first_name: first_search).or(User.where(last_name: last_search))
+  end
+
   def name
     "#{first_name} #{last_name}"
   end
