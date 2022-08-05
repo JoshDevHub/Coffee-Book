@@ -15,7 +15,7 @@ RSpec.describe UsersHelper do
       base_url = "http://secure.gravatar.com/avatar/"
 
       expected_gravatar_url = "#{base_url}#{email_hash}?s=#{default_size}"
-      expect(helper.gravatar_url_for(user)).to eq expected_gravatar_url
+      expect(helper.gravatar_url_for(user, size: :thumb)).to eq expected_gravatar_url
     end
   end
 end
