@@ -3,7 +3,7 @@
   <div class="flex items-center">
     <%= inline_svg_tag("coffee.svg") %>
     <%= form_with url: users_path, method: :get do |form| %>
-      <%= form.label :search_users, class: "hidden" %>
+      <%= form.label :search, class: "hidden" %>
       <%= form.text_field :search, class: "rounded-md text-black" %>
       <%= form.submit "Search" %>
     <% end %>
