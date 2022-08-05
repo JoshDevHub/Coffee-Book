@@ -2,7 +2,11 @@
                mb-4 px-4 py-1 bg-slate-800 text-white">
   <div class="flex items-center">
     <%= inline_svg_tag("coffee.svg") %>
-    <p>Search Placeholder</p>
+    <%= form_with url: users_path, method: :get do |form| %>
+      <%= form.label :search_users, class: "hidden" %>
+      <%= form.text_field :search, class: "rounded-md text-black" %>
+      <%= form.submit "Search" %>
+    <% end %>
   </div>
   <nav class="flex items-center gap-4">
     <%= link_to "Home",
