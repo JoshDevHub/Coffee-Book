@@ -23,9 +23,6 @@ class Notification < ApplicationRecord
   belongs_to :user
   belongs_to :friendship
 
-  scope :unread, -> { where(read: false) }
-  scope :read, -> { where(read: true) }
-
   def mark_as_read
     update(read_status: true)
   end
