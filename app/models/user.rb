@@ -85,4 +85,12 @@ class User < ApplicationRecord
     sent_friend_requests.pending.includes(:receiver).map(&:receiver) +
       received_friend_requests.pending.map(&:sender)
   end
+
+  def read_notifications
+    notifications.each(&:mark_as_read)
+  end
+
+  def unread_notifications?
+    notifications.exists?(read_status: false)
+  end
 end

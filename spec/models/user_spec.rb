@@ -161,4 +161,35 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "#unread_notifications?" do
+    subject(:user) { create(:user) }
+
+    context "when the user has unread notifications" do
+      before do
+        create(:notification, user:, read_status: false)
+      end
+
+      it "returns true" do
+        expect(user).to be_unread_notifications
+      end
+    end
+
+    context "when the user has no unread notifications" do
+      before do
+        create(:notification, user:)
+        user.read_notifications
+      end
+
+      it "returns false" do
+        expect(user).not_to be_unread_notifications
+      end
+    end
+
+    context "when the user has no notifications" do
+      it "returns false" do
+        expect(user).not_to be_unread_notifications
+      end
+    end
+  end
 end
