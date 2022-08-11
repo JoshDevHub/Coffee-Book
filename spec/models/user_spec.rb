@@ -162,6 +162,23 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#read_notifications" do
+    subject(:user) { create(:user) }
+
+    let(:notif_count) { 5 }
+
+    before do
+      build_list(:notification, notif_count, user:)
+    end
+
+    it "changes unread notification count from 5 to 0" do
+      expect { user.read_notifications }
+        .to change(user.notifications.where(read_status: false), :count)
+        .from(notif_count)
+        .to(0)
+    end
+  end
+
   describe "#unread_notifications?" do
     subject(:user) { create(:user) }
 
