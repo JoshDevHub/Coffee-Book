@@ -47,7 +47,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
 
-  after_create :create_profile!
+  after_create :create_profile!, :welcome_email
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -92,5 +92,11 @@ class User < ApplicationRecord
 
   def unread_notifications?
     notifications.exists?(read_status: false)
+  end
+
+  private
+
+  def welcome_email
+    UserMailer.with(user: self).welcome_email.deliver
   end
 end
