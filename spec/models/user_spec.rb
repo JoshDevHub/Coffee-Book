@@ -75,6 +75,16 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#save" do
+    it "sends a welcome email" do
+      expect { create(:user) }.to change(ActionMailer::Base.deliveries, :count).by(1)
+    end
+
+    it "creates a profile for the user" do
+      expect(create(:user).profile).to be_a Profile
+    end
+  end
+
   describe "#send_friend_request" do
     subject(:request_sender) { create(:user) }
 
