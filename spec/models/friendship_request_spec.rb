@@ -27,7 +27,7 @@ RSpec.describe Friendship, type: :model do
     let(:receiver) { create(:user) }
 
     context "when the request is unaccepted" do
-      subject(:unaccepted_request) { described_class.create(sender: sender, receiver: receiver) }
+      subject(:unaccepted_request) { described_class.create(sender:, receiver:) }
 
       it "changes the accepted attribute to true" do
         expect { unaccepted_request.confirm }.to change(unaccepted_request, :accepted).to true
@@ -40,7 +40,7 @@ RSpec.describe Friendship, type: :model do
     end
 
     context "when the request is already accepted" do
-      subject(:accepted_request) { described_class.create(sender: sender, receiver: receiver, accepted: true) }
+      subject(:accepted_request) { described_class.create(sender:, receiver:, accepted: true) }
 
       it "keeps the accepted attribute true" do
         expect { accepted_request.confirm }.not_to change(accepted_request, :accepted).from true

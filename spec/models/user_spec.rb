@@ -106,7 +106,7 @@ RSpec.describe User, type: :model do
 
     context "when a request already exists between the two users" do
       before do
-        create(:friendship, sender: request_sender, receiver: receiver)
+        create(:friendship, sender: request_sender, receiver:)
       end
 
       it "does not create a new Friendship record" do

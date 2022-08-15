@@ -70,10 +70,10 @@ class User < ApplicationRecord
   end
 
   def send_friend_request(receiver)
-    return if sent_friend_requests.exists?(receiver: receiver) ||
+    return if sent_friend_requests.exists?(receiver:) ||
               received_friend_requests.exists?(sender: receiver)
 
-    sent_friend_requests.create(receiver: receiver)
+    sent_friend_requests.create(receiver:)
   end
 
   def friends
