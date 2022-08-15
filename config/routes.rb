@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # Users
   devise_for :users
-  resources :users, only: [:index] do
+  resources :users, only: %i[index show] do
     resources :notifications, only: [:index]
     resources :friendships, shallow: true
     resource :profile, only: %i[show edit update]

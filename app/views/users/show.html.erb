@@ -1,0 +1,18 @@
+<h1><%= @user.first_name %>'s Profile</h1>
+<%= image_tag avatar_url_for(@user.profile, variant: :thumb), class: "rounded-full" %>
+<% if @user.profile.complete? %>
+  <%= render @user.profile %>
+<% end %>
+<% if current_user == @user %>
+  <% if @user.profile.complete? %>
+    <%= link_to "Edit Profile", edit_user_profile_path(current_user) %>
+  <% else %>
+    <p>You haven't finished your profile.</p>
+    <%= link_to "Finish Profile", edit_user_profile_path(current_user) %>
+  <% end %>
+<% end %>
+
+<h1>Posts:</h1>
+<% @user.posts.each do |post| %>
+  <%= render "posts/post", post: post %>
+<% end %>

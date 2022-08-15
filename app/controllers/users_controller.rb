@@ -6,4 +6,8 @@ class UsersController < ApplicationController
                User.index_for(current_user)
              end
   end
+
+  def show
+    @user = User.includes(:posts).find(params[:id])
+  end
 end
