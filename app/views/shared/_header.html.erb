@@ -27,7 +27,7 @@
   %>
   </nav>
   <div class="flex items-center gap-4">
-    <%= link_to user_profile_path(current_user) do %>
+    <%= link_to user_path(current_user) do %>
       <%= image_tag avatar_url_for(current_user.profile, variant: :icon),
         class: "rounded-full"
       %>

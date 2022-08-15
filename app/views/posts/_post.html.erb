@@ -6,11 +6,11 @@
     <%= image_tag post.photo.variant(:timeline), class: "w-60" %>
   <% end %>
   <%= post.body %>
-  <%= render "post_likes",
+  <%= render "posts/post_likes",
     post: post,
     user_like: post.find_like_from(current_user)
   %>
   <% if current_user == post.author %>
-    <%= render "post_actions", post: post %>
+    <%= render "posts/post_actions", post: post %>
   <% end %>
 </div>
