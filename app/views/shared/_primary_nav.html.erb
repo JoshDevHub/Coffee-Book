@@ -1,0 +1,45 @@
+<button class="absolute w-8 aspect-square top-2 right-2 z-50
+               bg-[url('menu.svg')] bg-no-repeat sm:hidden text-white"
+        data-action="click->toggle#switch">
+</button>
+
+<nav class="fixed flex flex-col items-center gap-4 pt-4 bg-slate-800
+            top-0 right-0 left-0 bottom-0 -translate-y-full transition-transform
+            sm:translate-y-0 sm:static sm:flex-row sm:flex sm:pt-0 sm:justify-between"
+     data-toggle-target="toggleElement"
+>
+  <div class="flex items-center">
+    <%= inline_svg_tag("coffee.svg", class: "hidden sm:block") %>
+    <%= form_with url: users_path, method: :get do |form| %>
+      <%= form.label :search, class: "hidden" %>
+      <%= form.text_field :search, class: "rounded-md text-black" %>
+      <%= form.submit "Search" %>
+    <% end %>
+  </div>
+  <ul class="flex flex-col sm:flex-row sm:items-center gap-4">
+    <li>
+      <%= link_to "Home",
+        root_path,
+        class: "hover:bg-slate-700 py-2 px-2 rounded-md"
+      %>
+    </li>
+    <li>
+      <%= link_to current_user.unread_notifications? ? "Notifications+" : "Notifications",
+        user_notifications_path(current_user),
+        class: "hover:bg-slate-700 py-2 px-2 rounded-md"
+      %>
+    </li>
+    <li>
+      <%= link_to "Friends",
+        friend_list_path(current_user),
+        class: "hover:bg-slate-700 py-2 px-2 rounded-md"
+      %>
+    </li>
+    <li>
+      <%= link_to "Find Friends",
+        users_path,
+        class: "hover:bg-slate-700 py-2 px-2 rounded-md"
+      %>
+    </li>
+  </ul>
+</nav>
