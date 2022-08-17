@@ -2,12 +2,5 @@
         mb-4 px-4 py-1 bg-slate-800 text-white sticky top-0 w-full"
         data-controller="toggle" data-toggle-change-class="-translate-y-full">
   <%= render "shared/primary_nav" %>
-  <div class="flex items-center gap-4">
-    <%= link_to "User Profile", user_path(current_user) %>
-    <%= link_to "Logout",
-      destroy_user_session_path,
-      class: "hover:bg-slate-700 py-2 px-2 rounded-md",
-      data: { turbo_method: :delete }
-    %>
-  </div>
+  <%= render "shared/user_account_nav" %>
 </header>
