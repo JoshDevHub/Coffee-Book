@@ -1,16 +1,15 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "menu", "toggleBtn" ];
+  static targets = [ "menu", "toggle" ];
 
   toggleVisibility() {
     this.menuTarget.classList.toggle("hidden");
   }
 
   hide(event) {
-    if (event.target !== this.toggleBtnTarget &&
+    if (event.target !== this.toggleTarget &&
         !this.menuTarget.classList.contains("hidden")) {
-      console.log("happens")
       this.menuTarget.classList.add("hidden");
     }
   }
