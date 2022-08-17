@@ -9,11 +9,16 @@
      data-toggle-target="toggleElement"
 >
   <div class="flex items-center">
-    <%= inline_svg_tag("coffee.svg", class: "hidden sm:block") %>
-    <%= form_with url: users_path, method: :get do |form| %>
+    <%= inline_svg_tag("coffee.svg", class: "hidden sm:block mr-4") %>
+    <%= form_with url: users_path, method: :get, html: { class: "flex" } do |form| %>
       <%= form.label :search, class: "hidden" %>
-      <%= form.text_field :search, class: "rounded-md text-black" %>
-      <%= form.submit "Search" %>
+      <%= form.text_field :search,
+        placeholder: "Search Coffee Book",
+        class: "rounded-l-md text-black py-1 pl-2"
+      %>
+      <%= button_tag(class: "border border-white rounded-r-md px-2") do %>
+        <%= inline_svg_tag("magnify.svg") %>
+      <% end %>
     <% end %>
   </div>
   <ul class="flex flex-col sm:flex-row sm:items-center gap-4">
