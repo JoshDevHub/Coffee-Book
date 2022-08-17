@@ -5,8 +5,6 @@ export default class extends Controller {
   static targets = [ "toggleElement" ];
 
   switch() {
-    this.toggleElementTargets.forEach((target) => {
-      target.classList.toggle(this.changeClass);
-    })
+    this.toggleElementTarget.classList.toggle(this.changeClass);
   }
 }
