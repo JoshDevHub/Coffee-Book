@@ -1,14 +1,14 @@
-<button class="absolute w-8 aspect-square top-2 right-2 z-50
+<button class="absolute w-6 aspect-square top-3 right-2 z-50
                bg-[url('icons/menu.svg')] bg-no-repeat sm:hidden text-white"
         data-action="click->toggle#switch">
 </button>
 
-<nav class="fixed flex flex-col items-center gap-4 pt-4 bg-slate-800
+<nav class="fixed flex flex-col gap-4 pt-4 pl-8 bg-slate-800
             top-0 right-0 left-0 bottom-0 -translate-y-full transition-transform
             sm:translate-y-0 sm:static sm:flex-row sm:flex sm:pt-0 sm:justify-between"
      data-toggle-target="toggleElement"
 >
-  <div class="flex items-center">
+  <div class="flex">
     <%= inline_svg_tag("icons/coffee.svg", class: "hidden sm:block mr-4") %>
     <%= form_with url: users_path, method: :get, html: { class: "flex" } do |form| %>
       <%= form.label :search, class: "hidden" %>
@@ -21,30 +21,27 @@
       <% end %>
     <% end %>
   </div>
-  <ul class="flex flex-col sm:flex-row sm:items-center gap-4">
+  <ul class="flex flex-col items-start sm:flex-row sm:items-center gap-4">
     <li>
-      <%= link_to "Home",
-        root_path,
-        class: "hover:bg-slate-700 py-2 px-2 rounded-md"
-      %>
+      <%= link_to root_path, class: "hover:bg-slate-700 py-2 px-2 rounded-md" do %>
+        <%= inline_svg_tag("icons/home.svg", class: "w-6 h-6 inline-block") %> Home
+      <% end %>
     </li>
     <li>
-      <%= link_to current_user.unread_notifications? ? "Notifications+" : "Notifications",
-        user_notifications_path(current_user),
-        class: "hover:bg-slate-700 py-2 px-2 rounded-md"
-      %>
+      <%= link_to user_notifications_path(current_user), class: "hover:bg-slate-700 py-2 px-2 rounded-md" do %>
+        <%= inline_svg_tag("icons/bell", class: "w-6 h-6 inline-block") %>
+        <%= current_user.unread_notifications? ? "Notifications+" : "Notifications" %>
+      <% end %>
     </li>
     <li>
-      <%= link_to "Friends",
-        friend_list_path(current_user),
-        class: "hover:bg-slate-700 py-2 px-2 rounded-md"
-      %>
+      <%= link_to friend_list_path(current_user), class: "hover:bg-slate-700 py-2 px-2 rounded-md" do %>
+        <%= inline_svg_tag("icons/friends.svg", class: "w-6 h-6 inline-block") %> Friends
+      <% end %>
     </li>
     <li>
-      <%= link_to "Find Friends",
-        users_path,
-        class: "hover:bg-slate-700 py-2 px-2 rounded-md"
-      %>
+      <%= link_to users_path, class: "hover:bg-slate-700 py-2 px-2 rounded-md" do %>
+        <%= inline_svg_tag("icons/user-search.svg", class: "w-6 h-6 inline-block") %> Find Friends
+      <% end %>
     </li>
   </ul>
 </nav>
