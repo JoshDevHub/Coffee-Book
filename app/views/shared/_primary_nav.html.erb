@@ -23,24 +23,27 @@
   </div>
   <ul class="flex flex-col items-start sm:flex-row sm:items-center gap-4">
     <li>
-      <%= link_to root_path, class: "hover:bg-slate-700 py-2 px-2 rounded-md" do %>
-        <%= inline_svg_tag("icons/home.svg", class: "w-6 h-6 inline-block") %> Home
+      <%= link_to root_path, class: "hover:bg-slate-700 py-2 px-2 rounded-md flex gap-2" do %>
+        <%= inline_svg_tag("icons/home.svg", class: "w-6 h-6 inline-block") %>
+        <p>Home</p>
       <% end %>
     </li>
     <li>
-      <%= link_to user_notifications_path(current_user), class: "hover:bg-slate-700 py-2 px-2 rounded-md" do %>
+      <%= link_to user_notifications_path(current_user), class: "hover:bg-slate-700 py-2 px-2 rounded-md flex gap-2" do %>
         <%= inline_svg_tag("icons/bell", class: "w-6 h-6 inline-block") %>
-        <%= current_user.unread_notifications? ? "Notifications+" : "Notifications" %>
+        <p><%= current_user.unread_notifications? ? "Notifications+" : "Notifications" %></p>
       <% end %>
     </li>
     <li>
-      <%= link_to friend_list_path(current_user), class: "hover:bg-slate-700 py-2 px-2 rounded-md" do %>
-        <%= inline_svg_tag("icons/friends.svg", class: "w-6 h-6 inline-block") %> Friends
+      <%= link_to friend_list_path(current_user), class: "hover:bg-slate-700 py-2 px-2 rounded-md flex gap-2" do %>
+        <%= inline_svg_tag("icons/friends.svg", class: "w-6 h-6 inline-block") %>
+        <p>Friends</p>
       <% end %>
     </li>
     <li>
-      <%= link_to users_path, class: "hover:bg-slate-700 py-2 px-2 rounded-md" do %>
-        <%= inline_svg_tag("icons/user-search.svg", class: "w-6 h-6 inline-block") %> Find Friends
+      <%= link_to users_path, class: "hover:bg-slate-700 py-2 px-2 rounded-md flex gap-2" do %>
+        <%= inline_svg_tag("icons/user-search.svg", class: "w-6 h-6 inline-block") %>
+        <p>Find Friends</p>
       <% end %>
     </li>
   </ul>
