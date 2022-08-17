@@ -10,7 +10,7 @@
 >
   <div class="flex">
     <%= inline_svg_tag("icons/coffee.svg", class: "hidden sm:block mr-4") %>
-    <%= form_with url: users_path, method: :get, html: { class: "flex" } do |form| %>
+    <%= form_with url: users_path, method: :get, html: { class: "flex my-2" } do |form| %>
       <%= form.label :search, class: "hidden" %>
       <%= form.text_field :search,
         placeholder: "Search Coffee Book",
