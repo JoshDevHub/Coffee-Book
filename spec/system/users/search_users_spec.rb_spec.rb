@@ -14,7 +14,7 @@ RSpec.describe "Searching for users", type: :system do
     it "finds users by first name" do
       visit root_path
       fill_in "Search", with: "Bob"
-      click_on "Search"
+      find("button[aria-label=Search]").click
 
       expect(page).to have_content("Bob Jones")
       expect(page).to have_content("Bob Smith")
@@ -24,7 +24,7 @@ RSpec.describe "Searching for users", type: :system do
     it "finds users by last name" do
       visit root_path
       fill_in "Search", with: "Smith"
-      click_on "Search"
+      find("button[aria-label=Search]").click
 
       expect(page).to have_content("Jacob Smith")
       expect(page).to have_content("Bob Smith")
@@ -40,7 +40,7 @@ RSpec.describe "Searching for users", type: :system do
     it "finds users by both names" do
       visit root_path
       fill_in "Search", with: "Bob Smith"
-      click_on "Search"
+      find("button[aria-label=Search]").click
 
       expect(page).to have_content("Jacob Smith")
       expect(page).to have_content("Bob Smith")
@@ -52,7 +52,7 @@ RSpec.describe "Searching for users", type: :system do
     it "ignores extra names" do
       visit root_path
       fill_in "Search", with: "Amanda Gaines Bob Jones Smith Johnson Hart"
-      click_on "Search"
+      find("button[aria-label=Search]").click
 
       expect(page).to have_content("Amanda Gaines")
 
