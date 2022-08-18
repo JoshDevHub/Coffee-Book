@@ -3,13 +3,13 @@
         data-action="click->toggle#switch">
 </button>
 
+<%= inline_svg_tag("icons/coffee.svg", class: "mr-auto md:mr-4 z-10") %>
 <nav class="fixed flex flex-col gap-4 pt-4 pl-8 bg-slate-800
-            top-0 right-0 left-0 bottom-0 -translate-y-full md:translate-y-0
+            top-20 right-0 left-0 bottom-0 -translate-y-full md:translate-y-0
             md:static md:flex-row md:flex md:pt-0 md:justify-between"
      data-toggle-target="toggleElement"
 >
-  <div class="flex">
-    <%= inline_svg_tag("icons/coffee.svg", class: "hidden md:block mr-4") %>
+  <div class="flex flex-col gap-4 md:flex-row">
     <%= form_with url: users_path, method: :get, html: { class: "flex my-2" } do |form| %>
       <%= form.label :search, class: "hidden" %>
       <%= form.text_field :search,
