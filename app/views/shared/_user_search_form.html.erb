@@ -1,0 +1,12 @@
+<div class="flex flex-col gap-4 md:flex-row">
+  <%= form_with url: users_path, method: :get, html: { class: "flex my-2 pl-8" } do |form| %>
+    <%= form.label :search, class: "hidden" %>
+    <%= form.text_field :search,
+      placeholder: "Search Coffee Book",
+      class: "rounded-l-md text-black py-1 pl-2"
+    %>
+    <%= button_tag(class: "border border-white rounded-r-md px-2", aria: { label: "Search" }) do %>
+      <%= inline_svg_tag("icons/magnify.svg") %>
+    <% end %>
+  <% end %>
+</div>
