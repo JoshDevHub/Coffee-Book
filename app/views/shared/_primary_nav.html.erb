@@ -4,13 +4,13 @@
 </button>
 
 <%= inline_svg_tag("icons/coffee.svg", class: "mr-auto md:mr-4 z-10") %>
-<nav class="fixed flex flex-col gap-4 pt-4 pl-8 bg-slate-800
+<nav class="fixed flex flex-col gap-4 pt-4 bg-slate-800
             top-20 right-0 left-0 bottom-0 -translate-y-full md:translate-y-0
             md:static md:flex-row md:flex md:pt-0 md:justify-between"
      data-toggle-target="toggleElement"
 >
   <div class="flex flex-col gap-4 md:flex-row">
-    <%= form_with url: users_path, method: :get, html: { class: "flex my-2" } do |form| %>
+    <%= form_with url: users_path, method: :get, html: { class: "flex my-2 pl-8" } do |form| %>
       <%= form.label :search, class: "hidden" %>
       <%= form.text_field :search,
         placeholder: "Search Coffee Book",
@@ -21,18 +21,21 @@
       <% end %>
     <% end %>
   </div>
-  <ul class="flex flex-col items-start md:flex-row md:items-center gap-4 lg:gap-10 xl:gap-4">
-    <li>
+  <ul class="flex flex-col items-start md:flex-row md:items-center lg:gap-10
+             xl:gap-4 divide-y divide-slate-900 border-y border-slate-900
+             md:border-none md:divide-none"
+  >
+    <li class="w-full">
       <%= link_to root_path,
-        class: "hover:bg-slate-700 py-2 px-2 rounded-md flex gap-2 md:px-6" do
+        class: "hover:bg-slate-700 py-4 px-2 md:rounded-md flex gap-2 md:px-6 w-full pl-8" do
       %>
         <%= inline_svg_tag("icons/home.svg", class: "w-6 h-6 inline-block") %>
         <p class="md:hidden xl:block">Home</p>
       <% end %>
     </li>
-    <li>
+    <li class="w-full">
       <%= link_to user_notifications_path(current_user),
-        class: "hover:bg-slate-700 py-2 px-2 rounded-md flex gap-2 md:px-6" do
+        class: "hover:bg-slate-700 py-4 px-2 md:rounded-md flex gap-2 md:px-6 w-full pl-8" do
       %>
         <%= inline_svg_tag("icons/bell", class: "w-6 h-6 inline-block") %>
         <p class="md:hidden xl:block">
@@ -40,17 +43,17 @@
         </p>
       <% end %>
     </li>
-    <li>
+    <li class="w-full">
       <%= link_to friend_list_path(current_user),
-        class: "hover:bg-slate-700 py-2 px-2 rounded-md flex gap-2 md:px-6" do
+        class: "hover:bg-slate-700 py-4 px-2 md:rounded-md flex gap-2 md:px-6 w-full pl-8" do
       %>
         <%= inline_svg_tag("icons/friends.svg", class: "w-6 h-6 inline-block") %>
         <p class="md:hidden xl:block">Friends</p>
       <% end %>
     </li>
-    <li>
+    <li class="w-full">
       <%= link_to users_path,
-        class: "hover:bg-slate-700 py-2 px-2 rounded-md flex gap-2 md:px-6" do
+        class: "hover:bg-slate-700 py-4 px-2 md:rounded-md flex gap-2 md:px-6 w-full pl-8" do
       %>
         <%= inline_svg_tag("icons/user-search.svg", class: "w-6 h-6 inline-block") %>
         <p class="md:hidden xl:block">Find Friends</p>
