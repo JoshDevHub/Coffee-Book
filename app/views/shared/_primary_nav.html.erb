@@ -16,7 +16,7 @@
         placeholder: "Search Coffee Book",
         class: "rounded-l-md text-black py-1 pl-2"
       %>
-      <%= button_tag(class: "border border-white rounded-r-md px-2") do %>
+      <%= button_tag(class: "border border-white rounded-r-md px-2", aria: { label: "Search" }) do %>
         <%= inline_svg_tag("icons/magnify.svg") %>
       <% end %>
     <% end %>
