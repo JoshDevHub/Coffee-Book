@@ -26,38 +26,28 @@
              md:border-none md:divide-none"
   >
     <li class="w-full md:w-auto">
-      <%= link_to root_path,
-        class: "hover:bg-slate-700 py-4 px-2 md:rounded-md flex gap-2 md:px-6 w-full pl-8 md:pl-2" do
+      <%= nav_link_to path: root_path,
+        icon: "icons/home",
+        text: "Home"
       %>
-        <%= inline_svg_tag("icons/home.svg", class: "w-6 h-6 inline-block") %>
-        <p class="md:hidden xl:block">Home</p>
-      <% end %>
     </li>
     <li class="w-full md:w-auto">
-      <%= link_to user_notifications_path(current_user),
-        class: "hover:bg-slate-700 py-4 px-2 md:rounded-md flex gap-2 md:px-6 w-full pl-8 md:pl-2" do
+      <%= nav_link_to path: user_notifications_path(current_user),
+        icon: "icons/bell",
+        text: current_user.unread_notifications? ? "Notifications+" : "Notifications"
       %>
-        <%= inline_svg_tag("icons/bell", class: "w-6 h-6 inline-block") %>
-        <p class="md:hidden xl:block">
-          <%= current_user.unread_notifications? ? "Notifications+" : "Notifications" %>
-        </p>
-      <% end %>
     </li>
     <li class="w-full md:w-auto">
-      <%= link_to friend_list_path(current_user),
-        class: "hover:bg-slate-700 py-4 px-2 md:rounded-md flex gap-2 w-full pl-8 md:px-6" do
+      <%= nav_link_to path: friend_list_path(current_user),
+        icon: "icons/friends",
+        text: "Friends"
       %>
-        <%= inline_svg_tag("icons/friends.svg", class: "w-6 h-6 inline-block") %>
-        <p class="md:hidden xl:block">Friends</p>
-      <% end %>
     </li>
     <li class="w-full md:w-auto">
-      <%= link_to users_path,
-        class: "hover:bg-slate-700 py-4 px-2 md:rounded-md flex gap-2 md:px-6 w-full pl-8 md:pl-2" do
+      <%= nav_link_to path: users_path,
+        icon: "icons/user-search",
+        text: "Find Friends"
       %>
-        <%= inline_svg_tag("icons/user-search.svg", class: "w-6 h-6 inline-block") %>
-        <p class="md:hidden xl:block">Find Friends</p>
-      <% end %>
     </li>
   </ul>
 </nav>
