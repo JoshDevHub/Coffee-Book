@@ -1,11 +1,14 @@
-<div class="flex flex-col">
-  <p class="font-bold">
-    <%= post.author.name %>
-  </p>
+<div class="flex flex-col border border-black rounded-md">
+  <div class="bg-slate-800 text-white px-2 py-2">
+    <p class="font-bold"><%= post.author.name %></p>
+    <p><%= "#{distance_of_time_in_words_to_now(post.updated_at)} ago" %></p>
+  </div>
+  <div class="px-2 py-2">
+    <%= post.body %>
+  </div>
   <% if post.photo.attached? %>
-    <%= image_tag post.photo.variant(:timeline), class: "w-60" %>
+    <%= image_tag post.photo.variant(:timeline), class: "max-w-[240px]" %>
   <% end %>
-  <%= post.body %>
   <%= render "posts/post_likes",
     post: post,
     user_like: post.find_like_from(current_user)
