@@ -1,10 +1,11 @@
-<h1>Your Timeline</h1>
+<main class="flex flex-col items-center">
+  <h1>Your Timeline</h1>
 
-<%= link_to "New Post", new_post_path %>
+  <%= link_to "New Post", new_post_path %>
 
-<div>
-  <% @posts.each do |post| %>
-    <%= render post, user_like: post.find_like_from(current_user) %>
-    <%= link_to "View Post", post_path(post) %>
-  <% end %>
-</div>
+  <div class="flex flex-col gap-4 w-1/2">
+    <% @posts.each do |post| %>
+      <%= render post, user_like: post.find_like_from(current_user) %>
+    <% end %>
+  </div>
+</main>
