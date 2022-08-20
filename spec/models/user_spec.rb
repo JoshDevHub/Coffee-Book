@@ -45,9 +45,14 @@ RSpec.describe User, type: :model do
       end
 
       let(:query) { "Carter" }
+      let(:lowercase_query) { "carter" }
 
       it "matches against users' first and last names" do
         expect(described_class.search_by_name(query).size).to eq 2
+      end
+
+      it "is not case sensitive" do
+        expect(described_class.search_by_name(lowercase_query).size).to eq 2
       end
 
       it "does not return an unmatched user" do
