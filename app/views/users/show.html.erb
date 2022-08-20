@@ -13,6 +13,4 @@
 <% end %>
 
 <h1>Posts:</h1>
-<% @user.posts.each do |post| %>
-  <%= render "posts/post", post: post %>
-<% end %>
+<%= render @user.posts %>
