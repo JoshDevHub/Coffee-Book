@@ -19,5 +19,6 @@
   <div class=p-2>
     <h2>Comments:</h2>
     <%= render post.comments %>
+    <%= render "comments/form", comment: [post, post.comments.build] %>
   </div>
 </div>
