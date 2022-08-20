@@ -30,6 +30,15 @@ RSpec.describe "Searching for users", type: :system do
       expect(page).to have_content("Bob Smith")
       expect(page).not_to have_content("Bob Jones")
     end
+
+    it "is not case sensitive" do
+      visit root_path
+      fill_in "Search", with: "Smith"
+      find("button[aria-label=Search]").click
+
+      expect(page).to have_content("Jacob Smith")
+      expect(page).to have_content("Bob Smith")
+    end
   end
 
   context "when searching with two names" do
