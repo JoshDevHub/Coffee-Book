@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     else
       flash[:error] = "Comment body cannot be blank"
     end
-    redirect_to post_path(@post)
+    redirect_to root_path
   end
 
   def edit
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     if @comment.update(comment_params)
-      redirect_to post_path(@comment.commentable_id)
+      redirect_to root_path
     else
       flash.now[:error] = "Body can't be blank"
       render :edit, status: :unprocessable_entity
