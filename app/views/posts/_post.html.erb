@@ -16,4 +16,8 @@
   <% if current_user == post.author %>
     <%= render "posts/post_actions", post: post %>
   <% end %>
+  <div class=p-2>
+    <h2>Comments:</h2>
+    <%= render post.comments %>
+  </div>
 </div>
