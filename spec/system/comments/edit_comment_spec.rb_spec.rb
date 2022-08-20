@@ -11,7 +11,7 @@ RSpec.describe "Editing a comment", type: :system do
 
   context "when the inputs are valid" do
     it "creates a new comment" do
-      visit post_path(post)
+      visit root_path
       click_on "Edit Comment"
       fill_in "Body", with: "Edited Comment"
       click_on "Update Comment"
@@ -24,7 +24,7 @@ RSpec.describe "Editing a comment", type: :system do
     let(:error_message) { "Body can't be blank" }
 
     it "rerenders the edit page" do
-      visit post_path(post)
+      visit root_path
       click_on "Edit Comment"
       fill_in "Body", with: ""
       click_on "Update Comment"
