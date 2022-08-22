@@ -88,6 +88,7 @@ group :development, :test do
   gem "webdrivers"
 end
 
+gem "figaro"
 gem "inline_svg"
 gem "omniauth-github"
 gem "omniauth-rails_csrf_protection"
