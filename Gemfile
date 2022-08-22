@@ -89,3 +89,5 @@ group :development, :test do
 end
 
 gem "inline_svg"
+gem "omniauth-github"
+gem "omniauth-rails_csrf_protection"
