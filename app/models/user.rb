@@ -55,6 +55,19 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  devise :omniauthable, omniauth_providers: %i[github]
+
+  def self.from_omniauth(auth)
+    user = find_or_initialize_by(provider: auth.provider, uid: auth.uid)
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0, 20]
+    first_name, last_name = auth.info.name.split
+    user.first_name = first_name
+    user.last_name = last_name
+
+    user.save
+    user
+  end
 
   def self.index_for(current_user)
     User.where.not(id: current_user.id)
