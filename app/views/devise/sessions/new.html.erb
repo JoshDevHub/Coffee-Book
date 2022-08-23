@@ -1,7 +1,13 @@
 <main class="flex flex-col items-center">
   <h2 class="text-2xl text-slate-800 font-bold mb-4">Login</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "min-w-[33%]" }) do |f| %>
+  <%= form_for(
+    resource,
+    as: resource_name,
+    url: session_path(resource_name),
+    html: { class: "min-w-[33%]" },
+    data: { turbo: false }
+  ) do |f| %>
     <div class="flex flex-col mb-4">
       <%= f.label :email, class: "text-slate-800 font-bold" %>
       <%= f.email_field :email,
