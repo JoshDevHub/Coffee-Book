@@ -9,3 +9,6 @@ application.register("dropdown", DropdownController)
 
 import ToggleController from "./toggle_controller.js"
 application.register("toggle", ToggleController)
+
+import FlashController from "./flash_controller.js"
+application.register("flash", FlashController)
