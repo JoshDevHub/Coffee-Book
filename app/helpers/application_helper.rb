@@ -8,4 +8,13 @@ module ApplicationHelper
         content_tag(:p, text, class: "md:hidden xl:block")
     end
   end
+
+  def flash_class(level)
+    {
+      "success" => "bg-green-600",
+      "error" => "bg-red-700",
+      "alert" => "bg-red-700",
+      "notice" => "bg-orange-600"
+    }[level]
+  end
 end
