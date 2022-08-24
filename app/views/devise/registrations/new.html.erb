@@ -14,6 +14,7 @@
       <%= f.label :first_name, class: "text-slate-800 font-bold" %>
       <%= f.text_field :first_name,
         autofocus: true,
+        required: true,
         class: "border border-black py-1 px-2 w-full"
       %>
     </div>
@@ -21,6 +22,7 @@
     <div class="flex flex-col mb-8">
       <%= f.label :last_name, class: "text-slate-800 font-bold" %>
       <%= f.text_field :last_name,
+        required: true,
         class: "border border-black py-1 px-2 w-full"
       %>
     </div>
@@ -29,6 +31,7 @@
       <%= f.label :email, class: "text-slate-800 font-bold" %>
       <%= f.email_field :email,
         autocomplete: "email",
+        required: true,
         class: "border border-black py-1 px-2 w-full" %>
     </div>
 
@@ -39,6 +42,7 @@
       <% end %>
       <%= f.password_field :password,
         autocomplete: "new-password",
+        required: true,
         class: "border border-black py-1 px-2 w-full"
       %>
     </div>
@@ -47,6 +51,7 @@
       <%= f.label :password_confirmation, class: "text-slate-800 font-bold" %>
       <%= f.password_field :password_confirmation,
         autocomplete: "new-password",
+        required: true,
         class: "border border-black py-1 px-2 w-full"
       %>
     </div>

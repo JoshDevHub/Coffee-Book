@@ -13,6 +13,7 @@
       <%= f.email_field :email,
         autofocus: true,
         autocomplete: "email",
+        required: true,
         class: "border border-black py-1 px-2 w-full"
       %>
     </div>
@@ -21,6 +22,7 @@
       <%= f.label :password, class: "text-slate-800 font-bold" %>
       <%= f.password_field :password,
         autocomplete: "current-password",
+        required: true,
         class: "border border-black py-1 px-2"
       %>
       <div class="flex justify-between flex-col lg:flex-row">
