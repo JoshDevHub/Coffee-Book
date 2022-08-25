@@ -26,7 +26,7 @@ FactoryBot.define do
     user { create(:user) }
     notifiable { create(:friendship) }
     message { "message" }
-    url { "url" }
+    url { "friendship_path" }
     read_status { false }
   end
 end

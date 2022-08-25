@@ -28,7 +28,24 @@ class Friendship < ApplicationRecord
   scope :pending, -> { where(accepted: false) }
   scope :confirmed, -> { where(accepted: true) }
 
+  NOTIFICATION_ACTION = "sent you a friend request!".freeze
+  NOTIFICATION_PATH = "friendship_path".freeze
+
   def confirm
     update(accepted: true)
+  end
+
+  def notify(sender, recipient)
+    notifications.create(
+      user: recipient,
+      message: notif_message_from(sender),
+      url: NOTIFICATION_PATH
+    )
+  end
+
+  private
+
+  def notif_message_from(sender)
+    "#{sender.name} #{NOTIFICATION_ACTION}"
   end
 end

@@ -47,4 +47,29 @@ RSpec.describe Friendship, type: :model do
       end
     end
   end
+
+  describe "#notify" do
+    subject(:friend_request) { described_class.create(sender:, receiver:) }
+
+    let(:sender) { create(:user) }
+    let(:receiver) { create(:user) }
+
+    it "creates a new notification for the receiving user" do
+      expect { friend_request.notify(sender, receiver) }.to change(Notification, :count).by(1)
+    end
+
+    it "creates a new notification with the expected friend request message" do
+      friend_request.notify(sender, receiver)
+      expected_message = "#{sender.name} sent you a friend request!"
+
+      expect(Notification.last.message).to eq(expected_message)
+    end
+
+    it "creates a new notification with the friendship path as the url" do
+      friend_request.notify(sender, receiver)
+      expected_url = "friendship_path"
+
+      expect(Notification.last.url).to eq(expected_url)
+    end
+  end
 end
