@@ -85,13 +85,6 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def send_friend_request(receiver)
-    return if sent_friend_requests.exists?(receiver:) ||
-              received_friend_requests.exists?(sender: receiver)
-
-    sent_friend_requests.create(receiver:)
-  end
-
   def friends
     sent_friend_requests.confirmed.includes(:receiver).map(&:receiver) +
       received_friend_requests.confirmed.map(&:sender)
