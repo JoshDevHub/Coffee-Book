@@ -9,9 +9,12 @@ class FriendshipsController < ApplicationController
 
   def create
     @friendship = current_user.sent_friend_requests.build(friendship_params)
-    flash[:success] = "Friend Request Sent" if @friendship.save
+    if @friendship.save
+      flash[:success] = "Friend Request Sent"
+      @friendship.notify(@friendship.sender, @friendship.receiver)
+    end
 
-    redirect_to users_path
+    redirect_back fallback_location: root_path
   end
 
   def destroy
