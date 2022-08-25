@@ -24,6 +24,7 @@ class Comment < ApplicationRecord
   belongs_to :commenter, class_name: "User"
 
   has_many :likes, as: :likeable, dependent: :destroy
+  has_many :notifications, as: :notifiable, dependent: :destroy
 
   validates :body, presence: true
 end

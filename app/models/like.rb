@@ -21,4 +21,6 @@
 class Like < ApplicationRecord
   belongs_to :likeable, polymorphic: true, counter_cache: :likes_count
   belongs_to :liker, class_name: "User"
+
+  has_many :notifications, as: :notifiable, dependent: :destroy
 end
