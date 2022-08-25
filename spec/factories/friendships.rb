@@ -22,7 +22,7 @@
 FactoryBot.define do
   factory :friendship do
     sender { create(:user) }
-    receiver { create(:receiver) }
+    receiver { create(:user) }
     accepted { false }
   end
 end

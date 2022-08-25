@@ -103,12 +103,6 @@ RSpec.describe User, type: :model do
           change { request_sender.sent_friend_requests.count }.by(1)
         )
       end
-
-      it "creates a new Notification for the receiver" do
-        expect { request_sender.send_friend_request(receiver) }.to(
-          change { receiver.notifications.count }.by(1)
-        )
-      end
     end
 
     context "when a request already exists between the two users" do
@@ -185,7 +179,7 @@ RSpec.describe User, type: :model do
     let(:notif_count) { 5 }
 
     before do
-      build_list(:notification, notif_count, user:)
+      create_list(:notification, notif_count, user:)
     end
 
     it "changes unread notification count from 5 to 0" do
