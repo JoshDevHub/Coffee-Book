@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_22_163532) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_25_042308) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -75,11 +75,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_22_163532) do
 
   create_table "notifications", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "friendship_id", null: false
     t.boolean "read_status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["friendship_id"], name: "index_notifications_on_friendship_id"
+    t.string "notifiable_type", null: false
+    t.bigint "notifiable_id", null: false
+    t.string "message"
+    t.string "url"
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -124,7 +127,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_22_163532) do
   add_foreign_key "friendships", "users", column: "receiver_id"
   add_foreign_key "friendships", "users", column: "sender_id"
   add_foreign_key "likes", "users", column: "liker_id"
-  add_foreign_key "notifications", "friendships"
   add_foreign_key "notifications", "users"
   add_foreign_key "posts", "users", column: "author_id"
   add_foreign_key "profiles", "users"
