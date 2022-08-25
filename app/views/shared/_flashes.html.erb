@@ -1,6 +1,10 @@
 <% flash.each do |type, message| %>
-  <div class="<%= flash_class(type) %> py-2 px-1 text-black" data-controller="flash">
+  <div class="<%= flash_class(type) %> py-2 px-1 text-black text-center relative"
+       data-controller="flash"
+  >
     <%= message %>
-    <button type="button" data-action="flash#dismiss">X</button>
+    <button type="button" data-action="flash#dismiss" class="ml-2">
+      <%= inline_svg_tag("icons/close-circle-outline", class: "h-4 w-4") %>
+    </button>
   </div>
 <% end %>
