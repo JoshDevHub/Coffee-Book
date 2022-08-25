@@ -13,8 +13,8 @@ module ApplicationHelper
     {
       "success" => "bg-green-600",
       "error" => "bg-red-700",
-      "alert" => "bg-red-700",
-      "notice" => "bg-orange-600"
+      "alert" => "bg-orange-700",
+      "notice" => "bg-green-600"
     }[level]
   end
 end
