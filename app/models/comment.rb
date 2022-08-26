@@ -31,6 +31,8 @@ class Comment < ApplicationRecord
 
   validates :body, presence: true
 
+  delegate :url_helpers, to: "Rails.application.routes"
+
   private
 
   def notification_action
@@ -38,6 +40,6 @@ class Comment < ApplicationRecord
   end
 
   def notification_path
-    "comment_path"
+    url_helpers.post_path(commentable_id)
   end
 end

@@ -43,7 +43,7 @@ RSpec.describe Comment, type: :model do
     end
 
     it "creates a new Notification with the comment path as the url" do
-      expected_url = "comment_path"
+      expected_url = "/posts/#{commented_post.id}"
       created_url = comment.notify(commenter, poster).url
 
       expect(created_url).to eq(expected_url)
