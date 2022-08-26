@@ -4,12 +4,8 @@ module Notify
   def notify(sender, recipient)
     notifications.create(
       user: recipient,
-      message: notify_message_from(sender.name),
-      url: self.class::NOTIFICATION_PATH
+      message: "#{sender.name} #{notification_action}",
+      url: notification_path
     )
-  end
-
-  def notify_message_from(sender)
-    "#{sender} #{self.class::NOTIFICATION_ACTION}"
   end
 end

@@ -22,9 +22,6 @@
 class Friendship < ApplicationRecord
   include Notify
 
-  NOTIFICATION_ACTION = "sent you a friend request!".freeze
-  NOTIFICATION_PATH = "friendship_path".freeze
-
   belongs_to :sender, class_name: "User"
   belongs_to :receiver, class_name: "User"
 
@@ -35,5 +32,15 @@ class Friendship < ApplicationRecord
 
   def confirm
     update(accepted: true)
+  end
+
+  private
+
+  def notification_action
+    "sent you a friend request!"
+  end
+
+  def notification_path
+    "friendship_path"
   end
 end

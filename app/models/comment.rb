@@ -22,9 +22,6 @@
 class Comment < ApplicationRecord
   include Notify
 
-  NOTIFICATION_ACTION = "commented on your post.".freeze
-  NOTIFICATION_PATH = "comment_path".freeze
-
   belongs_to :commentable, polymorphic: true
   belongs_to :commenter, class_name: "User"
 
@@ -32,4 +29,14 @@ class Comment < ApplicationRecord
   has_many :notifications, as: :notifiable, dependent: :destroy
 
   validates :body, presence: true
+
+  private
+
+  def notification_action
+    "commented on your post."
+  end
+
+  def notification_path
+    "comment_path"
+  end
 end
