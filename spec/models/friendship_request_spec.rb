@@ -67,7 +67,7 @@ RSpec.describe Friendship, type: :model do
 
     it "creates a new notification with the friendship path as the url" do
       friend_request.notify(sender, receiver)
-      expected_url = "friendship_path"
+      expected_url = "/friendships/#{friend_request.id}"
 
       expect(Notification.last.url).to eq(expected_url)
     end

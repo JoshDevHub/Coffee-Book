@@ -5,7 +5,7 @@
     <li>
       <%= notification.message %>
       <%= link_to "View",
-        send(notification.url, notification.notifiable_id)
+        notification.url
       %>
     </li>
   <% end %>

@@ -30,6 +30,8 @@ class Friendship < ApplicationRecord
   scope :pending, -> { where(accepted: false) }
   scope :confirmed, -> { where(accepted: true) }
 
+  delegate :url_helpers, to: "Rails.application.routes"
+
   def confirm
     update(accepted: true)
   end
@@ -41,6 +43,6 @@ class Friendship < ApplicationRecord
   end
 
   def notification_path
-    "friendship_path"
+    url_helpers.friendship_path(self)
   end
 end
