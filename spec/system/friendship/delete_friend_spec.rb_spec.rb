@@ -1,17 +1,18 @@
 require "rails_helper"
 
 RSpec.describe "Deleting a friend", type: :system do
-  let(:sending_user) { create(:user) }
-  let(:accepting_user) { create(:user) }
+  let(:sender) { create(:user) }
+  let(:receiver) { create(:user) }
 
   before do
-    sending_user.send_friend_request(accepting_user)
-    login_as(accepting_user)
+    friendship = create(:friendship, sender:, receiver:)
+    create(:notification, notifiable: friendship, user: receiver)
+    login_as(receiver)
   end
 
   it "Deletes the friendship" do
-    visit user_notifications_path(accepting_user)
-    click_on "Friend Request"
+    visit user_notifications_path(receiver)
+    click_on "View"
     click_on "Reject Request"
 
     expect(page).not_to have_content("Friend Request")

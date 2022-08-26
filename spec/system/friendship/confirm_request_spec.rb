@@ -1,18 +1,19 @@
 require "rails_helper"
 
 RSpec.describe "Confirming a friend request", type: :system do
-  let(:sending_user) { create(:user) }
-  let(:accepting_user) { create(:user) }
+  let(:sender) { create(:user) }
+  let(:receiver) { create(:user) }
 
   context "when the friend request is pending" do
     before do
-      sending_user.send_friend_request(accepting_user)
-      login_as(accepting_user)
+      friendship = create(:friendship, sender:, receiver:)
+      create(:notification, notifiable: friendship, user: receiver)
+      login_as(receiver)
     end
 
     it "accepts the friend request" do
-      visit user_notifications_path(accepting_user)
-      click_on "Friend Request"
+      visit user_notifications_path(receiver)
+      click_on "View"
       click_on "Confirm Request"
 
       expect(page).to have_content("Friend Added")
@@ -21,14 +22,15 @@ RSpec.describe "Confirming a friend request", type: :system do
 
   context "when the friend request has been accepted" do
     before do
-      sending_user.send_friend_request(accepting_user)
-      accepting_user.received_friend_requests.first.confirm
-      login_as(accepting_user)
+      friendship = create(:friendship, sender:, receiver:)
+      create(:notification, notifiable: friendship, user: receiver)
+      receiver.received_friend_requests.first.confirm
+      login_as(receiver)
     end
 
     it "tells the user that they already have this friendship" do
-      visit user_notifications_path(accepting_user)
-      click_on "Friend Request"
+      visit user_notifications_path(receiver)
+      click_on "View"
 
       expect(page).to have_content("You are already friends")
     end
