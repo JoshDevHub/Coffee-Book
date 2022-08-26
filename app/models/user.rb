@@ -96,7 +96,7 @@ class User < ApplicationRecord
   end
 
   def read_notifications
-    notifications.each(&:mark_as_read)
+    notifications.includes(:notifiable, :user).find_each(&:mark_as_read)
   end
 
   def unread_notifications?
