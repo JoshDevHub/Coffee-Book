@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
   before_action :user_read_notifications, only: :index
 
   def index
-    @notifications = @user.notifications
+    @notifications = @user.notifications.most_recent
   end
 
   private

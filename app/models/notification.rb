@@ -25,6 +25,8 @@ class Notification < ApplicationRecord
   belongs_to :user
   belongs_to :notifiable, polymorphic: true
 
+  scope :most_recent, -> { order(created_at: :desc) }
+
   def mark_as_read
     update(read_status: true)
   end
