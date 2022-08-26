@@ -48,5 +48,17 @@ RSpec.describe Comment, type: :model do
 
       expect(created_url).to eq(expected_url)
     end
+
+    context "when the user comments on their own post" do
+      subject(:comment) { create(:comment, commenter:, commentable: commented_post) }
+
+      let(:commenter) { create(:user) }
+      let(:commented_post) { create(:post, author: commenter) }
+
+      it "does not create a notification" do
+        expect { comment.notify(commenter, commented_post.author) }
+          .not_to change(Notification, :count)
+      end
+    end
   end
 end

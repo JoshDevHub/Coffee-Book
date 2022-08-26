@@ -75,5 +75,29 @@ RSpec.describe Like, type: :model do
         expect(created_url).to eq(expected_url)
       end
     end
+
+    context "when the user likes their own post" do
+      subject(:post_like) { create(:like, liker:, likeable: post) }
+
+      let(:liker) { create(:user) }
+      let(:post) { create(:post, author: liker) }
+
+      it "does not create a notification" do
+        expect { post_like.notify(liker, post.author) }
+          .not_to change(Notification, :count)
+      end
+    end
+
+    context "when the user likes their own comment" do
+      subject(:comment_like) { create(:like, liker:, likeable: comment) }
+
+      let(:post) { create(:post, author: liker) }
+      let(:comment) { create(:comment, commenter: liker) }
+
+      it "does not create a notification" do
+        expect { comment_like.notify(liker, post.author) }
+          .not_to change(Notification, :count)
+      end
+    end
   end
 end

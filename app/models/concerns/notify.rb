@@ -2,6 +2,8 @@ module Notify
   extend ActiveSupport::Concern
 
   def notify(sender, recipient)
+    return if sender == recipient
+
     notifications.create(
       user: recipient,
       message: "#{sender.name} #{notification_action}",
