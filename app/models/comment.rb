@@ -20,6 +20,11 @@
 #  fk_rails_...  (commenter_id => users.id)
 #
 class Comment < ApplicationRecord
+  include Notify
+
+  NOTIFICATION_ACTION = "commented on your post.".freeze
+  NOTIFICATION_PATH = "comment_path".freeze
+
   belongs_to :commentable, polymorphic: true
   belongs_to :commenter, class_name: "User"
 
