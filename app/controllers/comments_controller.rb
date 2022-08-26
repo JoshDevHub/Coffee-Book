@@ -1,12 +1,13 @@
 class CommentsController < ApplicationController
   before_action :enforce_commenter_ownership, only: %i[edit update destroy]
+  before_action :post_param, only: %i[create]
 
   def create
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
     @comment.commenter = current_user
-    if @comment.save
+    if @comment.save!
       flash[:success] = "Your comment has been added"
+      @comment.notify(current_user, @post.author)
     else
       flash[:error] = "Comment body cannot be blank"
     end
@@ -37,6 +38,10 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def post_param
+    @post = Post.find(params[:post_id])
+  end
 
   def comment_params
     params.require(:comment).permit(:commenter, :commentable, :body)

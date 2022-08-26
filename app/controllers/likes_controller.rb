@@ -1,7 +1,8 @@
 class LikesController < ApplicationController
   def create
-    @like = Post.find(params[:post_id]).likes.build(liker: current_user)
-    @like.save
+    post = Post.find(params[:post_id])
+    @like = post.likes.build(liker: current_user)
+    @like.notify(current_user, post.author) if @like.save
     redirect_back fallback_location: root_path
   end
 
