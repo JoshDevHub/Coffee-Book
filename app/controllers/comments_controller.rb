@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.new(comment_params)
     @comment.commenter = current_user
-    if @comment.save!
+    if @comment.save
       flash[:success] = "Your comment has been added"
       @comment.notify(current_user, @post.author)
     else
