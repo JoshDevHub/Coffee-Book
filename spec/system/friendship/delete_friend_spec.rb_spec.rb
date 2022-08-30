@@ -6,7 +6,7 @@ RSpec.describe "Deleting a friend", type: :system do
 
   before do
     friendship = create(:friendship, sender:, receiver:)
-    create(:notification, notifiable: friendship, user: receiver)
+    friendship.notify(sender, receiver)
     login_as(receiver)
   end
 
