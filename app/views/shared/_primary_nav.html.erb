@@ -21,11 +21,16 @@
         text: "Home"
       %>
     </li>
-    <li class="w-full md:w-auto">
+    <li class="w-full md:w-auto relative">
       <%= nav_link_to path: user_notifications_path(current_user),
         icon: "icons/bell",
-        text: current_user.unread_notifications? ? "Notifications+" : "Notifications"
+        text: "Notifications"
       %>
+      <% if current_user.unread_notifications? %>
+        <div class="bg-red-700 rounded-full absolute top-2 right-2 w-3 h-3"
+             id="notifications-badge">
+        </div>
+      <% end %>
     </li>
     <li class="w-full md:w-auto">
       <%= nav_link_to path: friend_list_path(current_user),
