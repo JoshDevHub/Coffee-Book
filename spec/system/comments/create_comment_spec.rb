@@ -1,11 +1,18 @@
 require "rails_helper"
 
 RSpec.describe "Creating a comment", type: :system do
-  let(:user) { create(:user) }
+  let!(:commenting_user) { create(:user) }
+  let!(:posting_user) { create(:user) }
 
   before do
-    login_as(user)
-    create(:post, author: user)
+    login_as(commenting_user)
+    create(
+      :friendship,
+      sender: commenting_user,
+      receiver: posting_user,
+      accepted: true
+    )
+    create(:post, author: posting_user)
   end
 
   context "when the inputs are valid" do
@@ -15,6 +22,17 @@ RSpec.describe "Creating a comment", type: :system do
       click_on "Create Comment"
 
       expect(page).to have_content("Test Comment")
+    end
+
+    it "sends a notification to the posting user" do
+      visit root_path
+      fill_in "Body", with: "Test Comment"
+      click_on "Create Comment"
+      sleep 0.5
+
+      login_as(posting_user)
+      visit user_notifications_path(posting_user)
+      expect(page).to have_content("#{commenting_user.name} commented on your post.")
     end
   end
 
