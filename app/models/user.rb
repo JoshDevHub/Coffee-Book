@@ -74,10 +74,9 @@ class User < ApplicationRecord
   end
 
   def self.search_by_name(name)
-    first, last, = name.split.map(&:downcase)
-    first_search = first
-    last_search = last || first_search
-    User.where("lower(first_name) = ?", first)
+    first_search, last_search, = name.split.map(&:downcase)
+    last_search ||= first_search
+    User.where("lower(first_name) = ?", first_search)
         .or(User.where("lower(last_name) = ?", last_search))
   end
 
