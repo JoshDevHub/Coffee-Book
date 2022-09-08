@@ -11,4 +11,8 @@
   .btn-primary {
     @apply bg-slate-800 hover:text-slate-800 hover:border-slate-800;
   }
+
+  .btn-disabled {
+    @apply bg-neutral-600 text-neutral-200 hover:bg-neutral-600 cursor-default;
+  }
 }
