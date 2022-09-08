@@ -1,0 +1,18 @@
+<div class="border border-black w-1/2 rounded-md p-4 bg-gray-100
+            flex justify-between items-center">
+  <%= link_to user_path(user), class: "flex items-center gap-2 hover:underline" do %>
+    <%= image_tag avatar_url_for(user.profile, variant: :icon), class: "rounded-full" %>
+    <p class="font-bold"><%= user.name %></p>
+  <% end %>
+  <% if current_user.pending_friends.include?(user) %>
+    <%= button_to "Pending request ...", {}, disabled: true, class: "btn btn-disabled" %>
+  <% elsif current_user.friends.exclude?(user) %>
+    <%= button_to "Friend this User",
+      user_friendships_path(
+        user_id: current_user,
+        friendship: { receiver_id: user }
+      ),
+      class: "btn btn-primary"
+    %>
+  <% end %>
+</div>
