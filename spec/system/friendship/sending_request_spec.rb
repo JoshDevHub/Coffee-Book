@@ -39,7 +39,7 @@ RSpec.describe "Sending a friend request", type: :system do
 
     it "prevents the button from being clicked" do
       visit users_path
-      expect(find_button("You're friends with this user.", disabled: true)).to be_truthy
+      expect(find_button("Friend", disabled: true)).to be_truthy
     end
   end
 end

@@ -14,5 +14,7 @@
       ),
       class: "btn btn-primary"
     %>
+  <% else %>
+    <%= button_to "Friend", {}, disabled: true, class: "btn btn-disabled" %>
   <% end %>
 </div>
