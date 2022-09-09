@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :users, only: %i[index show] do
     resources :notifications, only: [:index]
-    resources :friendships, shallow: true
+    resources :friendships, shallow: true, except: %i[new edit update]
     resource :profile, only: %i[edit update]
   end
 

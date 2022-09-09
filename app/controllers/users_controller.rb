@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  # GET "/users"
   def index
     query = if params[:search].present?
               [:search_by_name, params[:search]]
@@ -8,6 +9,7 @@ class UsersController < ApplicationController
     @users = User.includes(profile: :avatar_attachment).public_send(*query)
   end
 
+  # GET "/users/:id"
   def show
     @user = User.includes(
       posts: [:photo_attachment, { comments: :commenter }]

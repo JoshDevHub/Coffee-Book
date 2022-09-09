@@ -1,19 +1,23 @@
 class PostsController < ApplicationController
   before_action :enforce_author_ownership, only: %i[edit update destroy]
 
+  # GET "/"
   def index
     @posts = Post.timeline_for(current_user)
                  .includes(:author, :photo_attachment, comments: :commenter)
   end
 
+  # GET "/posts/:id"
   def show
     @post = Post.includes(comments: :commenter).find(params[:id])
   end
 
+  # GET "/posts/new"
   def new
     @post = Post.new
   end
 
+  # POST "/posts"
   def create
     @post = current_user.posts.build(post_params)
 
@@ -24,10 +28,12 @@ class PostsController < ApplicationController
     end
   end
 
+  # GET "/posts/:id/edit"
   def edit
     @post = Post.find(params[:id])
   end
 
+  # PATCH "/posts/:id"
   def update
     @post = Post.find(params[:id])
 
@@ -38,6 +44,7 @@ class PostsController < ApplicationController
     end
   end
 
+  # DELETE "/posts/:id"
   def destroy
     @post = Post.find(params[:id])
     @post.destroy

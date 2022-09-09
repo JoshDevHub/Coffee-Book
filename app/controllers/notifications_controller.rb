@@ -2,6 +2,7 @@ class NotificationsController < ApplicationController
   before_action :user_param
   before_action :user_read_notifications, only: :index
 
+  # GET "users/:id/notifications"
   def index
     @notifications = @user.notifications.most_recent
   end

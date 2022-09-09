@@ -1,10 +1,12 @@
 class ProfilesController < ApplicationController
   before_action :enforce_profile_ownership, only: [:edit]
 
+  # GET "users/:id/profile"
   def edit
     @profile = Profile.find_by(user_id: params[:user_id])
   end
 
+  # PATCH "users/:id/profile"
   def update
     @profile = Profile.find(params[:user_id])
 

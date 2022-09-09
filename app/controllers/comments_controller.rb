@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :enforce_commenter_ownership, only: %i[edit update destroy]
   before_action :post_param, only: %i[create]
 
+  # POST posts/:id/comments
   def create
     @comment = @post.comments.new(comment_params)
     @comment.commenter = current_user
@@ -14,10 +15,12 @@ class CommentsController < ApplicationController
     redirect_to root_path
   end
 
+  # GET "/comments/:id/edit"
   def edit
     @comment = Comment.find(params[:id])
   end
 
+  # PATCH "/comments/:id"
   def update
     @comment = Comment.find(params[:id])
 
@@ -29,6 +32,7 @@ class CommentsController < ApplicationController
     end
   end
 
+  # DELETE "/comments/:id"
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
