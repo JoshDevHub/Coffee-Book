@@ -70,7 +70,7 @@ class User < ApplicationRecord
   end
 
   def self.index_for(current_user)
-    User.where.not(id: current_user.id)
+    User.excluding(current_user)
   end
 
   def self.search_by_name(name)
