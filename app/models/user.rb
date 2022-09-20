@@ -86,7 +86,7 @@ class User < ApplicationRecord
 
   def friends
     sent_friend_requests.confirmed.includes(:receiver).map(&:receiver) +
-      received_friend_requests.confirmed.map(&:sender)
+      received_friend_requests.confirmed.includes(:sender).map(&:sender)
   end
 
   def pending_friends

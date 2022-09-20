@@ -4,9 +4,11 @@
     <%= image_tag avatar_url_for(user.profile, variant: :icon), class: "rounded-full" %>
     <p class="font-bold"><%= user.name %></p>
   <% end %>
-  <% if current_user.pending_friends.include?(user) %>
+  <% if current_user.friends.include?(user) %>
+    <%= button_to "Friend", {}, disabled: true, class: "btn btn-disabled" %>
+  <% elsif current_user.pending_friends.include?(user) %>
     <%= button_to "Pending request ...", {}, disabled: true, class: "btn btn-disabled" %>
-  <% elsif current_user.friends.exclude?(user) %>
+  <% else %>
     <%= button_to "Friend this User",
       user_friendships_path(
         user_id: current_user,
@@ -14,7 +16,5 @@
       ),
       class: "btn btn-primary"
     %>
-  <% else %>
-    <%= button_to "Friend", {}, disabled: true, class: "btn btn-disabled" %>
   <% end %>
 </div>
