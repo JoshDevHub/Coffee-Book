@@ -85,8 +85,15 @@ class User < ApplicationRecord
   end
 
   def friends
-    sent_friend_requests.confirmed.includes(:receiver).map(&:receiver) +
-      received_friend_requests.confirmed.includes(:sender).map(&:sender)
+    sent_group = sent_friend_requests
+                 .confirmed
+                 .includes(receiver: [profile: :avatar_attachment])
+                 .extract_associated(:receiver)
+    receive_group = received_friend_requests
+                    .confirmed
+                    .includes(sender: [profile: :avatar_attachment])
+                    .extract_associated(:sender)
+    sent_group + receive_group
   end
 
   def pending_friends
