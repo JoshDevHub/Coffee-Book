@@ -1,7 +1,9 @@
-<h1>Friend List</h1>
+<h1 class="text-center text-2xl font-bold mb-4 text-slate-800">
+  Friend List
+</h1>
 
-<div>
+<div class="flex flex-col items-center w-1/2 mx-auto gap-4">
   <% @friends.each do |friend| %>
-    <%= friend.name %>
+    <%= render "users/user", user: friend %>
   <% end %>
 </div>
