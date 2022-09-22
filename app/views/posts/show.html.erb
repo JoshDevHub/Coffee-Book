@@ -1,9 +1,5 @@
-<h1>Your post</h1>
-
-<%= render @post, post: @post %>
-
-<h2>Comments:</h2>
-<%= render @post.comments %>
-
-<h2>Add Comment:</h2>
-<%= render "comments/form", comment: [@post, @post.comments.build] %>
+<main class="flex flex-col items-center">
+  <div class="flex flex-col gap-4 w-1/2 min-w-[320px]">
+    <%= render @post, post: @post %>
+  </div>
+</main>
