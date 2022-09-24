@@ -2,7 +2,7 @@ class FriendshipsController < ApplicationController
   # GET "/users/:id/friends"
   # GET "/users/:id/friendships"
   def index
-    @friends = current_user.friends
+    @friends = current_user.friends_with_avatar
   end
 
   # GET "/users/:id/friendships"

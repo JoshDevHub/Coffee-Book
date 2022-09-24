@@ -85,15 +85,26 @@ class User < ApplicationRecord
   end
 
   def friends
-    sent_group = sent_friend_requests
-                 .confirmed
-                 .includes(receiver: [profile: :avatar_attachment])
-                 .extract_associated(:receiver)
-    receive_group = received_friend_requests
-                    .confirmed
-                    .includes(sender: [profile: :avatar_attachment])
-                    .extract_associated(:sender)
-    sent_group + receive_group
+    initiated_friends + accepted_friends
+  end
+
+  def friends_with_avatar
+    initiated_friends.includes(profile: :avatar_attachment) +
+      accepted_friends.includes(profile: :avatar_attachment)
+  end
+
+  def initiated_friends
+    User
+      .joins(:sent_friend_requests)
+      .where(sent_friend_requests: { accepted: true })
+      .where(sent_friend_requests: { receiver_id: id })
+  end
+
+  def accepted_friends
+    User
+      .joins(:received_friend_requests)
+      .where(received_friend_requests: { accepted: true })
+      .where(received_friend_requests: { sender_id: id })
   end
 
   def pending_friends
