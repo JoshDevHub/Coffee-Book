@@ -93,20 +93,6 @@ class User < ApplicationRecord
       accepted_friends.includes(profile: :avatar_attachment)
   end
 
-  def initiated_friends
-    User
-      .joins(:sent_friend_requests)
-      .where(sent_friend_requests: { accepted: true })
-      .where(sent_friend_requests: { receiver_id: id })
-  end
-
-  def accepted_friends
-    User
-      .joins(:received_friend_requests)
-      .where(received_friend_requests: { accepted: true })
-      .where(received_friend_requests: { sender_id: id })
-  end
-
   def pending_friends
     sent_friend_requests.pending.includes(:receiver).map(&:receiver) +
       received_friend_requests.pending.map(&:sender)
@@ -121,6 +107,20 @@ class User < ApplicationRecord
   end
 
   private
+
+  def initiated_friends
+    self.class
+        .joins(:sent_friend_requests)
+        .where(sent_friend_requests: { accepted: true })
+        .where(sent_friend_requests: { receiver_id: id })
+  end
+
+  def accepted_friends
+    self.class
+        .joins(:received_friend_requests)
+        .where(received_friend_requests: { accepted: true })
+        .where(received_friend_requests: { sender_id: id })
+  end
 
   def welcome_email
     UserMailer.with(user: self).welcome_email.deliver
