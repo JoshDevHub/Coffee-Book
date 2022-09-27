@@ -1,6 +1,6 @@
 module ApplicationHelper
   NAV_LINK_STYLES = "hover:bg-slate-700 py-4 px-2 md:rounded-md flex gap-2 \
-                     md:px-6 w-full pl-8 md:pl-2".freeze
+                     w-full pl-8 md:px-6".freeze
 
   def nav_link_to(path:, icon:, text:)
     link_to path, class: NAV_LINK_STYLES do
