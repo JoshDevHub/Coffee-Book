@@ -1,18 +1,19 @@
 <%= turbo_frame_tag "#{likeable.model_name.element}_#{likeable.id}_likes" do %>
   <div class="flex justify-center gap-2 px-2 py-2">
-    <p>Likes: <%= likeable.likes.size %></p>
     <% user_like = likeable.find_like_from(current_user) %>
     <% if user_like %>
-      <%= button_to "Unlike Post", like_path(user_like), method: :delete %>
+      <%= button_to like_path(user_like), method: :delete do %>
+        <%= inline_svg_tag("icons/heart", class: "text-red-500 w-6 h-6") %>
+      <% end %>
     <% else %>
-      <%= button_to "Like Post",
-        likes_path(
-          like: {
-            likeable_type: likeable.model_name.human,
-            likeable_id: likeable.id,
-          }
-        )
-      %>
+      <%= button_to likes_path(
+        like: { likeable_type: likeable.model_name.human, likeable_id: likeable.id }
+      ) do %>
+        <%= inline_svg_tag("icons/heart-outline", class: "text-red-500 w-6 h-6") %>
+      <% end %>
     <% end %>
+    <p class=<%= user_like ? "text-red-500" : "text-black" %>>
+      <%= likeable.likes.size %>
+    </p>
   </div>
 <% end %>
