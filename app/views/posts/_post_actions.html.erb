@@ -1,11 +1,13 @@
-<div class="flex justify-between">
-  <%= link_to "Edit Post",
+<div class="flex gap-4">
+  <%= link_to "Edit",
     edit_post_path(post),
-    class: "p-2 w-full text-center"
+    class: "p-2 w-full text-center border-2 border-white rounded-md font-bold
+            hover:text-slate-800 hover:bg-white hover:border-slate-800"
   %>
-  <%= link_to "Delete Post",
+  <%= link_to "Delete",
     post_path(post),
-    class: "p-2 w-full text-center",
+    class: "p-2 w-full text-center border-2 border-red-600 rounded-md font-bold
+            hover:text-red-600 hover:bg-white hover:border-slate-800",
     data: { turbo_method: :delete }
   %>
 </div>
