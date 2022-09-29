@@ -10,6 +10,7 @@ RSpec.describe "Editing a profile", type: :system do
   context "when the inputs are valid" do
     it "updates the profile" do
       visit edit_user_profile_path(user)
+      fill_in "Bio", with: "I'm a test user"
       select "male", from: "Gender"
       fill_in "Location", with: "United States"
       fill_in "Birthday", with: "10/05/1990"

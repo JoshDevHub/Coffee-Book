@@ -24,6 +24,7 @@ FactoryBot.define do
     birthday { "2022-07-11" }
     gender { 1 }
     location { "MyString" }
+    bio { "My Bio" }
     user { create(:user) }
 
     trait :incomplete do

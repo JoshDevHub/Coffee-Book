@@ -20,7 +20,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:gender, :birthday, :location, :avatar)
+    params.require(:profile).permit(:gender, :birthday, :location, :avatar, :bio)
   end
 
   def enforce_profile_ownership
