@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "#{likeable.model_name.element}_#{likeable.id}_likes" do %>
-  <div class="flex justify-center gap-2 px-2 py-2">
+  <div class="flex gap-2 px-2 py-2">
     <% user_like = likeable.find_like_from(current_user) %>
     <% if user_like %>
       <%= button_to like_path(user_like), method: :delete do %>
