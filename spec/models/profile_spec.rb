@@ -3,6 +3,7 @@
 # Table name: profiles
 #
 #  id         :bigint           not null, primary key
+#  bio        :string
 #  birthday   :date
 #  gender     :integer
 #  location   :string
