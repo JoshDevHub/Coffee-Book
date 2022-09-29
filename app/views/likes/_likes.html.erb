@@ -1,1 +1,16 @@
-<p>Likes: <%= likes.size %></p>
+<div class="flex justify-center gap-2 px-2 py-2">
+  <p>Likes: <%= likeable.likes.size %></p>
+  <% user_like = likeable.find_like_from(current_user) %>
+  <% if user_like %>
+    <%= button_to "Unlike Post", like_path(user_like), method: :delete %>
+  <% else %>
+    <%= button_to "Like Post",
+      likes_path(
+        like: {
+          likeable_type: likeable.model_name.human,
+          likeable_id: likeable.id,
+        }
+      )
+    %>
+  <% end %>
+</div>

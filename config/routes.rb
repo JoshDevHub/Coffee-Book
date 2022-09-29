@@ -14,15 +14,11 @@ Rails.application.routes.draw do
   # Friendships
   get "users/:id/friends/", to: "friendships#index", as: :friend_list
 
-  # Likes
-  concern :likeable do
-    resources :likes, shallow: true
-  end
+  resources :likes, only: %i[create destroy]
 
   # Posts
   resources :posts do
     resources :comments, shallow: true
-    concerns :likeable
   end
 
   # Friend Requests

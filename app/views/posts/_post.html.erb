@@ -3,19 +3,21 @@
     <p class="font-bold"><%= post.author.name %></p>
     <p><%= "#{distance_of_time_in_words_to_now(post.updated_at)} ago" %></p>
   </div>
+
   <div class="p-2">
     <%= post.body %>
   </div>
+
   <% if post.photo.attached? %>
     <%= image_tag post.photo.variant(:timeline), class: "max-w-[240px]" %>
   <% end %>
-  <%= render "posts/post_likes",
-    post: post,
-    user_like: post.find_like_from(current_user)
-  %>
+
+  <%= render "likes/likes", likeable: post %>
+
   <% if current_user == post.author %>
     <%= render "posts/post_actions", post: post %>
   <% end %>
+
   <div class=p-2>
     <h2>Comments:</h2>
     <%= render post.comments %>
