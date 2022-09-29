@@ -1,0 +1,4 @@
+<%= turbo_stream.replace "#{dom_id(@like.likeable)}_likes",
+  partial: "likes/likes",
+  locals: { likeable: @like.likeable }
+%>
