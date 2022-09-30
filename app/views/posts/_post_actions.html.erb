@@ -1,13 +1,33 @@
-<div class="flex gap-4">
-  <%= link_to "Edit",
-    edit_post_path(post),
-    class: "p-2 w-full text-center border-2 border-white rounded-md font-bold
-            hover:text-slate-800 hover:bg-white hover:border-slate-800"
-  %>
-  <%= link_to "Delete",
-    post_path(post),
-    class: "p-2 w-full text-center border-2 border-red-600 rounded-md font-bold
-            hover:text-red-600 hover:bg-white hover:border-slate-800",
-    data: { turbo_method: :delete }
-  %>
+<div class="md:gap-4 relative md:flex md:static" data-controller="dropdown">
+
+  <button type="button"
+          data-action="dropdown#toggleVisibility click@window->dropdown#hide"
+          class="md:hidden"
+  >
+    <%= inline_svg_tag(
+      "icons/dots-horizontal.svg",
+      class: "h-6 w-6 text-white",
+      data: { dropdown_target: "toggle" }
+    ) %>
+  </button>
+
+  <div data-dropdown-target="menu"
+       class="hidden md:flex md:gap-2 absolute md:static bg-slate-700 transition
+              transform right-0 border border-black md:border-none rounded-md
+               md:bg-slate-800 md:transform-none">
+    <%= link_to "Edit",
+      edit_post_path(post),
+      class: "px-3 py-1 rounded-md w-full md:text-center md:border-2
+              md:border-white md:font-bold md:hover:text-slate-800
+              md:hover:bg-white md:hover:border-slate-800",
+      data: { action: "dropdown#toggleVisibility" }
+    %>
+    <%= link_to "Delete",
+      post_path(post),
+      class: "px-3 py-1 rounded-md w-full md:text-center md:border-2
+              md:border-red-600 md:font-bold md:hover:text-red-600
+              md:hover:bg-white md:hover:border-slate-800",
+      data: { action: "dropdown#toggleVisibility", turbo_method: :delete }
+    %>
+  </div>
 </div>
