@@ -8,11 +8,13 @@
                flex justify-between items-center min-w-[300px]"
     >
       <%= notification.message %>
-      <%= link_to "View",
-        notification.url,
-        class: "text-slate-800 hover:text-slate-700
-                underline underline-offset-4 transition"
-      %>
+      <% if notification.link? %>
+        <%= link_to "View",
+          notification.url,
+          class: "text-slate-800 hover:text-slate-700
+                  underline underline-offset-4 transition"
+        %>
+      <% end %>
     </li>
   <% end %>
 </ul>

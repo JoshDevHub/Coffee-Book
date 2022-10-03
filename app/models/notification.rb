@@ -30,4 +30,8 @@ class Notification < ApplicationRecord
   def mark_as_read
     update(read_status: true)
   end
+
+  def link?
+    url != ""
+  end
 end

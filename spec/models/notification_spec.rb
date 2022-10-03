@@ -46,4 +46,24 @@ RSpec.describe Notification, type: :model do
       end
     end
   end
+
+  describe "#link?" do
+    context "when the notification url is a url string" do
+      subject(:notif_with_url) { create(:notification, url: localhost) }
+
+      let(:localhost) { "http://localhost:3000" }
+
+      it "returns true" do
+        expect(notif_with_url).to be_link
+      end
+    end
+
+    context "when the notification url is an empty string" do
+      subject(:notif_no_url) { create(:notification, url: "") }
+
+      it "returns false" do
+        expect(notif_no_url).not_to be_link
+      end
+    end
+  end
 end
