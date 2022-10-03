@@ -5,7 +5,7 @@
 <ul class="flex flex-col items-center w-1/2 mx-auto gap-4">
   <% @notifications.each do |notification| %>
     <li class="border border-black xl:w-2/3 w-full rounded-md p-4 bg-gray-100
-               flex justify-between items-center min-w-[300px]"
+               flex justify-between items-center min-w-[300px] gap-2"
     >
       <%= notification.message %>
       <% if notification.link? %>
