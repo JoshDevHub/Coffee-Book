@@ -34,6 +34,7 @@ class FriendshipsController < ApplicationController
   def confirm_request
     @friendship = Friendship.find(params[:id])
     @friendship.confirm
+    @friendship.notify(@friendship.receiver, @friendship.sender)
     flash[:notice] = "Friend Added"
     redirect_back fallback_location: root_path
   end

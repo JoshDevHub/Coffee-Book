@@ -39,10 +39,14 @@ class Friendship < ApplicationRecord
   private
 
   def notification_action
-    "sent you a friend request!"
+    if accepted?
+      "accepted your friend request!"
+    else
+      "sent you a friend request!"
+    end
   end
 
   def notification_path
-    url_helpers.friendship_path(self)
+    accepted? ? "" : url_helpers.friendship_path(self)
   end
 end
