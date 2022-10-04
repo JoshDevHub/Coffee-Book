@@ -123,7 +123,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#pending_friends" do
+  describe "#friends_awaiting_acceptance" do
     subject(:user) { create(:user) }
 
     let(:other_user) { create(:user) }
@@ -134,7 +134,7 @@ RSpec.describe User, type: :model do
       end
 
       it "returns a relation object not including the user's friend" do
-        expect(user.pending_friends).not_to include(other_user)
+        expect(user.friends_awaiting_acceptance).not_to include(other_user)
       end
     end
 
@@ -144,7 +144,7 @@ RSpec.describe User, type: :model do
       end
 
       it "returns a relation object including the other user" do
-        expect(user.pending_friends).to include(other_user)
+        expect(user.friends_awaiting_acceptance).to include(other_user)
       end
     end
   end

@@ -93,7 +93,11 @@ class User < ApplicationRecord
       accepted_friends.includes(profile: :avatar_attachment)
   end
 
-  def pending_friends
+  def pending_friend_requests
+    received_friend_requests.pending
+  end
+
+  def friends_awaiting_acceptance
     sent_friend_requests.pending.includes(:receiver).map(&:receiver) +
       received_friend_requests.pending.map(&:sender)
   end
