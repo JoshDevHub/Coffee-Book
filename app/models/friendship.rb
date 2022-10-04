@@ -47,6 +47,6 @@ class Friendship < ApplicationRecord
   end
 
   def notification_path
-    accepted? ? "" : url_helpers.friendship_path(self)
+    accepted? ? "" : url_helpers.friend_list_path(receiver)
   end
 end
