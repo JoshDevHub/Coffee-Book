@@ -1,7 +1,17 @@
+<% if @friend_requests.present? %>
+  <h2 class="text-center text-1xl font-bold mb-4 text-slate-800">
+    Friend Requests
+  </h2>
+  <div class="flex flex-col items-center w-1/2 mx-auto gap-4 mb-4">
+    <% @friend_requests.each do |request| %>
+      <%= render "friend_request", request: request %>
+    <% end %>
+  </div>
+<% end %>
+
 <h1 class="text-center text-2xl font-bold mb-4 text-slate-800">
   Friend List
 </h1>
-
 <div class="flex flex-col items-center w-1/2 mx-auto gap-4">
   <% @friends.each do |friend| %>
     <%= render "users/user", user: friend %>

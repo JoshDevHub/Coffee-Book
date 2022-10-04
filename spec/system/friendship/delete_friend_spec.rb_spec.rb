@@ -13,7 +13,7 @@ RSpec.describe "Deleting a friend", type: :system do
   it "Deletes the friendship" do
     visit user_notifications_path(receiver)
     click_on "View"
-    click_on "Reject Request"
+    click_on "Reject"
 
     expect(page).not_to have_content("Friend Request")
 

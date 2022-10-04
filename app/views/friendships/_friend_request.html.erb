@@ -1,0 +1,21 @@
+<div class="border border-black xl:w-3/4 w-full rounded-md p-4 bg-gray-100
+            flex justify-between items-center min-w-[300px] lg:flex-row flex-col gap-2"
+>
+  <% sender = request.sender %>
+  <%= link_to user_path(sender), class: "flex items-center gap-2 hover:underline" do %>
+    <%= image_tag avatar_url_for(sender.profile, variant: :icon), class: "rounded-full" %>
+    <p class="font-bold"><%= sender.name %></p>
+  <% end %>
+  <div class="flex gap-2">
+    <%= button_to "Confirm",
+      confirm_request_path(request),
+      method: :patch,
+      class: "btn bg-slate-800 hover:border-slate-800 hover:text-slate-800"
+    %>
+    <%= button_to "Reject",
+      friendship_path(request),
+      method: :delete,
+      class: "btn bg-red-700 hover:border-red-700 hover:text-red-700"
+    %>
+  </div>
+</div>

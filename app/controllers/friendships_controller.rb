@@ -2,7 +2,9 @@ class FriendshipsController < ApplicationController
   # GET "/users/:id/friends"
   # GET "/users/:id/friendships"
   def index
-    @friends = current_user.friends_with_avatar
+    user = User.find(params[:id])
+    @friends = user.friends_with_avatar
+    find_pending_requests if current_user == user
   end
 
   # GET "/users/:id/friendships"
@@ -43,5 +45,9 @@ class FriendshipsController < ApplicationController
 
   def friendship_params
     params.require(:friendship).permit(:sender, :receiver_id)
+  end
+
+  def find_pending_requests
+    @friend_requests = current_user.pending_friend_requests.includes(:sender)
   end
 end
