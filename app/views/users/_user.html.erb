@@ -7,7 +7,7 @@
   <% end %>
   <% if current_user.friends.include?(user) %>
     <%= button_to "Friend", {}, disabled: true, class: "btn btn-disabled" %>
-  <% elsif current_user.pending_friends.include?(user) %>
+  <% elsif current_user.friends_awaiting_acceptance.include?(user) %>
     <%= button_to "Pending request ...", {}, disabled: true, class: "btn btn-disabled" %>
   <% else %>
     <%= button_to "Friend this User",
