@@ -10,7 +10,7 @@ RSpec.describe "Deleting a post", type: :system do
 
   it "Deletes the post" do
     visit root_path
-    click_on "Delete Post"
+    click_on "Delete"
     expect(page).not_to have_content("Test post")
   end
 end

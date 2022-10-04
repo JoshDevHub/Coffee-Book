@@ -19,13 +19,13 @@ RSpec.describe "Creating a like", type: :system do
 
     it "creates a Like" do
       visit root_path
-      click_on "Like"
-      expect(page).to have_content("Likes: 1")
+      find("button[aria-label=Like]").click
+      expect(page).to have_content("1")
     end
 
     it "notifies the posting user of a like" do
       visit root_path
-      click_on "Like"
+      find("button[aria-label=Like]").click
       sleep 0.5
 
       login_as(posting_user)

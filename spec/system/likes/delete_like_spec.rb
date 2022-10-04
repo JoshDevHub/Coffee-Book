@@ -11,7 +11,7 @@ RSpec.describe "Deleting a like", type: :system do
 
   it "deletes the Like" do
     visit root_path
-    click_on "Unlike"
-    expect(page).to have_content("Likes: 0")
+    find("button[aria-label=Unlike]").click
+    expect(page).to have_content("0")
   end
 end
