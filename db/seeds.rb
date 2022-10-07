@@ -5,3 +5,26 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require "faker"
+
+10.times do
+  User.create!(
+    {
+      email: Faker::Internet.email(domain: "example"),
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      password: "test123"
+    }
+  )
+end
+
+User.all.each do |user|
+  10.times do
+    Post.create!(
+      {
+        author: user,
+        body: Faker::Lorem.paragraph(sentence_count: 2)
+      }
+    )
+  end
+end
