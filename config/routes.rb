@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
-  get "profiles/show"
   # Root
   root "posts#index"
 
+  # Auth
+  devise_for :users,
+             controllers: {
+               omniauth_callbacks: "users/omniauth_callbacks",
+               registrations: "users/registrations",
+               sessions: "users/sessions"
+             }
+
   # Users
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :users, only: %i[index show] do
     resources :notifications, only: [:index]
     resources :friendships, shallow: true, except: %i[new edit update show]
