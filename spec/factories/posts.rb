@@ -19,7 +19,11 @@
 #
 FactoryBot.define do
   factory :post do
-    author { create(:user) }
-    body { Faker::Lorem.paragraph(sentence_count: 2) }
+    author { create(:user, :author_user) }
+    body { "This is a test environment post" }
+
+    trait :for_comment do
+      body { "This is a post with a test comment" }
+    end
   end
 end

@@ -22,7 +22,7 @@
 #
 FactoryBot.define do
   factory :comment do
-    body { Faker::Lorem.paragraph(sentence_count: 2) }
-    commentable { create(:post) }
+    body { "This is a test environment comment." }
+    commentable { create(:post, :for_comment) }
   end
 end

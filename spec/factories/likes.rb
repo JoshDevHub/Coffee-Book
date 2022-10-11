@@ -21,6 +21,6 @@
 FactoryBot.define do
   factory :like do
     likeable { nil }
-    liker { create(:user) }
+    liker { create(:user, :liking_user) }
   end
 end

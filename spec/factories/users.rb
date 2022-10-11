@@ -22,9 +22,28 @@
 #
 FactoryBot.define do
   factory :user do
-    first_name { Faker::Name.first_name }
-    last_name { Faker::Name.last_name }
-    email { Faker::Internet.email }
-    password { Faker::Internet.password }
+    first_name { "Test" }
+    last_name { "User" }
+    password { "testing123" }
+    sequence(:email) { |n| "person#{n}@example.com" }
+    trait :friend_initiater do
+      first_name { "Friend" }
+      last_name { "Initiater" }
+    end
+
+    trait :friend do
+      first_name { "Amigo" }
+      last_name { "User" }
+    end
+
+    trait :author_user do
+      first_name { "Post" }
+      last_name { "Author" }
+    end
+
+    trait :liking_user do
+      first_name { "Liking" }
+      last_name { "User" }
+    end
   end
 end
