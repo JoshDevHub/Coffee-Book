@@ -49,7 +49,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: true
 
-  after_create :create_profile!, :welcome_email
+  after_create :create_profile!
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -124,9 +124,5 @@ class User < ApplicationRecord
         .joins(:received_friend_requests)
         .where(received_friend_requests: { accepted: true })
         .where(received_friend_requests: { sender_id: id })
-  end
-
-  def welcome_email
-    UserMailer.with(user: self).welcome_email.deliver
   end
 end
