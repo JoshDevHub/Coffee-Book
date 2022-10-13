@@ -37,7 +37,7 @@ class Like < ApplicationRecord
   def notification_path
     resource = case likeable_type
                when "Post" then likeable
-               when "Comment" then likeable.commentable
+               when "Comment" then likeable.post
                end
     url_helpers.post_path(resource)
   end

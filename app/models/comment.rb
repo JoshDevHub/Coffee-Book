@@ -2,19 +2,18 @@
 #
 # Table name: comments
 #
-#  id               :bigint           not null, primary key
-#  body             :text
-#  commentable_type :string           not null
-#  likes_count      :integer
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  commentable_id   :bigint           not null
-#  commenter_id     :bigint           not null
+#  id           :bigint           not null, primary key
+#  body         :text
+#  likes_count  :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  commenter_id :bigint           not null
+#  post_id      :bigint
 #
 # Indexes
 #
-#  index_comments_on_commentable   (commentable_type,commentable_id)
 #  index_comments_on_commenter_id  (commenter_id)
+#  index_comments_on_post_id       (post_id)
 #
 # Foreign Keys
 #
@@ -23,7 +22,7 @@
 class Comment < ApplicationRecord
   include Notify
 
-  belongs_to :commentable, polymorphic: true
+  belongs_to :post
   belongs_to :commenter, class_name: "User"
 
   has_many :likes, as: :likeable, dependent: :destroy
@@ -40,6 +39,6 @@ class Comment < ApplicationRecord
   end
 
   def notification_path
-    url_helpers.post_path(commentable_id)
+    url_helpers.post_path(post.id)
   end
 end

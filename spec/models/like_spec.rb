@@ -54,7 +54,7 @@ RSpec.describe Like, type: :model do
       subject(:comment_like) { create(:like, liker:, likeable: comment) }
 
       let(:post) { create(:post) }
-      let(:comment) { create(:comment, commenter: liked_user, commentable: post) }
+      let(:comment) { create(:comment, commenter: liked_user, post:) }
 
       it "creates a new notification for the user with the liked comment" do
         expect { comment_like.notify(liker, liked_user) }
@@ -92,7 +92,7 @@ RSpec.describe Like, type: :model do
       subject(:comment_like) { create(:like, liker:, likeable: comment) }
 
       let(:post) { create(:post, author: liker) }
-      let(:comment) { create(:comment, commenter: liker) }
+      let(:comment) { create(:comment, commenter: liker, post:) }
 
       it "does not create a notification" do
         expect { comment_like.notify(liker, post.author) }
