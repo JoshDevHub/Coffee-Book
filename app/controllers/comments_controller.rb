@@ -4,8 +4,9 @@ class CommentsController < ApplicationController
 
   # POST posts/:id/comments
   def create
-    @comment = @post.comments.new(comment_params)
-    @comment.commenter = current_user
+    @comment = @post.comments.new(
+      comment_params.merge({ commenter: current_user })
+    )
     if @comment.save
       flash[:success] = "Your comment has been added"
       @comment.notify(current_user, @post.author)
