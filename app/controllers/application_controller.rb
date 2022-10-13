@@ -15,14 +15,4 @@ class ApplicationController < ActionController::Base
       )
     end
   end
-
-  private
-
-  def enforce_user_ownership
-    resource = controller_name.classify.constantize
-    return if resource.find(params[:id]).user == current_user
-
-    flash[:error] = "You do not own this #{resource}"
-    redirect_to root_path
-  end
 end

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :enforce_author_ownership, only: %i[edit update destroy]
+  before_action :find_post_for_current_user, only: %i[edit update destroy]
 
   # GET "/"
   def index
@@ -29,14 +29,10 @@ class PostsController < ApplicationController
   end
 
   # GET "/posts/:id/edit"
-  def edit
-    @post = Post.find(params[:id])
-  end
+  def edit; end
 
   # PATCH "/posts/:id"
   def update
-    @post = Post.find(params[:id])
-
     if @post.update(post_params)
       redirect_to root_path
     else
@@ -46,7 +42,6 @@ class PostsController < ApplicationController
 
   # DELETE "/posts/:id"
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
 
     redirect_to root_path, status: :see_other
@@ -58,9 +53,9 @@ class PostsController < ApplicationController
     params.require(:post).permit(:body, :photo, :author_id)
   end
 
-  def enforce_author_ownership
-    return if Post.find(params[:id]).author == current_user
-
+  def find_post_for_current_user
+    @post = current_user.posts.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
     flash[:error] = "You do not own this post"
     redirect_to root_path
   end

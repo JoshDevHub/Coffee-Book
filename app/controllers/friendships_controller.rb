@@ -1,4 +1,6 @@
 class FriendshipsController < ApplicationController
+  before_action :find_received_request_for_current_user, only: :confirm_request
+
   # GET "/users/:id/friends"
   # GET "/users/:id/friendships"
   def index
@@ -34,7 +36,6 @@ class FriendshipsController < ApplicationController
 
   # PATCH "/friendships/:id/confirm_request"
   def confirm_request
-    @friendship = Friendship.find(params[:id])
     @friendship.confirm
     @friendship.notify(@friendship.receiver, @friendship.sender)
     flash[:notice] = "Friend Added"
@@ -45,6 +46,13 @@ class FriendshipsController < ApplicationController
 
   def friendship_params
     params.require(:friendship).permit(:sender, :receiver_id)
+  end
+
+  def find_received_request_for_current_user
+    @friendship = current_user.received_friend_requests.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "Unauthorized Access"
+    redirect_to root_path
   end
 
   def find_pending_requests

@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_action :find_like_for_current_user, only: :destroy
+
   def create
     @like = current_user.likes.build(like_params)
     @like.notify(current_user, @like.likeable.author) if @like.save
@@ -10,7 +12,6 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @like = Like.find(params[:id])
     @like.destroy
 
     respond_to do |format|
@@ -23,5 +24,12 @@ class LikesController < ApplicationController
 
   def like_params
     params.require(:like).permit(:likeable_id, :likeable_type, :liker)
+  end
+
+  def find_like_for_current_user
+    @like = current_user.likes.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "Unauthorized Access!"
+    redirect_to root_path
   end
 end

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :enforce_commenter_ownership, only: %i[edit update destroy]
+  before_action :find_comment_for_current_user, only: %i[edit update destroy]
   before_action :post_param, only: %i[create]
 
   # POST posts/:id/comments
@@ -16,14 +16,10 @@ class CommentsController < ApplicationController
   end
 
   # GET "/comments/:id/edit"
-  def edit
-    @comment = Comment.find(params[:id])
-  end
+  def edit; end
 
   # PATCH "/comments/:id"
   def update
-    @comment = Comment.find(params[:id])
-
     if @comment.update(comment_params)
       redirect_to root_path
     else
@@ -34,7 +30,6 @@ class CommentsController < ApplicationController
 
   # DELETE "/comments/:id"
   def destroy
-    @comment = Comment.find(params[:id])
     @comment.destroy
     flash[:success] = "Comment deleted"
 
@@ -51,9 +46,9 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:commenter, :commentable, :body)
   end
 
-  def enforce_commenter_ownership
-    return if Comment.find(params[:id]).commenter == current_user
-
+  def find_comment_for_current_user
+    @comment = current_user.comments.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
     flash[:error] = "You do not own this comment"
     redirect_to root_path
   end
