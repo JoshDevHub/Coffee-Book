@@ -22,7 +22,7 @@
 class Comment < ApplicationRecord
   include Notify
 
-  belongs_to :post
+  belongs_to :post, counter_cache: true
   belongs_to :commenter, class_name: "User"
 
   has_many :likes, as: :likeable, dependent: :destroy
