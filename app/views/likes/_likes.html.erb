@@ -13,7 +13,7 @@
         <%= inline_svg_tag("icons/heart-outline", class: "text-red-500 w-6 h-6") %>
       <% end %>
     <% end %>
-    <p class=<%= user_like ? "text-red-500" : "text-black" %>>
+    <p class="<%= user_like ? "text-red-500" : "text-black" %> font-medium">
       <%= likeable.likes.size %>
     </p>
   </div>

@@ -1,0 +1,6 @@
+<%= link_to post_path(post),
+  aria: { label: "Comments" },
+  class: "flex gap-2 px-2 py-2 mb-[3px] text-slate-900 font-medium" do %>
+    <%= inline_svg_tag("icons/message-reply.svg", class: "w-7 h-7 text-slate-800") %>
+    <%= post.comments.size %>
+<% end %>

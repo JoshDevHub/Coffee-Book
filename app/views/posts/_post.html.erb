@@ -17,11 +17,8 @@
     <%= image_tag post.photo.variant(:timeline), class: "max-w-[240px]" %>
   <% end %>
 
-  <%= render "likes/likes", likeable: post %>
-
-  <div class=p-2>
-    <h2>Comments:</h2>
-    <%= render post.comments %>
-    <%= render "comments/form", comment: [post, post.comments.build] %>
+  <div class="flex items-center gap-4">
+    <%= render "likes/likes", likeable: post %>
+    <%= render "comment_count", post: post %>
   </div>
 </div>
