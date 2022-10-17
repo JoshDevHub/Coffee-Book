@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe "Creating a comment", type: :system do
   let!(:commenting_user) { create(:user) }
   let!(:posting_user) { create(:user) }
+  let!(:post) { create(:post, author: posting_user) }
 
   before do
     login_as(commenting_user)
@@ -12,12 +13,11 @@ RSpec.describe "Creating a comment", type: :system do
       receiver: posting_user,
       accepted: true
     )
-    create(:post, author: posting_user)
   end
 
   context "when the inputs are valid" do
     it "creates a new comment" do
-      visit root_path
+      visit post_path(post)
       fill_in "Body", with: "Test Comment"
       click_on "Create Comment"
 
@@ -25,7 +25,7 @@ RSpec.describe "Creating a comment", type: :system do
     end
 
     it "sends a notification to the posting user" do
-      visit root_path
+      visit post_path(post)
       fill_in "Body", with: "Test Comment"
       click_on "Create Comment"
       sleep 0.5
@@ -39,7 +39,7 @@ RSpec.describe "Creating a comment", type: :system do
   context "when the inputs are not valid" do
     it "renders an error message" do
       error_message = "Comment body cannot be blank"
-      visit root_path
+      visit post_path(post)
       click_on "Create Comment"
 
       expect(page).to have_content(error_message)

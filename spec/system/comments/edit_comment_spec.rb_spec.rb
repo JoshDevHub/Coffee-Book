@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Editing a comment", type: :system do
   let(:user) { create(:user) }
-  let(:post) { create(:post, author: user) }
+  let!(:post) { create(:post, author: user) }
 
   before do
     login_as(user)
@@ -10,8 +10,8 @@ RSpec.describe "Editing a comment", type: :system do
   end
 
   context "when the inputs are valid" do
-    it "creates a new comment" do
-      visit root_path
+    it "updates the comment with the new text" do
+      visit post_path(post)
       click_on "Edit Comment"
       fill_in "Body", with: "Edited Comment"
       click_on "Update Comment"
@@ -24,7 +24,7 @@ RSpec.describe "Editing a comment", type: :system do
     let(:error_message) { "Body can't be blank" }
 
     it "rerenders the edit page" do
-      visit root_path
+      visit post_path(post)
       click_on "Edit Comment"
       fill_in "Body", with: ""
       click_on "Update Comment"
