@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
     else
       flash[:error] = "Comment body cannot be blank"
     end
-    redirect_to root_path
+    redirect_to @post
   end
 
   # GET "/comments/:id/edit"
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
   # PATCH "/comments/:id"
   def update
     if @comment.update(comment_params)
-      redirect_to root_path
+      redirect_to @comment.post
     else
       flash.now[:error] = "Body can't be blank"
       render :edit, status: :unprocessable_entity
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     flash[:success] = "Comment deleted"
 
-    redirect_to root_path, status: :see_other
+    redirect_to @comment.post, status: :see_other
   end
 
   private
