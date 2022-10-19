@@ -35,10 +35,6 @@ class Post < ApplicationRecord
     where(author: user).or(where(author: user.friends)).order(created_at: :desc)
   end
 
-  def total_likes
-    likes.count
-  end
-
   def find_like_from(user)
     likes.find_by(liker: user)
   end
