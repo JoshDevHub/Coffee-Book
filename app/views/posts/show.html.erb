@@ -1,11 +1,10 @@
-<main class="flex flex-col items-center">
-  <div class="flex flex-col gap-4 w-1/2 min-w-[320px]">
+<main class="flex flex-col items-center gap-4">
+  <div class="flex flex-col gap-4 w-1/2 min-w-[320px] max-w-[500px] mb-4">
     <%= render @post, post: @post %>
   </div>
 
-  <div>
-    <h2>Comments:</h2>
+  <div class="flex flex-col items-center w-1/2 min-w-[320px] max-w-[500px] mx-auto gap-4 mb-4">
     <%= render @post.comments %>
-    <%= render "comments/form", comment: [@post, @post.comments.build] %>
   </div>
+  <%= render "comments/form", comment: [@post, @post.comments.build] %>
 </main>

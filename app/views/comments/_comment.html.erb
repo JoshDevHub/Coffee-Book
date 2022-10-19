@@ -1,10 +1,29 @@
-<div>
-  <p class="font-bold">
-    <%= comment.commenter.name %>
+<div class="shadow-lg xl:w-3/4 w-full rounded-md p-4 bg-gray-200
+            flex justify-between min-w-[300px] flex-col gap-2"
+>
+  <p>
+  <%= link_to comment.commenter_name,
+    user_path(comment.commenter),
+    class: "font-bold underline underline-offset-2 hover:text-gray-800
+            hover:no-underline transform" %> commented:
   </p>
   <p>
     <%= comment.body %>
   </p>
-  <%= link_to "Edit Comment", edit_comment_path(comment) %>
-  <%= button_to "Delete Comment", comment_path(comment), method: :delete %>
+  <div class="ml-auto flex gap-2">
+    <%= button_to edit_comment_path(comment),
+      method: :get,
+      class: "btn border-2 border-slate-800 rounded-md p-0.5 text-slate-800
+              hover:bg-slate-800 hover:text-white",
+      aria: { label: "Edit Comment" } do %>
+        <%= inline_svg_tag("icons/pencil", class: "w-6 h-6") %>
+    <% end %>
+    <%= button_to comment_path(comment),
+      method: :delete,
+      class: "btn border-2 border-red-600 rounded-md p-0.5 text-red-600
+              hover:bg-red-600 hover:text-white",
+      aria: { label: "Delete Comment" } do %>
+        <%= inline_svg_tag("icons/delete", class: "w-6 h-6") %>
+    <% end %>
+  </div>
 </div>
