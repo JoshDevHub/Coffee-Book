@@ -31,6 +31,7 @@ class Comment < ApplicationRecord
   validates :body, presence: true
 
   delegate :url_helpers, to: "Rails.application.routes"
+  delegate :name, to: :commenter, prefix: :commenter
 
   private
 
