@@ -12,7 +12,7 @@ RSpec.describe "Editing a comment", type: :system do
   context "when the inputs are valid" do
     it "updates the comment with the new text" do
       visit post_path(post)
-      click_on "Edit Comment"
+      find("button[aria-label='Edit Comment']").click
       fill_in "Body", with: "Edited Comment"
       click_on "Update Comment"
 
@@ -25,7 +25,7 @@ RSpec.describe "Editing a comment", type: :system do
 
     it "rerenders the edit page" do
       visit post_path(post)
-      click_on "Edit Comment"
+      find("button[aria-label='Edit Comment']").click
       fill_in "Body", with: ""
       click_on "Update Comment"
 

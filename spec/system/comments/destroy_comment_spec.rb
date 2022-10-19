@@ -11,7 +11,7 @@ RSpec.describe "Destroying a comment", type: :system do
 
   it "destroys the comment" do
     visit post_path(post)
-    click_on "Delete Comment"
+    find("button[aria-label='Delete Comment']").click
 
     expect(page).to have_content("Comment deleted")
     expect(page).not_to have_content("This comment will be deleted")
