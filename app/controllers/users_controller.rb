@@ -11,8 +11,6 @@ class UsersController < ApplicationController
 
   # GET "/users/:id"
   def show
-    @user = User.includes(
-      posts: [:photo_attachment, { comments: :commenter }]
-    ).find(params[:id])
+    @user = User.includes(posts: :photo_attachment).find(params[:id])
   end
 end
