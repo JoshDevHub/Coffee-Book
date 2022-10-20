@@ -1,9 +1,12 @@
-<%= form_with model: comment do |form| %>
+<%= form_with model: comment, class: "w-full" do |form| %>
   <div>
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+    <%= form.label :body, class: "hidden" %>
+    <%= form.text_area :body,
+      class: "border border-gray-400 rounded-md p-2 w-full h-[150px]",
+      placeholder: "Add your comment"
+    %>
   </div>
-  <div>
-    <%= form.submit %>
+  <div class="flex justify-end">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
