@@ -13,10 +13,14 @@
   <body class="flex flex-col min-h-screen">
     <%= render user_signed_in? ? "shared/header" : "devise/shared/header" %>
     <%= render "shared/flashes" %>
+
+    <!-- Padding to maintain consistent space between header/flash and main -->
     <div class="py-4"></div>
-    <div class="flex-1 mb-8">
+
+    <main class="flex-1 mb-8">
       <%= yield %>
-    </div>
+    </main>
+
     <%= render "shared/footer" %>
   </body>
 </html>

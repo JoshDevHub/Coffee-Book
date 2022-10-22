@@ -1,4 +1,4 @@
-<main class="flex flex-col items-center gap-4">
+<div class="flex flex-col items-center gap-4">
   <div class="flex flex-col gap-4 w-1/2 min-w-[320px] max-w-[500px] mb-4">
     <%= render @post, post: @post %>
   </div>
@@ -7,4 +7,4 @@
     <%= render @post.comments %>
     <%= render "comments/form", comment: [@post, @post.comments.build] %>
   </div>
-</main>
+</div>
