@@ -10,14 +10,13 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
-    <% if user_signed_in? %>
-      <%= render "shared/header" %>
-    <% else %>
-      <%= render "devise/shared/header" %>
-    <% end %>
+  <body class="flex flex-col min-h-screen">
+    <%= render user_signed_in? ? "shared/header" : "devise/shared/header" %>
     <%= render "shared/flashes" %>
     <div class="py-4"></div>
-    <%= yield %>
+    <div class="flex-1 mb-8">
+      <%= yield %>
+    </div>
+    <%= render "shared/footer" %>
   </body>
 </html>
