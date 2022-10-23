@@ -2,9 +2,9 @@
   <button type="button"
           data-action="dropdown#toggleVisibility click@window->dropdown#hide"
   >
-  <%= image_tag avatar_url_for(current_user.profile, variant: :icon),
-      class: "rounded-full border-2 border-slate-500",
-      data: { dropdown_target: "toggle" } %>
+    <%= image_tag avatar_url_for(current_user.profile, variant: :icon),
+        class: "rounded-full border-2 border-slate-500",
+        data: { dropdown_target: "toggle" } %>
   </button>
 
   <div
@@ -14,12 +14,12 @@
   >
     <%= link_to "Profile",
       user_path(current_user),
-      class: "px-3 py-1 hover:bg-slate-800 rounded-md w-full",
+      class: "px-3 py-1 hover:bg-slate-300 rounded-t-md block hover:text-slate-800",
       data: { action: "dropdown#toggleVisibility" }
     %>
     <%= link_to "Logout",
       destroy_user_session_path,
-      class: "px-2 py-1 hover:bg-slate-800 rounded-md",
+      class: "px-2 py-1 hover:text-slate-800 rounded-b-md block hover:bg-slate-300",
       data: { action: "dropdown#toggleVisibility", turbo_method: :delete }
     %>
   </div>

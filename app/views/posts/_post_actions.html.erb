@@ -14,19 +14,19 @@
   <div data-dropdown-target="menu"
        class="hidden md:flex md:gap-2 absolute md:static bg-slate-700 transition
               transform right-0 border border-black md:border-none rounded-md
-               md:bg-slate-800 md:transform-none">
+              md:bg-slate-800 md:transform-none">
     <%= link_to "Edit",
       edit_post_path(post),
-      class: "px-3 py-1 rounded-md w-full md:text-center md:border-2
-              md:border-white md:font-bold md:hover:text-slate-800
-              md:hover:bg-white md:hover:border-slate-800",
+      class: "px-3 py-1 rounded-t-md md:rounded-md block w-full md:text-center
+              md:border-white md:font-bold hover:text-slate-800 md:border-2
+              hover:bg-slate-200 md:hover:bg-white md:hover:border-slate-800",
       data: { action: "dropdown#toggleVisibility" }
     %>
     <%= link_to "Delete",
       post_path(post),
-      class: "px-3 py-1 rounded-md w-full md:text-center md:border-2
-              md:border-red-600 md:font-bold md:hover:text-red-600
-              md:hover:bg-white md:hover:border-slate-800",
+      class: "px-3 py-1 w-full md:text-center md:border-2 rounded-b-md block
+              md:rounded-md md:border-red-600 md:font-bold hover:text-red-600
+              hover:bg-slate-200 md:hover:bg-white hover:border-slate-800",
       data: { action: "dropdown#toggleVisibility", turbo_method: :delete }
     %>
   </div>
