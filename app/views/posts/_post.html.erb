@@ -14,7 +14,7 @@
   </div>
 
   <% if post.photo.attached? %>
-    <%= image_tag post.photo.variant(:timeline), class: "max-w-[240px]" %>
+    <%= image_tag post.photo.variant(:timeline), class: "px-2" %>
   <% end %>
 
   <div class="flex items-center gap-4">

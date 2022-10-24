@@ -26,7 +26,7 @@ class Post < ApplicationRecord
 
   has_one_attached :photo do |attachable|
     attachable.variant :thumb, resize_to_fill: [80, 80]
-    attachable.variant :timeline, resize_to_fill: [240, 240]
+    attachable.variant :timeline, resize_to_fill: [484, 484]
   end
 
   validates :body, presence: true
