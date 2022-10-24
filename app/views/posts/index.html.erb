@@ -9,8 +9,6 @@
       new_post_path,
       class: "mx-auto lg:ml-auto lg:mr-2 btn-primary btn"
     %>
-    <% @posts.each do |post| %>
-      <%= render post, user_like: post.find_like_from(current_user) %>
-    <% end %>
+    <%= render @posts %>
   </div>
 </div>
