@@ -1,3 +1,8 @@
-<h1>New Post</h1>
-
-<%= render "form", post: @post %>
+<div class="flex flex-col items-center">
+  <h1 class="text-center text-2xl font-bold mb-4 text-slate-800">
+    New Post
+  </h1>
+  <div class="w-1/2 min-w-[320px] max-w-[500px] mb-4">
+    <%= render "form", post: @post %>
+  </div>
+</div>

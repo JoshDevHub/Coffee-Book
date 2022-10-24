@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET "/"
   def index
     @posts = Post.timeline_for(current_user)
-                 .includes(:author, :photo_attachment)
+                 .includes(:author, photo_attachment: :blob)
   end
 
   # GET "/posts/:id"

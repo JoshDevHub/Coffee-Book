@@ -1,22 +1,22 @@
-<% if post.errors.any? %>
-  <p><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved.</p>
-  <ul>
-    <% post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+<%= form_with model: post, class: "w-full" do |form| %>
+  <div class="mb-4">
+    <%= form.label :body, class: "hidden" %>
+    <%= form.text_area :body,
+      class: "border border-gray-400 rounded-md p-2 w-full h-[150px]",
+      placeholder: "What's on your mind?"
+    %>
+  </div>
+  <div class="mb-4">
+    <% if post.photo.attached? %>
+      <%= image_tag(post.photo.variant(:thumb), class: "mb-4 rounded-md") %>
     <% end %>
-  </ul>
-<% end %>
-
-<%= form_with model: post do |form| %>
-  <div>
-    <%= form.label :body %>
-    <%= form.text_field :body %>
+    <%= form.label :photo, "Attach photo", class: "btn btn-primary py-1 mb-4" %>
+    <%= form.file_field :photo,
+      class: "hidden",
+      accept: 'image/png,image/jpeg,image/jpg'
+    %>
   </div>
   <div>
-    <%= form.label :photo %>
-    <%= form.file_field :photo %>
-  </div>
-  <div>
-    <%= form.submit "Create Post" %>
+    <%= form.submit "Create Post", class: "btn btn-primary px-[22px]" %>
   </div>
 <% end %>
