@@ -6,14 +6,15 @@
       placeholder: "What's on your mind?"
     %>
   </div>
-  <div class="mb-4">
-    <% if post.photo.attached? %>
-      <%= image_tag(post.photo.variant(:thumb), class: "mb-4 rounded-md") %>
-    <% end %>
+  <div class="mb-4" data-controller="preview">
+    <% image_src = post.photo.attached? ? post.photo.variant(:thumb) : "" %>
+    <%= image_tag(image_src, class: "mb-4 rounded-md", data: { preview_target: "image" }) %>
+
     <%= form.label :photo, "Attach photo", class: "btn btn-primary py-1 mb-4" %>
     <%= form.file_field :photo,
       class: "hidden",
-      accept: 'image/png,image/jpeg,image/jpg'
+      accept: 'image/png,image/jpeg,image/jpg',
+      data: { action: "change->preview#show" }
     %>
   </div>
   <div>
