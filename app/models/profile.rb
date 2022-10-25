@@ -37,6 +37,8 @@ class Profile < ApplicationRecord
   belongs_to :user
 
   validates :bio, length: { maximum: 500 }
+  validates :avatar_attachment, photo_filetype: true,
+                                unless: -> { avatar_attachment.nil? }
 
   def complete?
     attributes.values.all?

@@ -30,6 +30,8 @@ class Post < ApplicationRecord
   end
 
   validates :body, presence: true
+  validates :photo_attachment, photo_filetype: true,
+                               unless: -> { photo_attachment.nil? }
 
   def self.timeline_for(user)
     where(author: user).or(where(author: user.friends)).order(created_at: :desc)
