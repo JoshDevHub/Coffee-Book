@@ -54,6 +54,60 @@ RSpec.describe Post, type: :model do
     end
   end
 
+  describe "photo#attach" do
+    subject(:post_with_attachment) { create(:post) }
+
+    context "when the photo is valid" do
+      before do
+        post_with_attachment.photo.attach(io: File.open("./spec/fixtures/valid_image.png"),
+                                          filename: "valid_image.png",
+                                          content_type: "image/png")
+      end
+
+      it "is valid" do
+        expect(post_with_attachment).to be_valid
+      end
+
+      it "has a photo attached" do
+        expect(post_with_attachment.photo).to be_attached
+      end
+    end
+
+    context "when the photo isn't an image filetype" do
+      before do
+        post_with_attachment.photo.attach(io: File.open("./spec/fixtures/test_txtfile.txt"),
+                                          filename: "test_txtfile.txt",
+                                          content_type: "text/plain")
+      end
+
+      it "isn't valid" do
+        expect(post_with_attachment).not_to be_valid
+      end
+
+      it "has an error with expected message" do
+        expected_message = "is not a photo"
+        expect(post_with_attachment.errors[:photo]).to match_array(expected_message)
+      end
+    end
+
+    context "when the filesize is too large" do
+      before do
+        post_with_attachment.photo.attach(io: File.open("./spec/fixtures/large_file.png"),
+                                          filename: "large_file.png",
+                                          content_type: "image/png")
+      end
+
+      it "isn't valid" do
+        expect(post_with_attachment).not_to be_valid
+      end
+
+      it "has an error with expected message" do
+        expected_message = "size must be less than 5MB"
+        expect(post_with_attachment.errors[:photo]).to match_array(expected_message)
+      end
+    end
+  end
+
   describe "#find_like_from" do
     let(:current_user) { create(:user) }
 
