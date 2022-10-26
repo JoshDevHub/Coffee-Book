@@ -29,7 +29,7 @@ class Post < ApplicationRecord
     attachable.variant :timeline, resize_to_fill: [484, 484]
   end
 
-  validates :body, presence: true
+  validates :body, presence: true, length: { in: 3..500 }
   validates :photo, photo_filetype: true,
                     file_size: { max: 5.megabytes },
                     if: -> { photo.attached? }

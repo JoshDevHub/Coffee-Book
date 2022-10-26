@@ -28,7 +28,7 @@ class Comment < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
 
-  validates :body, presence: true
+  validates :body, presence: true, length: { in: 3..300 }
 
   delegate :url_helpers, to: "Rails.application.routes"
   delegate :name, to: :commenter, prefix: :commenter
