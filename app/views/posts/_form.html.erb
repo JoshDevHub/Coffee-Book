@@ -1,3 +1,7 @@
+<% if post.errors.any? %>
+  <%= render "shared/form_errors", resource: post %>
+<% end %>
+
 <%= form_with model: post, class: "w-full" do |form| %>
   <div class="mb-4">
     <%= form.label :body, class: "hidden" %>

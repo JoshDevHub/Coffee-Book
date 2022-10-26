@@ -1,0 +1,11 @@
+<div class="mb-4">
+  <h2 class="text-red-700 text-lg">
+    Please fix <%= pluralize(resource.errors.count, "error") %>
+  </h2>
+
+  <ul>
+    <% resource.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+</div>
