@@ -60,6 +60,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   devise :omniauthable, omniauth_providers: %i[github]
 
+  scope :index_for, ->(user) { excluding(user) }
+
   def self.from_omniauth(auth)
     user = find_or_initialize_by(provider: auth.provider, uid: auth.uid)
     user.email = auth.info.email
@@ -71,10 +73,6 @@ class User < ApplicationRecord
 
     user.save
     user
-  end
-
-  def self.index_for(current_user)
-    User.excluding(current_user)
   end
 
   def self.search_by_name(name)
