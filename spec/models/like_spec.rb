@@ -23,7 +23,7 @@ require "rails_helper"
 RSpec.describe Like, type: :model do
   describe "notify" do
     let(:liker) { create(:user) }
-    let(:liked_user) { create(:user) }
+    let(:liked_user) { create(:user, :liking_user) }
 
     context "when the like is on a post" do
       subject(:post_like) { create(:like, liker:, likeable: post) }

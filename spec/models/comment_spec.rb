@@ -27,7 +27,7 @@ RSpec.describe Comment, type: :model do
 
     let(:poster) { create(:user) }
     let(:commented_post) { create(:post, author: poster) }
-    let(:commenter) { create(:user) }
+    let(:commenter) { create(:user, :comment_user) }
 
     it "creates a new Notification for the poster user" do
       expect { comment.notify(commenter, poster) }

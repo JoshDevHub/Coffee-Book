@@ -24,7 +24,7 @@ require "rails_helper"
 RSpec.describe Friendship, type: :model do
   describe "#confirm" do
     let(:sender) { create(:user) }
-    let(:receiver) { create(:user) }
+    let(:receiver) { create(:user, :friend) }
 
     context "when the request is unaccepted" do
       subject(:unaccepted_request) { described_class.create(sender:, receiver:) }
@@ -52,7 +52,7 @@ RSpec.describe Friendship, type: :model do
     subject(:friend_request) { described_class.create(sender:, receiver:) }
 
     let(:sender) { create(:user) }
-    let(:receiver) { create(:user) }
+    let(:receiver) { create(:user, :friend) }
 
     it "creates a new notification for the receiving user" do
       expect { friend_request.notify(sender, receiver) }.to change(Notification, :count).by(1)

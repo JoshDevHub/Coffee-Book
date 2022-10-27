@@ -12,6 +12,7 @@
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  uid                    :string
+#  username               :string           not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -19,6 +20,7 @@
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_username              (username) UNIQUE
 #
 require "rails_helper"
 
@@ -27,7 +29,9 @@ RSpec.describe User, type: :model do
     let(:current_user) { create(:user) }
 
     before do
-      create_list :user, 3
+      create(:user, first_name: "Dummy", last_name: "User", username: "dummy_user")
+      create(:user, first_name: "Dummy", last_name: "User", username: "dummy_user2")
+      create(:user, first_name: "Dummy", last_name: "User", username: "dummy_user3")
     end
 
     it "returns an ActiveRelation object with 3 users" do
@@ -42,8 +46,8 @@ RSpec.describe User, type: :model do
   describe "::search_by_name" do
     context "when given a single name" do
       before do
-        create(:user, first_name: "Jimmy", last_name: "Carter")
-        create(:user, first_name: "Carter", last_name: "Hadley")
+        create(:user, first_name: "Jimmy", last_name: "Carter", username: "jimmy_carter")
+        create(:user, first_name: "Carter", last_name: "Hadley", username: "carter_hadley")
       end
 
       let(:query) { "Carter" }
@@ -58,15 +62,15 @@ RSpec.describe User, type: :model do
       end
 
       it "does not return an unmatched user" do
-        unmatched = create(:user, first_name: "Chris", last_name: "Ham")
+        unmatched = create(:user, first_name: "Chris", last_name: "Ham", username: "chris_ham")
         expect(described_class.search_by_name(query)).not_to include unmatched
       end
     end
 
     context "when given two names" do
       before do
-        create(:user, first_name: "Josh", last_name: "Smith")
-        create(:user, first_name: "Corey", last_name: "Hart")
+        create(:user, first_name: "Josh", last_name: "Smith", username: "joshy")
+        create(:user, first_name: "Corey", last_name: "Hart", username: "coray")
       end
 
       let(:query) { "Corey Smith" }
@@ -92,7 +96,7 @@ RSpec.describe User, type: :model do
     subject(:user) { create(:user) }
 
     context "when the users share an accepted request" do
-      let(:users_friend) { create(:user) }
+      let(:users_friend) { create(:user, :friend) }
 
       before do
         create(:friendship, sender: user, receiver: users_friend, accepted: true)
@@ -105,14 +109,14 @@ RSpec.describe User, type: :model do
 
     context "when the users do not share a request" do
       it "returns a relation object not including the user who isn't a friend" do
-        not_users_friend = create(:user)
+        not_users_friend = create(:user, :john_doe)
         expect(user.friends).not_to include(not_users_friend)
       end
     end
 
     context "when the users share an unaccepted request" do
       it "does not include the other user if the request isn't accepted" do
-        requested_user = create(:user)
+        requested_user = create(:user, :friend)
         create(:friendship, sender: user, receiver: requested_user, accepted: false)
         expect(user.friends).not_to include(requested_user)
       end
@@ -122,7 +126,7 @@ RSpec.describe User, type: :model do
   describe "#friends_awaiting_acceptance" do
     subject(:user) { create(:user) }
 
-    let(:other_user) { create(:user) }
+    let(:other_user) { create(:user, :friend) }
 
     context "when the users share an accepted request" do
       before do

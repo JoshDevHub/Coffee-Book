@@ -23,8 +23,8 @@ require "rails_helper"
 RSpec.describe Post, type: :model do
   describe "::timeline_for" do
     let(:main_user) { create(:user) }
-    let(:friend) { create(:user) }
-    let(:not_friend) { create(:user) }
+    let(:friend) { create(:user, :friend) }
+    let(:not_friend) { create(:user, :john_doe) }
 
     before do
       create(:friendship, sender: main_user, receiver: friend, accepted: true)
