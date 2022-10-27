@@ -571,6 +571,11 @@ source-map-js@^1.0.2:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
+stimulus-character-counter@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/stimulus-character-counter/-/stimulus-character-counter-4.1.0.tgz#2195c9b8aa3708c2d820b2716fa6e4aa5c2959e0"
+  integrity sha512-SkPysFS4g9y0NEVs2zl5nPpBD6hDwP0h3bxEdMeVFgoUP+44kEf1qQr+RGruzqrS6HkHnNjmdF8Y8a46KcyS+Q==
+
 supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"

@@ -3,6 +3,7 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
+import CharacterCounter from "stimulus-character-counter"
 
 import DropdownController from "./dropdown_controller.js"
 application.register("dropdown", DropdownController)
@@ -15,3 +16,5 @@ application.register("flash", FlashController)
 
 import PreviewController from "./preview_controller.js"
 application.register("preview", PreviewController)
+
+application.register("character-counter", CharacterCounter)
