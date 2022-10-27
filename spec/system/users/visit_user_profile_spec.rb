@@ -11,7 +11,7 @@ RSpec.describe "Visiting user profile", type: :system do
   context "when using user path with an user id" do
     it "shows the profile" do
       visit user_path(other_user)
-      expect(page).to have_content("#{other_user.first_name}'s Profile")
+      expect(page).to have_content("#{other_user.first_name}'s Posts")
     end
   end
 end

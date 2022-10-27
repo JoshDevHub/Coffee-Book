@@ -1,16 +1,15 @@
-<h1><%= @user.first_name %>'s Profile</h1>
-<%= image_tag avatar_url_for(@user.profile, variant: :thumb), class: "rounded-full" %>
-<% if @user.profile.complete? %>
-  <%= render @user.profile %>
-<% end %>
-<% if current_user == @user %>
-  <% if @user.profile.complete? %>
-    <%= link_to "Edit Profile", edit_user_profile_path(current_user) %>
-  <% else %>
-    <p>You haven't finished your profile.</p>
-    <%= link_to "Finish Profile", edit_user_profile_path(current_user) %>
-  <% end %>
-<% end %>
+<!-- <div class="grid grid-rows-2 grid-cols2 grid-flow-col"> -->
+<div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+  <div class="md:shadow-lg px-10 pt-4 border border-gray-300 flex flex-col
+              items-center rounded-md md:sticky md:top-24 w-1/2 md:w-1/3 h-[300px]
+              mt-12 min-w-[320px] max-w-[500px] mr-8 ml-12">
+    <%= render @profile %>
+  </div>
 
-<h1>Posts:</h1>
-<%= render @user.posts %>
+  <div class="flex flex-col gap-4 w-1/2 min-w-[320px] max-w-[500px]">
+    <h1 class="mx-auto text-2xl font-bold my-0 text-slate-800">
+      <%= @user.first_name %>'s Posts:
+    </h1>
+    <%= render @user.posts %>
+  </div>
+</div>
