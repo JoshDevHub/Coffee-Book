@@ -11,11 +11,13 @@ Rails.application.routes.draw do
              }
 
   # Users
-  resources :users, only: %i[index show] do
+  resources :users, only: %i[index] do
     resources :notifications, only: [:index]
     resources :friendships, shallow: true, except: %i[new edit update show]
     resource :profile, only: %i[edit update]
   end
+
+  get "user/:username", to: "users#show", as: :user
 
   # Friendships
   get "users/:id/friends/", to: "friendships#index", as: :friend_list

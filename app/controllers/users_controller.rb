@@ -9,9 +9,9 @@ class UsersController < ApplicationController
     @users = User.includes(profile: :avatar_attachment).public_send(*query)
   end
 
-  # GET "/users/:id"
+  # GET "/users/:username"
   def show
-    @user = User.includes(posts: :photo_attachment).find(params[:id])
+    @user = User.includes(posts: :photo_attachment).find_by(username: params[:username])
     @profile = ProfileDecorator.new(@user.profile)
   end
 end

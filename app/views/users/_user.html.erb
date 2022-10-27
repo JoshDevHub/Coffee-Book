@@ -1,7 +1,7 @@
 <div class="border border-black xl:w-3/4 w-full rounded-md p-4 bg-gray-100
             flex justify-between items-center min-w-[300px] lg:flex-row flex-col gap-2"
 >
-  <%= link_to user_path(user), class: "flex items-center gap-2 hover:underline" do %>
+  <%= link_to user_path(user.username), class: "flex items-center gap-2 hover:underline" do %>
     <%= image_tag avatar_url_for(user.profile, variant: :icon), class: "rounded-full" %>
     <p class="font-bold"><%= user.name %></p>
   <% end %>

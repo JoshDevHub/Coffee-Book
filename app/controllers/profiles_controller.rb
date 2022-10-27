@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
   # PATCH "users/:id/profile"
   def update
     if @profile.update(profile_params)
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user.username)
     else
       render :edit, status: :unprocessable_entity
     end

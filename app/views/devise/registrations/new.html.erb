@@ -20,9 +20,17 @@
       %>
     </div>
 
-    <div class="flex flex-col mb-8">
+    <div class="flex flex-col mb-4">
       <%= f.label :last_name, class: "text-slate-800 font-bold" %>
       <%= f.text_field :last_name,
+        required: true,
+        class: "border border-black py-1 px-2 w-full"
+      %>
+    </div>
+
+    <div class="flex flex-col mb-8">
+      <%= f.label :username, class: "text-slate-800 font-bold" %>
+      <%= f.text_field :username,
         required: true,
         class: "border border-black py-1 px-2 w-full"
       %>
