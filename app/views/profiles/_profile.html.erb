@@ -1,17 +1,19 @@
-<ul>
-  <li>
-    <%= profile.user.name %>
-  </li>
-  <li>
-    Gender: <%= profile.gender.capitalize %>
-  </li>
-  <li>
-    Birthday: <%= profile.birthday %>
-  </li>
-  <li>
-    Age: <%= profile.age_at(Time.now.utc.to_date) %>
-  </li>
-  <li>
-    Location: <%= profile.location %>
-  </li>
+<%= image_tag avatar_url_for(profile, variant: :thumb), class: "rounded-full mx-auto mb-2 border-2 border-black" %>
+<p class="font-bold mb-2">
+  <%= profile.user.name %>
+</p>
+
+<ul class="flex flex-col items-center mb-4">
+  <%= profile.display_gender %>
+  <%= profile.display_age %>
+  <%= profile.display_location %>
 </ul>
+
+<% if current_user == profile.user %>
+  <% if profile.complete? %>
+    <%= link_to "Edit Profile", edit_user_profile_path(current_user), class: "btn btn-primary" %>
+  <% else %>
+    <p>You haven't finished your profile.</p>
+    <%= link_to "Finish Profile", edit_user_profile_path(current_user), class: "btn btn-primary" %>
+  <% end %>
+<% end %>

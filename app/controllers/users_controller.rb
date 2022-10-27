@@ -12,5 +12,6 @@ class UsersController < ApplicationController
   # GET "/users/:id"
   def show
     @user = User.includes(posts: :photo_attachment).find(params[:id])
+    @profile = ProfileDecorator.new(@user.profile)
   end
 end
