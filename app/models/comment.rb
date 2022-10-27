@@ -22,13 +22,16 @@
 class Comment < ApplicationRecord
   include Notify
 
+  MIN_LENGTH = 3
+  MAX_LENGTH = 300
+
   belongs_to :post, counter_cache: true
   belongs_to :commenter, class_name: "User"
 
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :notifications, as: :notifiable, dependent: :destroy
 
-  validates :body, presence: true, length: { in: 3..300 }
+  validates :body, presence: true, length: { in: MIN_LENGTH..MAX_LENGTH }
 
   delegate :url_helpers, to: "Rails.application.routes"
   delegate :name, to: :commenter, prefix: :commenter

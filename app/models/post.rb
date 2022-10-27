@@ -19,6 +19,9 @@
 #  fk_rails_...  (author_id => users.id)
 #
 class Post < ApplicationRecord
+  MIN_LENGTH = 3
+  MAX_LENGTH = 500
+
   belongs_to :author, class_name: "User"
 
   has_many :comments, dependent: :destroy
@@ -29,7 +32,7 @@ class Post < ApplicationRecord
     attachable.variant :timeline, resize_to_fill: [484, 484]
   end
 
-  validates :body, presence: true, length: { in: 3..500 }
+  validates :body, presence: true, length: { in: MIN_LENGTH..MAX_LENGTH }
   validates :photo, photo_filetype: true,
                     file_size: { max: 5.megabytes },
                     if: -> { photo.attached? }

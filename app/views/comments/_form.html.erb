@@ -1,12 +1,22 @@
 <%= form_with model: comment, class: "w-full" do |form| %>
-  <div>
-    <%= form.label :body, class: "hidden" %>
-    <%= form.text_area :body,
-      class: "border border-gray-400 rounded-md p-2 w-full h-[150px]",
-      placeholder: "Add your comment"
-    %>
-  </div>
-  <div class="flex justify-end">
-    <%= form.submit class: "btn btn-primary" %>
+  <div data-controller="character-counter toggle" data-toggle-change-class="text-red-700">
+    <div>
+      <%= form.label :body, class: "hidden" %>
+      <%= form.text_area :body,
+        class: "border border-gray-400 rounded-md p-2 w-full h-[150px]",
+        placeholder: "Add your comment",
+        data: {
+          character_counter_target: "input",
+          action: "input->toggle#countSwitch",
+          toggle_max_param: Comment::MAX_LENGTH
+        }
+      %>
+    </div>
+    <div class="flex justify-between">
+      <%= form.submit class: "btn btn-primary" %>
+      <div class="pr-2 text-right" data-toggle-target="toggleElement">
+        <span data-character-counter-target="counter" data-toggle-target="count"></span>/<%= Comment::MAX_LENGTH %>
+      </div>
+    </div>
   </div>
 <% end %>

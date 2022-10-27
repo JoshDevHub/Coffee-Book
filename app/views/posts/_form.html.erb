@@ -3,12 +3,20 @@
 <% end %>
 
 <%= form_with model: post, class: "w-full" do |form| %>
-  <div class="mb-4">
+  <div data-controller="character-counter toggle" data-toggle-change-class="text-red-700">
     <%= form.label :body, class: "hidden" %>
     <%= form.text_area :body,
-      class: "border border-gray-400 rounded-md p-2 w-full h-[150px]",
-      placeholder: "What's on your mind?"
+      class: "border border-gray-400 rounded-md p-2 w-full h-[200px]",
+      placeholder: "What's on your mind?",
+      data: {
+        character_counter_target: "input",
+        action: "input->toggle#countSwitch",
+        toggle_max_param: post.class::MAX_LENGTH
+      }
     %>
+    <div class="pr-2 text-right" data-toggle-target="toggleElement">
+      <span data-character-counter-target="counter" data-toggle-target="count"></span>/<%= post.class::MAX_LENGTH %>
+    </div>
   </div>
   <div class="mb-4" data-controller="preview">
     <% image_src = post.photo.attached? ? post.photo.variant(:thumb) : "" %>
