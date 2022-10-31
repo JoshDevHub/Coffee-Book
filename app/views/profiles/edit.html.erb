@@ -1,7 +1,7 @@
 <h1>Edit Profile</h1>
 <%= image_tag avatar_url_for(@profile), class: "rounded-full" %>
 
-<%= form_with(model: @profile, url: user_profile_path(@profile.user)) do |form| %>
+<%= form_with(model: @profile) do |form| %>
   <%= form.label :bio %>
   <%= form.text_field :bio %>
 

@@ -13,16 +13,19 @@ Rails.application.routes.draw do
   # Users
   resources :users, only: %i[index] do
     resources :friendships, shallow: true, only: %i[create destroy]
-    resource :profile, only: %i[edit update]
   end
 
   get "user/:username", to: "users#show", as: :user
 
-  # Notifications
-  resources "notifications", only: %i[index]
-
   # Friendships
   get "users/:username/friends", to: "friendships#index", as: :user_friends
+
+  # Profile
+  get "profile/edit", to: "profiles#edit", as: :edit_profile
+  patch "profile", to: "profiles#update", as: :profile
+
+  # Notifications
+  resources "notifications", only: %i[index]
 
   resources :likes, only: %i[create destroy]
 
