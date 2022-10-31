@@ -29,7 +29,7 @@ RSpec.describe "Creating a like", type: :system do
       sleep 0.5
 
       login_as(posting_user)
-      visit user_notifications_path(posting_user)
+      visit notifications_path
       expect(page).to have_content("#{liking_user.name} liked your post.")
     end
   end

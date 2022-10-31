@@ -12,7 +12,7 @@ RSpec.describe "Confirming a friend request", type: :system do
     end
 
     it "accepts the friend request" do
-      visit user_notifications_path(receiver)
+      visit notifications_path
       click_on "View"
       click_on "Confirm"
 
@@ -29,7 +29,7 @@ RSpec.describe "Confirming a friend request", type: :system do
     end
 
     it "tells the user that they already have this friendship" do
-      visit user_notifications_path(receiver)
+      visit notifications_path
       click_on "View"
 
       expect(page).to have_content("Friend")

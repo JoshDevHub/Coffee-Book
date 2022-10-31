@@ -11,7 +11,7 @@ RSpec.describe "Deleting a friend", type: :system do
   end
 
   it "Deletes the friendship" do
-    visit user_notifications_path(receiver)
+    visit notifications_path
     click_on "View"
     click_on "Reject"
 

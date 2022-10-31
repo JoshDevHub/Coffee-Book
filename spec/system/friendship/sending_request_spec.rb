@@ -22,7 +22,7 @@ RSpec.describe "Sending a friend request", type: :system do
       sleep 0.5
 
       login_as(other_user)
-      visit user_notifications_path(other_user)
+      visit notifications_path
       expect(page).to have_content("#{current_user.name} sent you a friend request!")
     end
   end

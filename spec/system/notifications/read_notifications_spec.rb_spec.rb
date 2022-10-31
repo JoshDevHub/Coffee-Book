@@ -14,7 +14,7 @@ RSpec.describe "Reading notifications", type: :system do
   end
 
   it "removes symbol when notifications path is visited" do
-    visit user_notifications_path(current_user)
+    visit notifications_path
     expect(page).not_to have_selector("#notifications-badge")
   end
 end

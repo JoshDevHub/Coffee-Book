@@ -31,7 +31,7 @@ class FriendshipsController < ApplicationController
     @friendship.destroy
     flash[:notice] = "Request denied"
 
-    redirect_to user_notifications_path(current_user), status: :see_other
+    redirect_to notifications_path, status: :see_other
   end
 
   # PATCH "/friendships/:id/confirm_request"

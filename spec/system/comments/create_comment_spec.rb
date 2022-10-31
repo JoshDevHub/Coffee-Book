@@ -31,7 +31,7 @@ RSpec.describe "Creating a comment", type: :system do
       sleep 0.5
 
       login_as(posting_user)
-      visit user_notifications_path(posting_user)
+      visit notifications_path
       expect(page).to have_content("#{commenting_user.name} commented on your post.")
     end
   end
