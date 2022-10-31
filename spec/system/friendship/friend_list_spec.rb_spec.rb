@@ -11,13 +11,13 @@ RSpec.describe "Viewing friend list", type: :system do
   end
 
   it "has friend's name on the page" do
-    visit friend_list_path(current_user)
+    visit user_friends_path(current_user.username)
 
     expect(page).to have_content("UserFriend")
   end
 
   it "does not have the user who isn't a friend on the page" do
-    visit friend_list_path(current_user)
+    visit user_friends_path(current_user.username)
 
     expect(page).not_to have_content("NotFriend")
   end

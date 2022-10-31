@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # Users
   resources :users, only: %i[index] do
-    resources :friendships, shallow: true, except: %i[new edit update show]
+    resources :friendships, shallow: true, only: %i[create destroy]
     resource :profile, only: %i[edit update]
   end
 
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources "notifications", only: %i[index]
 
   # Friendships
-  get "users/:id/friends/", to: "friendships#index", as: :friend_list
+  get "users/:username/friends", to: "friendships#index", as: :user_friends
 
   resources :likes, only: %i[create destroy]
 

@@ -1,17 +1,11 @@
 class FriendshipsController < ApplicationController
   before_action :find_received_request_for_current_user, only: :confirm_request
 
-  # GET "/users/:id/friends"
-  # GET "/users/:id/friendships"
+  # GET "/users/:username/friends"
   def index
-    user = User.find(params[:id])
+    user = User.find_by!(username: params[:username])
     @friends = user.friends_with_avatar
     find_pending_requests if current_user == user
-  end
-
-  # GET "/users/:id/friendships"
-  def show
-    @friendship = Friendship.find(params[:id])
   end
 
   # POST "/users/:id/friendships"
@@ -31,7 +25,7 @@ class FriendshipsController < ApplicationController
     @friendship.destroy
     flash[:notice] = "Request denied"
 
-    redirect_to notifications_path, status: :see_other
+    redirect_to user_friends_path(current_user), status: :see_other
   end
 
   # PATCH "/friendships/:id/confirm_request"
