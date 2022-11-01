@@ -1,23 +1,42 @@
-<h1>Edit Profile</h1>
-<%= image_tag avatar_url_for(@profile), class: "rounded-full" %>
+<h1 class="text-center text-2xl font-bold text-slate-800 mb-4">
+  Edit Profile
+</h1>
 
-<%= form_with(model: @profile) do |form| %>
-  <%= form.label :bio %>
-  <%= form.text_field :bio %>
+<div class="md:shadow-lg px-10 pt-4 border border-gray-300 flex flex-col justify-center mx-auto my-0
+            items-center rounded-md w-1/2 md:w-1/3 min-w-[320px] max-w-[500px]">
+  <%= image_tag avatar_url_for(@profile), class: "rounded-full border-2 border-black mb-4" %>
 
-  <%= form.label :gender %>
-  <%= form.select :gender,
-    Profile::GENDERS.keys.map { |w| [w.to_s.humanize, w] }
-  %>
+  <%= form_with model: @profile do |form| %>
+    <div class="grid grid-cols-4 mb-8 gap-4">
+      <div class="flex justify-center col-span-4">
+        <%= form.label :avatar, "Change avatar", class: "btn btn-primary text-right" %>
+        <%= form.file_field :avatar,
+          class: "hidden",
+          accept: "image/png,image/jpeg,image/jpg"
+        %>
+      </div>
 
-  <%= form.label :location %>
-  <%= form.text_field :location %>
+      <div class="col-span-4 flex flex-col items-center mb-2">
+        <%= form.label :bio, class: "font-bold" %>
+        <%= form.text_area :bio,
+          class: "border border-gray-400 rounded-md p-2 w-full h-[200px]"
+        %>
+      </div>
 
-  <%= form.label :birthday %>
-  <%= form.date_field :birthday %>
+      <%= form.label :gender, class: "font-bold col-span-1 self-center after:content-[':']" %>
+      <%= form.select :gender,
+        Profile::GENDERS.keys.map { |w| [w.to_s.humanize, w] },
+        {},
+        { class: "border border-black py-1 px-2 col-span-3 h-[calc(1.2rem+16px)]" }
+      %>
 
-  <%= form.label :avatar %>
-  <%= form.file_field :avatar %>
+      <%= form.label :location, class: "font-bold col-span-1 self-center after:content-[':']" %>
+      <%= form.text_field :location, class: "border border-black py-1 px-2 col-span-3" %>
 
-  <%= form.submit %>
-<% end %>
+      <%= form.label :birthday, class: "font-bold col-span-1 self-center after:content-[':']" %>
+      <%= form.date_field :birthday, class: "border border-black py-[3px] px-2 col-span-3" %>
+    </div>
+
+    <%= form.submit class: "btn btn-primary mb-4 w-1/2 mx-auto flex justify-center" %>
+  <% end %>
+</div>
