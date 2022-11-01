@@ -20,7 +20,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Profile < ApplicationRecord
-  MAX_LENGTH = 250
+  MAX_BIO_LENGTH = 250
+  MAX_LOCATION_LENGTH = 30
 
   GENDERS = {
     unspecified: 0,
@@ -38,7 +39,8 @@ class Profile < ApplicationRecord
 
   belongs_to :user
 
-  validates :bio, length: { maximum: MAX_LENGTH }
+  validates :bio, length: { maximum: MAX_BIO_LENGTH }
+  validates :location, length: { maximum: MAX_LOCATION_LENGTH }
   validates :avatar_attachment, photo_filetype: true,
                                 unless: -> { avatar_attachment.nil? }
 

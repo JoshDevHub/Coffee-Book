@@ -1,3 +1,7 @@
+<% if profile.errors.any? %>
+  <%= render "shared/form_errors", resource: profile %>
+<% end %>
+
 <%= form_with model: profile, html: { class: "w-full px-8" } do |form| %>
   <div class="flex justify-center mb-4">
     <%= form.label :avatar, "Change avatar", class: "btn btn-primary text-right" %>
@@ -17,11 +21,11 @@
       data: {
         character_counter_target: "input",
         action: "input->toggle#countSwitch",
-        toggle_max_param: profile.class::MAX_LENGTH
+        toggle_max_param: profile.class::MAX_BIO_LENGTH
       }
     %>
     <div class="pr-2 text-right" data-toggle-target="toggleElement">
-      <span data-character-counter-target="counter" data-toggle-target="count"></span>/<%= profile.class::MAX_LENGTH %>
+      <span data-character-counter-target="counter" data-toggle-target="count"></span>/<%= profile.class::MAX_BIO_LENGTH %>
     </div>
   </div>
 
@@ -44,7 +48,8 @@
     %>
     <%= form.text_field :location,
       class: "border border-black py-1 px-2 self-center xl:col-span-3
-              col-span-4 mb-2 xl:mb-0"
+              col-span-4 mb-2 xl:mb-0",
+      maxlength: profile.class::MAX_LOCATION_LENGTH
     %>
 
     <%= form.label :birthday,
