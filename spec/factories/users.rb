@@ -28,7 +28,7 @@ FactoryBot.define do
     last_name { "User" }
     password { "testing123" }
     sequence(:email) { |n| "person#{n}@example.com" }
-    sequence(:username) { |n| "user_number#{n}" }
+    sequence(:username) { |n| "user-number#{n}" }
 
     trait :friend_initiater do
       first_name { "Friend" }

@@ -29,9 +29,9 @@ RSpec.describe User, type: :model do
     let(:current_user) { create(:user) }
 
     before do
-      create(:user, first_name: "Dummy", last_name: "User", username: "dummy_user")
-      create(:user, first_name: "Dummy", last_name: "User", username: "dummy_user2")
-      create(:user, first_name: "Dummy", last_name: "User", username: "dummy_user3")
+      create(:user, first_name: "Dummy", last_name: "User", username: "dummy-user")
+      create(:user, first_name: "Dummy", last_name: "User", username: "dummy-user2")
+      create(:user, first_name: "Dummy", last_name: "User", username: "dummy-user3")
     end
 
     it "returns an ActiveRelation object with 3 users" do
@@ -46,8 +46,8 @@ RSpec.describe User, type: :model do
   describe "::search_by_name" do
     context "when given a single name" do
       before do
-        create(:user, first_name: "Jimmy", last_name: "Carter", username: "jimmy_carter")
-        create(:user, first_name: "Carter", last_name: "Hadley", username: "carter_hadley")
+        create(:user, first_name: "Jimmy", last_name: "Carter", username: "jimmy-carter")
+        create(:user, first_name: "Carter", last_name: "Hadley", username: "carter-hadley")
       end
 
       let(:query) { "Carter" }
@@ -62,7 +62,7 @@ RSpec.describe User, type: :model do
       end
 
       it "does not return an unmatched user" do
-        unmatched = create(:user, first_name: "Chris", last_name: "Ham", username: "chris_ham")
+        unmatched = create(:user, first_name: "Chris", last_name: "Ham", username: "chris-ham")
         expect(described_class.search_by_name(query)).not_to include unmatched
       end
     end

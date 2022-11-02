@@ -49,7 +49,13 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :username, presence: true, uniqueness: true
+  validates :username,
+            presence: true,
+            uniqueness: true,
+            format: {
+              with: /\A[A-Za-z0-9-]+\z/,
+              message: "only allows letters and dashes"
+            }
   validates :email, presence: true, uniqueness: true
 
   after_create :create_profile!
