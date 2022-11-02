@@ -1,0 +1,18 @@
+<% if user == current_user %>
+  <div class="flex flex-col shadow-lg border border-gray-300 rounded-md p-4">
+    <p class="mb-4">
+      You haven't made your first post yet.
+      Click the New Post button and tell us how much you love coffee!
+    </p>
+    <%= link_to "+ New Post",
+      new_post_path,
+      class: "btn-primary btn w-1/3 mx-auto"
+    %>
+  </div>
+<% else %>
+  <div class="flex flex-col shadow-lg border border-gray-300 rounded-md">
+    <p class="p-4 text-center">
+      This user hasn't made any posts yet.
+    </p>
+  </div>
+<% end %>

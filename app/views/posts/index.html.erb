@@ -9,6 +9,11 @@
       new_post_path,
       class: "mx-auto lg:ml-auto lg:mr-2 btn-primary btn"
     %>
-    <%= render @posts %>
+
+    <% if @posts.exists? %>
+      <%= render @posts %>
+    <% else %>
+      <%= render "empty" %>
+    <% end %>
   </div>
 </div>

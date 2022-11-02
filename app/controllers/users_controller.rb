@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  around_action :skip_bullet, if: -> { defined?(Bullet) }, only: :show
+
   # GET "/users"
   def index
     @users = if params[:search].present?
@@ -12,5 +14,16 @@ class UsersController < ApplicationController
   def show
     @user = User.includes(posts: :photo_attachment).find_by!(username: params[:username])
     @profile = ProfileDecorator.new(@user.profile)
+  end
+
+  private
+
+  # for skipping query check on `users#show`
+  def skip_bullet
+    previous_value = Bullet.enable?
+    Bullet.enable = false
+    yield
+  ensure
+    Bullet.enable = previous_value
   end
 end

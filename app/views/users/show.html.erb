@@ -11,6 +11,11 @@
     <h1 class="mx-auto text-2xl font-bold my-0 text-slate-800">
       <%= @user.first_name %>'s Posts:
     </h1>
-    <%= render @user.posts %>
+
+    <% if @user.posts.exists? %>
+      <%= render @user.posts %>
+    <% else %>
+      <%= render "empty_posts", user: @user %>
+    <% end %>
   </div>
 </div>
