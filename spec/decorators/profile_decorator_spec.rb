@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe ProfileDecorator do
+  let(:span_class) { "class=\"font-bold text-slate-800\"" }
+
   describe "#display_gender" do
     subject(:profile_decorator) { described_class.new(profile) }
 
@@ -8,7 +10,7 @@ describe ProfileDecorator do
       let(:profile) { instance_double(Profile, gender: "female") }
 
       it "returns gender field capitalized, labeled, and wrapped in li tags" do
-        expected_output = "<li>Gender: Female</li>"
+        expected_output = "<li><span #{span_class}>Gender</span>: Female</li>"
         expect(profile_decorator.display_gender).to eq(expected_output)
       end
     end
@@ -29,7 +31,7 @@ describe ProfileDecorator do
       let(:profile) { instance_double(Profile, age_at: 31, birthday: "date string") }
 
       it "returns the age with a label and wrapped in li tags" do
-        expected_output = "<li>Age: 31</li>"
+        expected_output = "<li><span #{span_class}>Age</span>: 31</li>"
         expect(profile_decorator.display_age).to eq(expected_output)
       end
     end
@@ -50,7 +52,7 @@ describe ProfileDecorator do
       let(:profile) { instance_double(Profile, location: "America") }
 
       it "returns the location with a label and wrapped in li tags" do
-        expected_output = "<li>Location: America</li>"
+        expected_output = "<li><span #{span_class}>Location</span>: America</li>"
         expect(profile_decorator.display_location).to eq(expected_output)
       end
     end

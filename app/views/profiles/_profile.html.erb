@@ -1,6 +1,10 @@
 <%= image_tag avatar_url_for(profile, variant: :thumb), class: "rounded-full mx-auto mb-2 border-2 border-black" %>
-<p class="font-bold mb-2">
+<p class="font-bold">
   <%= profile.user.name %>
+</p>
+
+<p class="mb-2 md:mx-4">
+  <%= profile.bio %>
 </p>
 
 <ul class="flex flex-col items-center mb-4">
