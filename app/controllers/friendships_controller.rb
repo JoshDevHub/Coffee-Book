@@ -3,9 +3,9 @@ class FriendshipsController < ApplicationController
 
   # GET "/users/:username/friends"
   def index
-    user = User.find_by!(username: params[:username])
-    @friends = user.friends_with_avatar
-    find_pending_requests if current_user == user
+    @user = User.find_by!(username: params[:username])
+    @friends = @user.friends_with_avatar
+    find_pending_requests if current_user == @user
   end
 
   # POST "/users/:id/friendships"

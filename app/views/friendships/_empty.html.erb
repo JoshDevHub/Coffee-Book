@@ -1,0 +1,22 @@
+<div class="border border-black xl:w-3/4 w-full rounded-md p-4 bg-gray-100
+            min-w-[300px] flex flex-col items-center"
+>
+  <% if user == current_user %>
+    <p class="mb-2">You don't have any friends yet. Visit our users page and add some!</p>
+    <%= link_to "View Users", users_path, class: "btn btn-primary" %>
+  <% else %>
+    <p class="mb-2">This user doesn't have any friends yet. Would you like to be their first friend?</p>
+
+    <% if current_user.friends_awaiting_acceptance.include?(user) %>
+      <%= button_to "Pending request ...", {}, disabled: true, class: "btn btn-disabled" %>
+    <% else %>
+      <%= button_to "Friend this User",
+        user_friendships_path(
+          user_id: current_user,
+          friendship: { receiver_id: user }
+        ),
+        class: "btn btn-primary"
+      %>
+    <% end %>
+  <% end %>
+</div>
