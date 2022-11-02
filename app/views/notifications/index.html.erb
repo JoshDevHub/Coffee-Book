@@ -2,19 +2,28 @@
   Your Notifications
 </h1>
 
-<ul class="flex flex-col items-center w-1/2 mx-auto gap-4">
-  <% @notifications.each do |notification| %>
-    <li class="border border-black xl:w-2/3 w-full rounded-md p-4 bg-gray-100
-               flex justify-between items-center min-w-[300px] gap-2"
-    >
-      <%= notification.message %>
-      <% if notification.link? %>
-        <%= link_to "View",
-          notification.url,
-          class: "text-slate-800 hover:text-slate-700
-                  underline underline-offset-4 transition"
-        %>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<% if @notifications.exists? %>
+  <ul class="flex flex-col items-center w-1/2 mx-auto gap-4">
+    <% @notifications.each do |notification| %>
+      <li class="border border-black xl:w-2/3 w-full rounded-md p-4 bg-gray-100
+                 flex justify-between items-center min-w-[300px] gap-2"
+      >
+        <%= notification.message %>
+        <% if notification.link? %>
+          <%= link_to "View",
+            notification.url,
+            class: "text-slate-800 hover:text-slate-700
+                    underline underline-offset-4 transition"
+          %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <div>
+  </div>
+  <p class="border border-black w-1/2 rounded-md p-4 bg-gray-100
+            min-w-[300px] mx-auto text-center">
+    You don't have any notifications yet.
+  </p>
+<% end %>
