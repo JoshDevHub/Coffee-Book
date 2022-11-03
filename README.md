@@ -20,3 +20,13 @@ PosgreSQL >= 12.12
 You can then clone this repo, `cd` into the project's root directory, and run the setup script with `bin/setup`. This will setup the database, load the schema, run `bundle install`, seed the database with dev environment data, install JS bundling with esbuild, and install CSS bundling with Tailwind.
 
 After the setup script runs, you can run `bin/dev` to start the dev server. By default the site will be served at `http://localhost:3000`.
+
+### Using OAuth Locally
+
+## Features
+
+## Reflections
+
+## Improvements
+
+## Special Thanks
