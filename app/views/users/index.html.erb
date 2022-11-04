@@ -4,7 +4,7 @@
 
 <div class="flex flex-col items-center w-1/2 mx-auto gap-4">
   <% if @users.exists? %>
-    <%= render @users %>
+    <%= render @users, current_user_friendships: @current_user_friendships %>
   <% else %>
     <p class="text-center text-lg text-red-700">No users matched this search.</p>
   <% end %>

@@ -11,14 +11,14 @@ RSpec.describe "Sending a friend request", type: :system do
   context "when the two users are not friends" do
     it "says a friend request is pending between the users" do
       visit users_path
-      click_on "Friend this User"
+      click_on "Add Friend"
 
-      expect(page).to have_content("Pending request ...")
+      expect(page).to have_content("Pending ...")
     end
 
     it "notifies the receiving user of a request" do
       visit users_path
-      click_on "Friend this User"
+      click_on "Add Friend"
       sleep 0.5
 
       login_as(other_user)

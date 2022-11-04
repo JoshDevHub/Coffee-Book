@@ -8,6 +8,7 @@ class UsersController < ApplicationController
              else
                User.include_avatar.index_for(current_user)
              end
+    @current_user_friendships = Friendship.for(current_user)
   end
 
   # GET "/user/:username"

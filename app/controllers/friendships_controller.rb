@@ -6,6 +6,7 @@ class FriendshipsController < ApplicationController
     @user = User.find_by!(username: params[:username])
     @friends = @user.friends_with_avatar
     find_pending_requests if current_user == @user
+    @current_user_friendships = Friendship.for(current_user)
   end
 
   # POST "/users/:id/friendships"
