@@ -22,6 +22,20 @@
 require "rails_helper"
 
 RSpec.describe Friendship, type: :model do
+  describe "::for" do
+    let!(:main_user) { create(:user) }
+    let!(:friend_list) { create_list(:friendship, 5, sender: main_user) }
+    let!(:other_friendship) { create(:friendship, sender: create(:user), receiver: create(:user)) }
+
+    it "returns the friendships belonging to the user" do
+      expect(described_class.for(main_user)).to eq friend_list
+    end
+
+    it "does not return friendships for that don't belong to the user" do
+      expect(described_class.for(main_user)).not_to include(other_friendship)
+    end
+  end
+
   describe "#confirm" do
     let(:sender) { create(:user) }
     let(:receiver) { create(:user, :friend) }

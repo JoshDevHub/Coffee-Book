@@ -32,6 +32,10 @@ class Friendship < ApplicationRecord
 
   delegate :url_helpers, to: "Rails.application.routes"
 
+  def self.for(user)
+    where(sender: user).or(where(receiver: user))
+  end
+
   def confirm
     update(accepted: true)
   end
