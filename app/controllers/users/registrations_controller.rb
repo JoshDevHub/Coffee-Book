@@ -17,9 +17,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    if current_user.provider
+      flash[:alert] = "OAuth users can't edit account details"
+      redirect_to root_path
+    else
+      super
+    end
+  end
 
   # PUT /resource
   # def update
