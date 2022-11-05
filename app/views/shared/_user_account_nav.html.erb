@@ -10,11 +10,16 @@
   <div
     data-dropdown-target="menu"
     class="hidden absolute transition transform right-0 border border-black
-           bg-slate-700 rounded-md"
+           bg-slate-700 rounded-md w-[150px]"
   >
     <%= link_to "Profile",
       user_path(current_user.username),
       class: "px-3 py-1 hover:bg-slate-300 rounded-t-md block hover:text-slate-800",
+      data: { action: "dropdown#toggleVisibility" }
+    %>
+    <%= link_to "Edit Account",
+      edit_registration_path(current_user),
+      class: "px-3 py-1 hover:bg-slate-300 block hover:text-slate-800",
       data: { action: "dropdown#toggleVisibility" }
     %>
     <%= link_to "Logout",
