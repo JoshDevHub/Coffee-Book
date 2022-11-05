@@ -11,7 +11,7 @@ require "faker"
   User.create!(
     {
       email: Faker::Internet.email(domain: "example"),
-      username: Faker::Internet.username,
+      username: Faker::Internet.username(separators: %w[-]),
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
       password: "test123"

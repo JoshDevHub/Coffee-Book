@@ -15,6 +15,7 @@ Ruby >= 3.1.2
 Rails >= 7.0.2
 Bundler >= 2.2.32
 PosgreSQL >= 12.12
+libvips # for ActiveStorage
 ```
 
 You can then clone this repo, `cd` into the project's root directory, and run the setup script with `bin/setup`. This will setup the database, load the schema, run `bundle install`, seed the database with dev environment data, install JS bundling with esbuild, and install CSS bundling with Tailwind.
