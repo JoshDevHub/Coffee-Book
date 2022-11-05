@@ -52,6 +52,7 @@ class User < ApplicationRecord
   validates :username,
             presence: true,
             uniqueness: true,
+            length: { in: 3..20 },
             format: {
               with: /\A[A-Za-z0-9-]+\z/,
               message: "only allows letters and dashes"
