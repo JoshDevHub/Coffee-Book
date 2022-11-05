@@ -64,5 +64,13 @@ describe ProfileDecorator do
         expect(profile_decorator.display_location).to eq ""
       end
     end
+
+    context "when the field is an empty string" do
+      let(:profile) { instance_double(Profile, location: "") }
+
+      it "returns an empty string" do
+        expect(profile_decorator.display_location).to eq ""
+      end
+    end
   end
 end

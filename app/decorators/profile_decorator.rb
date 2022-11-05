@@ -24,7 +24,7 @@ class ProfileDecorator < SimpleDelegator
   end
 
   def display_location
-    return "" unless location
+    return "" if location.nil? || location == ""
 
     list_item_for(label: "Location", content: location)
   end
