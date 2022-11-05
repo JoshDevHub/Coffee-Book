@@ -24,7 +24,7 @@ class FriendshipsController < ApplicationController
   def destroy
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
-    flash[:notice] = "Request denied"
+    flash[:notice] = @friendship.accepted? ? "Friend removed" : "Request denied"
 
     redirect_to user_friends_path(current_user), status: :see_other
   end
