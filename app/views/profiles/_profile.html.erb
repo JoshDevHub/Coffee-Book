@@ -17,7 +17,7 @@
   <% if profile.complete? %>
     <%= link_to "Edit Profile", edit_profile_path, class: "btn btn-primary" %>
   <% else %>
-    <p>You haven't finished your profile.</p>
+    <p class="mb-4">You haven't finished your profile.</p>
     <%= link_to "Finish Profile", edit_profile_path, class: "btn btn-primary" %>
   <% end %>
 <% end %>
