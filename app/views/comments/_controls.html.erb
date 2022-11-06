@@ -4,13 +4,13 @@
     class: "btn border-2 border-slate-800 rounded-md p-0.5 text-slate-800
             hover:bg-slate-800 hover:text-white",
     aria: { label: "Edit Comment" } do %>
-      <%= inline_svg_tag("icons/pencil", class: "w-6 h-6") %>
+      <%= inline_svg_tag("icons/pencil.svg", class: "w-6 h-6") %>
   <% end %>
   <%= button_to comment_path(comment),
     method: :delete,
     class: "btn border-2 border-red-600 rounded-md p-0.5 text-red-600
             hover:bg-red-600 hover:text-white",
     aria: { label: "Delete Comment" } do %>
-      <%= inline_svg_tag("icons/delete", class: "w-6 h-6") %>
+      <%= inline_svg_tag("icons/delete.svg", class: "w-6 h-6") %>
   <% end %>
 </div>

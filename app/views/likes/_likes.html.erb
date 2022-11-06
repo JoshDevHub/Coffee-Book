@@ -3,14 +3,14 @@
     <% user_like = likeable.find_like_from(current_user) %>
     <% if user_like %>
       <%= button_to like_path(user_like), method: :delete, aria: { label: "Unlike" } do %>
-        <%= inline_svg_tag("icons/heart", class: "text-red-500 w-6 h-6") %>
+        <%= inline_svg_tag("icons/heart.svg", class: "text-red-500 w-6 h-6") %>
       <% end %>
     <% else %>
       <%= button_to likes_path(
         like: { likeable_type: likeable.model_name.human, likeable_id: likeable.id },
         ),
         aria: { label: "Like" } do %>
-        <%= inline_svg_tag("icons/heart-outline", class: "text-red-500 w-6 h-6") %>
+        <%= inline_svg_tag("icons/heart-outline.svg", class: "text-red-500 w-6 h-6") %>
       <% end %>
     <% end %>
     <p class="<%= user_like ? "text-red-500" : "text-black" %> font-medium">

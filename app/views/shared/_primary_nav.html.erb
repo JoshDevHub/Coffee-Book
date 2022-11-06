@@ -17,13 +17,13 @@
   >
     <li class="w-full md:w-auto">
       <%= nav_link_to path: root_path,
-        icon: "icons/home",
+        icon: "icons/home.svg",
         text: "Home"
       %>
     </li>
     <li class="w-full md:w-auto relative">
       <%= nav_link_to path: notifications_path,
-        icon: "icons/bell",
+        icon: "icons/bell.svg",
         text: "Notifications"
       %>
       <% if current_user.unread_notifications? %>
@@ -34,13 +34,13 @@
     </li>
     <li class="w-full md:w-auto">
       <%= nav_link_to path: user_friends_path(current_user.username),
-        icon: "icons/friends",
+        icon: "icons/friends.svg",
         text: "Friends"
       %>
     </li>
     <li class="w-full md:w-auto">
       <%= nav_link_to path: users_path,
-        icon: "icons/user-search",
+        icon: "icons/user-search.svg",
         text: "Find Friends"
       %>
     </li>
