@@ -39,6 +39,10 @@ class Profile < ApplicationRecord
 
   belongs_to :user
 
+  delegate :name, to: :user
+  delegate :username, to: :user
+  delegate :friends, to: :user
+
   validates :bio, length: { maximum: MAX_BIO_LENGTH }
   validates :location, length: { maximum: MAX_LOCATION_LENGTH }
   validates :avatar_attachment, photo_filetype: true,
