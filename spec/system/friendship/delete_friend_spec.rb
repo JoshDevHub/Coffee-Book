@@ -22,6 +22,27 @@ RSpec.describe "Deleting a friend", type: :system do
     end
   end
 
+  context "when canceling a friend request" do
+    let(:sender) { create(:user) }
+    let(:receiver) { create(:user) }
+
+    before do
+      create(:friendship, sender:, receiver:)
+      login_as(sender)
+    end
+
+    it "deletes the friendship" do
+      visit users_path
+      expect(page).to have_content("Pending ...")
+
+      accept_confirm do
+        find("button[aria-label='Cancel Friend Request']").click
+      end
+
+      expect(page).not_to have_content("Pending ...")
+    end
+  end
+
   context "when deleting a current friend" do
     let(:sender) { create(:user) }
     let(:receiver) { create(:user) }
@@ -35,7 +56,9 @@ RSpec.describe "Deleting a friend", type: :system do
       visit user_friends_path(sender.username)
       expect(page).to have_content(receiver.name)
 
-      find("button[aria-label='Remove Friend']").click
+      accept_confirm do
+        find("button[aria-label='Remove Friend']").click
+      end
 
       expect(page).not_to have_content(receiver.name)
       expect(page).to have_content("Friend removed")
