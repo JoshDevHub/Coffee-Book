@@ -41,13 +41,13 @@ This is a mock social network app and has many of the core features associated w
 -  **CRUD Resources**  
    Users can write posts, users can comment on posts, and users can "like" both posts and comments. The `Like` model is polymorphically associated with either a post or a comment. Users can delete all of these resources, and they can freely edit their own posts and comments.
 -  **Friending**  
-   Users can send friend requests to other users. If the other user accepts the friend request, then the users are "friends". They will show up in each others' friends list, and their posts will appear in others timelines. Users can reject friend requests, withdraw friend requests that they've sent, and remove users from their friends list.
+   Users can send friend requests to other users. If the other user accepts the friend request, then the users are "friends". They will show up in each others' friends list, and their posts will appear in each others' timelines. Users can reject friend requests, withdraw friend requests that they've sent, and remove users from their friends list.
 -  **Notifications**  
    There is a notification system built with Rails's "concern" module to provide similar functionality across different models. Users are notified when someone comments on one of their posts, when someone likes one of their posts or comments, and when someone sends a friend request to or accepts a friend request from the user.
 -  **Responsive Styles**  
    This app was styled using the Tailwind CSS framework. I used mobile-first design principles to develop styles that maintain visual cohesion across different viewport sizes.
 -  **Robust Test Suite**  
-   This project includes over 100 test cases with 97% coverage (measured using (SimpleCov)[https://github.com/simplecov-ruby/simplecov]). Model methods, decorators, and helpers are unit tested with RSpec, and every major feature of the site is system tested using RSpec and Capybara.
+   This project includes over 100 test cases with 97% coverage (measured using [SimpleCov](https://github.com/simplecov-ruby/simplecov)). Model methods, decorators, and helpers are unit tested with RSpec, and every major feature of the site is system tested using RSpec and Capybara.
 
 ## Reflections
 
