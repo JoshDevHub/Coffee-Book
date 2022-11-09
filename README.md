@@ -48,6 +48,9 @@ Users can send friend requests to other users. If the other user accepts the fri
 #### Notifications
 There is a notification system built with Rails's "concern" module to provide similar functionality across different models. Users are notified when someone comments on one of their posts, when someone likes one of their posts or comments, and when someone sends a friend request to or accepts a friend request from the user.
 
+#### Image Uploads
+Users can upload an avatar image. A gravatar associated with the user's email is used for the avatar if the user hasn't uploaded one. Users also have the option to attach an image to their posts. Image uploads are implemented using rails' ActiveStorage, and in production, Amazon's S3 Service is used for storage.
+
 #### Responsive Styles
 This app was styled using the Tailwind CSS framework. I used mobile-first design principles to develop styles that maintain visual cohesion across different viewport sizes.
 
@@ -55,7 +58,7 @@ This app was styled using the Tailwind CSS framework. I used mobile-first design
 The frontend of the app does use server rendered templates, but I also make use of Turbo and Stimulus to provide a more modern, SPA-like feel to various sections of the site. When a user likes a post or comment, a full page reload isn't triggered thanks to Turbo Streams. I also use Stimulus to provide some JavaScript reactivity with dropdowns, toggles, and form feedback.
 
 #### Robust Test Suite
-This project includes over 100 test cases with 97% coverage (measured using [SimpleCov](https://github.com/simplecov-ruby/simplecov)). Model methods, decorators, and helpers are unit tested with RSpec, and every major feature of the site is system tested using RSpec and Capybara.
+This project has 97% test coverage (measured using [SimpleCov](https://github.com/simplecov-ruby/simplecov)). Model methods, decorators, and helpers are unit tested with RSpec, and every major feature of the site is system tested using RSpec and Capybara. I also use [FactoryBot](https://github.com/thoughtbot/factory_bot_rails) to aid in creating data for my tests.
 
 ## Reflections
 
