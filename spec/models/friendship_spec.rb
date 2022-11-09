@@ -11,6 +11,7 @@
 #
 # Indexes
 #
+#  index_friends                     (LEAST(sender_id, receiver_id), GREATEST(sender_id, receiver_id)) UNIQUE
 #  index_friendships_on_receiver_id  (receiver_id)
 #  index_friendships_on_sender_id    (sender_id)
 #

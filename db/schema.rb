@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_27_192452) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_09_152240) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_192452) do
     t.boolean "accepted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index "LEAST(sender_id, receiver_id), GREATEST(sender_id, receiver_id)", name: "index_friends", unique: true
     t.index ["receiver_id"], name: "index_friendships_on_receiver_id"
     t.index ["sender_id"], name: "index_friendships_on_sender_id"
   end
