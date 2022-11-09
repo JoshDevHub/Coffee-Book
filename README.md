@@ -63,6 +63,46 @@ This project has 97% test coverage (measured using [SimpleCov](https://github.co
 
 ## Reflections
 
+I was able to explore a lot of fun and interesting problems while developing this project.
+
+#### Deployment
+
+My previous projects were deployed to Heroku, but with the free tier going away, I figured I'd give another method a try. This project is deployed to a DigitalOcean droplet that's running [dokku](https://github.com/dokku/dokku). This was a great experience and also required a lot more hands-on setup than working with Heroku did. I was able to learn a lot about configuring my own production environment and server.
+
+#### Querying Efficiently
+
+Relative to my previous Rails projects, I put much more thought into the efficiency of my database queries. I used the [bullet gem](https://github.com/flyerhzm/bullet) to help spot dreaded N+1 queries, and I also used counter caches to avoid having to execute COUNT queries in places where a count needs to be frequently read (ie. posts' like and comment count).
+
+#### Working with ActiveStorage
+
+ActiveStorage is a Rails module that helps manage file uploads and storage. My project allows users to upload pictures for their avatar or just to attach to any post. One of the challenges for working with ActiveStorage is that it doesn't have any out of the box validations. This meant that I had to write my own custom validators for validating the MIME type and the size of the images my users upload.
+
+Additionally the default widget HTML gives you on a file input field isn't great. I combined CSS and a couple of Stimulus controllers to get something that fits the design of the site better and allows users to see a small preview of the image they're about to submit.
+
+#### Unique Friendships
+
+Modeling "friendship" was a challenge for me in the project. A Friendship holds two foreign keys to a user: the person who initiated the Friendship and the person who accepted it. This needs to be reciprocal such that if I'm your friend, you're my friend as well. Getting the queries and associations properly going for this was a challenge. One problem in particular that took me some research: how do you make each "friendship" pairing unique? I should only be able to have one "Friendship" pairing with any other user, regardless of who initiated or accepted the Friendship. I could've written a custom validator to handle it, but it's nice to implement these things on the database level to avoid race conditions and ensure integrity of the data. It's not too difficult to find solutions like the following:
+
+```rb
+# in model
+validates user_id:, uniqueness: { scope: :friend_id }
+
+# in schema
+t.index ["user_id", "friend_id"], unique: true
+```
+But this kind of thing has a big problem: it doesn't verify the _inverse_ relationship. So `Friendship.new(user: u1, friend: u2)` and `Friendship.new(user: u2, friend: u1)` are allowed to coexist. Eventually I learned about indexing on an expression, which allowed me to get the constraint I want and is also pretty dang clean:
+
+```rb
+# db/migrations/
+
+def change
+  add_index :friendships,
+            'least(sender_id, receiver_id), greatest(sender_id, receiver_id)',
+            unique: true
+end
+```
+This will create a unique index over the pair of foreign keys where the lower id is positioned first and the greater one second, so it verifies uniqueness on any ordering of the users. Pretty cool!
+
 ## Improvements
 
 ## Special Thanks
