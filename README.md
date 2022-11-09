@@ -113,3 +113,8 @@ I'm pretty happy with how this one turned out, and I learned a ton. There are al
 
 ## Special Thanks
 
+Huge thanks to the people over at [The Odin Project](https://theodinproject.com), and in particular, the people who chat in the Ruby on Rails channels in the Odin discord. You'll never meet a more helpful group of people :heart:
+
+A couple of people I want to thank specifically:
+- [Migs](https://github.com/Michaelleojacob), who gave me feedback on the look and feel of the site several times throughout development. Almost any time I would demo the project for him, we'd notice some new bug for me to fix.
+- [Crespire](https://github.com/crespire), who helped a ton with me getting my dokku deployment up and going.
