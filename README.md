@@ -4,7 +4,7 @@ A social media clone app for people who love coffee.
 
 ## About
 
-This was my submission as the final project in the [Ruby on Rails course](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails) over at The Odin Project. It encompasses a ton of what I've come to know about Rails through my learning there, and I'll discuss its feature set below. So grab a hot cup and enjoy :coffee:
+This was my submission as the final project in the [Ruby on Rails course](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails) over at The Odin Project, an open source curriculum for learning Full Stack web development. It encompasses a ton of what I've come to know about Rails through my learning there, and I'm excited to share it. So grab a hot cup and enjoy :coffee:
 
 ## Getting Started / How to Use
 
