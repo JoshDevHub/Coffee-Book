@@ -14,7 +14,8 @@ For running this app locally, I recommend having the following prerequisites:
 Ruby >= 3.1.2
 Rails >= 7.0.2
 Bundler >= 2.2.32
-PosgreSQL >= 12.12
+Yarn >= 1.22
+PosgreSQL >= 14.5
 libvips # for ActiveStorage
 ```
 
