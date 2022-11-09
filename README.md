@@ -105,5 +105,11 @@ This will create a unique index over the pair of foreign keys where the lower id
 
 ## Improvements
 
+I'm pretty happy with how this one turned out, and I learned a ton. There are always improvements that could be made though. Here's a list of some I might implement down the line:
+
+- Rails has a module called [ActionText](https://guides.rubyonrails.org/action_text_overview.html) that I could use to give my users a rich, WYSIWYG editor for their posts and comments.
+- I could definitely get more mileage out of Turbo and Turbo-Streams. Currently the only place I leverage Turbo-Streams is for allowing users to like and unlike posts without a full page refresh. I could push this much further with streams for creating, removing, and editing posts and comments.
+- I could wire up my notifications system with ActionCable (Rails's interface for working with websockets) so that users could be alerted in real-time to friend requests and comments on their posts, etc. This was a bit of a low priority for me in dev because it's a feature users are unlikely to be able to see it in action, but I think it'd still be fun to implement down the line.
+
 ## Special Thanks
 
