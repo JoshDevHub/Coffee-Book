@@ -44,6 +44,7 @@ class Profile < ApplicationRecord
   delegate :friends, to: :user
 
   validates :bio, length: { maximum: MAX_BIO_LENGTH }
+  validates :birthday, comparison: { less_than: Time.zone.today }
   validates :location, length: { maximum: MAX_LOCATION_LENGTH }
   validates :avatar_attachment, photo_filetype: true,
                                 unless: -> { avatar_attachment.nil? }
