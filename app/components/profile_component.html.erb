@@ -1,26 +1,26 @@
-<%= image_tag helpers.avatar_url_for(profile, variant: :thumb), class: "rounded-full mx-auto mb-2 border-2 border-black" %>
+<%= image_tag helpers.avatar_url_for(@profile, variant: :thumb), class: "rounded-full mx-auto mb-2 border-2 border-black" %>
 <p class="font-bold mb-1">
-  <%= profile.name %>
+  <%= @profile.name %>
 </p>
 
-<%= link_to "Friends: #{profile.friends.size}",
-  user_friends_path(profile.username),
+<%= link_to "Friends: #{@profile.friends.size}",
+  user_friends_path(@profile.username),
   class: "text-slate-800 hover:text-slate-700 transition underline
           underline-offset-4 hover:no-underline"
 %>
 
 <p class="mb-2 md:mx-4 break-words">
-  <%= profile.bio %>
+  <%= @profile.bio %>
 </p>
 
 <ul class="flex flex-col items-center mb-4">
-  <%= profile.display_gender %>
-  <%= profile.display_age %>
-  <%= profile.display_location %>
+  <%= gender %>
+  <%= age %>
+  <%= location %>
 </ul>
 
-<% if current_user == profile.user %>
-  <% if profile.complete? %>
+<% if current_user == @profile.user %>
+  <% if @profile.complete? %>
     <%= link_to "Edit Profile", edit_profile_path, class: "btn btn-primary" %>
   <% else %>
     <p class="mb-4">You haven't finished your profile.</p>

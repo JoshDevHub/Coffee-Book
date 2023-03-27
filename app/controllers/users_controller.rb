@@ -13,8 +13,8 @@ class UsersController < ApplicationController
 
   # GET "/user/:username"
   def show
-    @user = User.includes(posts: :photo_attachment).find_by!(username: params[:username])
-    @profile = ProfileDecorator.new(@user.profile)
+    @user = User.includes(posts: :photo_attachment)
+                .find_by!(username: params[:username])
   end
 
   private
