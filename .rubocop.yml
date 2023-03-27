@@ -15,6 +15,10 @@ Layout/LineLength:
   Exclude:
     - "config/initializers/devise.rb"
 
+Lint/MissingSuper:
+  Exclude:
+    - "app/components/**/*"
+
 Metrics/BlockLength:
   Exclude:
     - "config/**/*"
