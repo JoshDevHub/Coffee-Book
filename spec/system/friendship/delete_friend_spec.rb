@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Deleting a friend", type: :system do
   context "when rejecting a request" do
     let(:sender) { create(:user) }
-    let(:receiver) { create(:user) }
+    let(:receiver) { create(:user, :friend) }
 
     before do
       friendship = create(:friendship, sender:, receiver:)
