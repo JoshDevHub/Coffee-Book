@@ -70,6 +70,7 @@ class User < ApplicationRecord
   scope :index_for, ->(user) { excluding(user) }
   scope :include_avatar, -> { includes(profile: :avatar_attachment) }
 
+  # rubocop: disable Metrics/AbcSize
   def self.from_omniauth(auth)
     user = find_or_initialize_by(provider: auth.provider, uid: auth.uid)
     user.email = auth.info.email
@@ -82,6 +83,7 @@ class User < ApplicationRecord
     user.save
     user
   end
+  # rubocop: enable Metrics/AbcSize
 
   def self.search_by_name(name)
     first_search, last_search, = name.split.map(&:downcase)

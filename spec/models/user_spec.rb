@@ -24,7 +24,7 @@
 #
 require "rails_helper"
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   describe "::index_for" do
     let(:current_user) { create(:user) }
 

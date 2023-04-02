@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Searching for users", type: :system do
+RSpec.describe "Searching for users" do
   let(:user) { create(:user) }
 
   before do

@@ -17,6 +17,9 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  # GET "/posts/:id/edit"
+  def edit; end
+
   # POST "/posts"
   def create
     @post = current_user.posts.build(post_params)
@@ -27,9 +30,6 @@ class PostsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
-  # GET "/posts/:id/edit"
-  def edit; end
 
   # PATCH "/posts/:id"
   def update

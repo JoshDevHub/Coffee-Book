@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe UserMailer, type: :mailer do
+RSpec.describe UserMailer do
   describe "#welcome_email" do
     subject(:mail) { described_class.with(user:).welcome_email }
 

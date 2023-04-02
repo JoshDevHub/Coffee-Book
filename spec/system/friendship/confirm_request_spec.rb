@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Confirming a friend request", type: :system do
+RSpec.describe "Confirming a friend request" do
   let(:sender) { create(:user) }
   let(:receiver) { create(:user) }
 

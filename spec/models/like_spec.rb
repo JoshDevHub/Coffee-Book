@@ -20,7 +20,7 @@
 #
 require "rails_helper"
 
-RSpec.describe Like, type: :model do
+RSpec.describe Like do
   describe "notify" do
     let(:liker) { create(:user) }
     let(:liked_user) { create(:user, :liking_user) }

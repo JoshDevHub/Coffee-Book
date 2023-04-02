@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Reading notifications", type: :system do
+RSpec.describe "Reading notifications" do
   let(:current_user) { create(:user) }
 
   before do

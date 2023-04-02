@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Creating a like", type: :system do
+RSpec.describe "Creating a like" do
   let!(:liking_user) { create(:user) }
 
   context "when the like is on a post" do

@@ -21,7 +21,7 @@
 #
 require "rails_helper"
 
-RSpec.describe Profile, type: :model do
+RSpec.describe Profile do
   describe "#complete?" do
     context "when the profile is complete" do
       subject(:complete_profile) { create(:profile) }

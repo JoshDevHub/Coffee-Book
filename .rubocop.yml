@@ -27,6 +27,13 @@ Metrics/BlockLength:
 Rails/I18nLocaleTexts:
   Enabled: false
 
+Rails/RakeEnvironment:
+  Exclude:
+    - "lib/tasks/auto_annotate_models.rake"
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 

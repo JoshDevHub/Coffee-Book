@@ -20,7 +20,7 @@
 #
 require "rails_helper"
 
-RSpec.describe Post, type: :model do
+RSpec.describe Post do
   describe "::timeline_for" do
     let(:main_user) { create(:user) }
     let(:friend) { create(:user, :friend) }

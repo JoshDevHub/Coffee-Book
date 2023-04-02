@@ -21,7 +21,7 @@
 #
 require "rails_helper"
 
-RSpec.describe Comment, type: :model do
+RSpec.describe Comment do
   describe "#notify" do
     subject(:comment) { create(:comment, commenter:, post: commented_post) }
 

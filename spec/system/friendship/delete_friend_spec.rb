@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Deleting a friend", type: :system do
+RSpec.describe "Deleting a friend" do
   context "when rejecting a request" do
     let(:sender) { create(:user) }
     let(:receiver) { create(:user, :friend) }

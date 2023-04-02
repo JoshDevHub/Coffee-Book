@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Viewing friend list", type: :system do
+RSpec.describe "Viewing friend list" do
   let(:current_user) { create(:user) }
 
   before do

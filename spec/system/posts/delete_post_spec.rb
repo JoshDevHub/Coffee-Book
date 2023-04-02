@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Deleting a post", type: :system do
+RSpec.describe "Deleting a post" do
   let(:user) { create(:user) }
 
   before do

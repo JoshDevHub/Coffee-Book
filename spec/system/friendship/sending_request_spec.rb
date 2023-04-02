@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Sending a friend request", type: :system do
+RSpec.describe "Sending a friend request" do
   let!(:current_user) { create(:user) }
   let!(:other_user) { create(:user) }
 

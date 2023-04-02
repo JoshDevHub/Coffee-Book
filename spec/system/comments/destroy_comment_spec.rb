@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Destroying a comment", type: :system do
+RSpec.describe "Destroying a comment" do
   let(:user) { create(:user) }
   let(:post) { create(:post, author: user) }
 

@@ -22,7 +22,7 @@
 #
 require "rails_helper"
 
-RSpec.describe Friendship, type: :model do
+RSpec.describe Friendship do
   describe "::for" do
     let!(:main_user) { create(:user) }
     let!(:friend_list) { create_list(:friendship, 5, sender: main_user) }

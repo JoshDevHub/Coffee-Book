@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Editing a profile", type: :system do
+RSpec.describe "Editing a profile" do
   let!(:user) { create(:user) }
 
   before do

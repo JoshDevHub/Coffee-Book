@@ -2,6 +2,9 @@ class CommentsController < ApplicationController
   before_action :find_comment_for_current_user, only: %i[edit update destroy]
   before_action :post_param, only: %i[create]
 
+  # GET "/comments/:id/edit"
+  def edit; end
+
   # POST posts/:id/comments
   def create
     @comment = @post.comments.new(
@@ -15,9 +18,6 @@ class CommentsController < ApplicationController
     end
     redirect_to @post
   end
-
-  # GET "/comments/:id/edit"
-  def edit; end
 
   # PATCH "/comments/:id"
   def update

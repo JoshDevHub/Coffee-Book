@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Visiting user profile", type: :system do
+RSpec.describe "Visiting user profile" do
   let(:user) { create(:user) }
   let(:other_user) { create(:user, id: 5, first_name: "Bob", last_name: "Jones") }
 

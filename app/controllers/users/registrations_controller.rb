@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop: disable Rails/LexicallyScopedActionFilter
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -73,4 +72,3 @@ class Users::RegistrationsController < Devise::RegistrationsController
     UserMailer.with(user: resource).welcome_email.deliver
   end
 end
-# rubocop: enable Rails/LexicallyScopedActionFilter

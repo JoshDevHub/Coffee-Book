@@ -23,7 +23,7 @@
 #
 require "rails_helper"
 
-RSpec.describe Notification, type: :model do
+RSpec.describe Notification do
   describe "#mark_as_read" do
     context "when the notification is unread" do
       subject(:unread_notif) { create(:notification) }

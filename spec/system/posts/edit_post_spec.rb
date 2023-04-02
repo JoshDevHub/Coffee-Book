@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Editing a post", type: :system do
+RSpec.describe "Editing a post" do
   let(:user) { create(:user) }
   let(:post) { Post.create(body: "Test Post", author: user) }
 

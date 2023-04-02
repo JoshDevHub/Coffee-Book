@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Editing a comment", type: :system do
+RSpec.describe "Editing a comment" do
   let(:user) { create(:user) }
   let!(:post) { create(:post, author: user) }
 

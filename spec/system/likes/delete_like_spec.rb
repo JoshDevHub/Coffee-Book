@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Deleting a like", type: :system do
+RSpec.describe "Deleting a like" do
   let(:user) { create(:user) }
 
   before do
