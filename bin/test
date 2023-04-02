@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+results = {
+  "Rubocop" => false,
+  "RSpec" => false
+}
+
+puts "\n== Running lint =="
+results["Rubocop"] = system "bundle exec rubocop"
+
+puts "\n== Running specs =="
+results["RSpec"] = system "bundle exec rspec"
+
+puts "\n== Results =="
+results.each_pair do |k, v|
+  puts "#{k.ljust(7)} #{v ? '✅' : '❌'}"
+end
+
+if results.values.all?
+  puts "All tests pass!"
+else
+  puts "Failing tests!"
+end
