@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  # Root
-  root "posts#index"
-
   # Auth
   devise_for :users,
              controllers: {
@@ -9,6 +6,17 @@ Rails.application.routes.draw do
                registrations: "users/registrations",
                sessions: "users/sessions"
              }
+
+  # Root
+  devise_scope :user do
+    authenticated :user do
+      root "posts#index"
+    end
+
+    unauthenticated do
+      root "devise/sessions#new", as: :unauthenticated_root
+    end
+  end
 
   # Users
   resources :users, only: %i[index] do

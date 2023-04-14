@@ -19,11 +19,11 @@ RSpec.describe "Sign in" do
     it "notifies the user of invalid credentials" do
       visit root_path
 
-      fill_in "Email", with: "not_email"
+      fill_in "Email", with: "not_email@email.com"
       fill_in "Password", with: user.password
+      click_on "Log in"
 
-      expect(page).to have_current_path(new_user_session_path)
-      expect(page).to have_content("You need to sign in or sign up before continuing.")
+      expect(page).to have_content("Invalid Email or password")
     end
   end
 end
